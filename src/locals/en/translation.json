@@ -1,0 +1,9 @@
+{
+    "navigation": {
+        "schedule": "Schedule",
+        "results": "Results",
+        "pilots": "Pilots",
+        "teams": "Teams",
+        "news": "News"
+    }
+}

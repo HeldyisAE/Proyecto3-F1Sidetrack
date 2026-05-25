@@ -1,6 +1,7 @@
 import '../styles/Header.css'
 
 import LogoButton from './LogoButton';
+import RedirectButtons from './RedirectButtons';
 
 function Header() {
 
@@ -10,7 +11,7 @@ function Header() {
                 <LogoButton />
             </div>
             <div className="center">
-                <h1>Center</h1>
+                <RedirectButtons />
             </div>
             <div className="right">
                 <h1>Right</h1>
