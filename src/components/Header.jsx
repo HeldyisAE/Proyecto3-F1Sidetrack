@@ -2,6 +2,7 @@ import '../styles/Header.css'
 
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
+import FanShopButton from './FanShopButton';
 
 function Header() {
 
@@ -12,6 +13,7 @@ function Header() {
             </div>
             <div className="center">
                 <RedirectButtons />
+                <FanShopButton />
             </div>
             <div className="right">
                 <h1>Right</h1>
