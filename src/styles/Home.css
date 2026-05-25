@@ -17,6 +17,7 @@
 
 .mid {
     width: 100%;
+    min-width: 0;
     flex: 1;
     display: flex;
     align-items: center;
@@ -24,10 +25,22 @@
     padding: 24px;
     box-sizing: border-box;
     gap: 24px;
+    overflow-x: hidden;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 24px;
+    gap: 24px;
 }
 
 .bottom {
-    height: 7vh;
+    min-height: 7vh;
     display: flex;
     align-items: center;
     justify-content: center;
