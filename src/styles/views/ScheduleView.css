@@ -1,0 +1,85 @@
+.sv-container { width: 100%; }
+
+.sv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+}
+
+.sv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.sv-card {
+    position: relative;
+    border: 1px solid var(--color-border, #333);
+    border-radius: 6px;
+    padding: 1rem;
+    background: var(--color-surface, #111);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.sv-card:hover { border-color: #E10600; transform: translateY(-2px); }
+
+.sv-card--past { opacity: 0.5; }
+
+.sv-card--next {
+    border-color: #E10600;
+    box-shadow: 0 0 0 1px #E10600;
+}
+
+.sv-round {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary, #888);
+}
+
+.sv-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: #E10600;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.sv-race-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0.4rem 0 0.2rem;
+    color: var(--color-text-primary);
+}
+
+.sv-circuit, .sv-location, .sv-date {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.sv-date { margin-top: 0.5rem; color: var(--color-text-primary); }
+
+.sv-past-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary, #888);
+    background: rgba(0,0,0,0.4);
+    padding: 2px;
+}
+
+.sv-empty { color: var(--color-text-secondary, #888); font-family: var(--font-display); }

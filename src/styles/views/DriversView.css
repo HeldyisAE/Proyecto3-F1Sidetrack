@@ -1,0 +1,92 @@
+.dv-container { width: 100%; }
+
+.dv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.dv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.dv-card {
+    position: relative;
+    border: 1px solid var(--color-border, #333);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--color-surface, #111);
+    transition: transform 0.15s, border-color 0.2s;
+}
+
+.dv-card:hover { transform: translateY(-3px); border-color: var(--team-color, #E10600); }
+
+.dv-card-accent {
+    height: 3px;
+    background-color: var(--team-color, #E10600);
+    width: 100%;
+}
+
+.dv-card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.dv-headshot {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+}
+
+.dv-headshot-placeholder {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--team-color, #E10600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.dv-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--team-color, #E10600);
+    font-family: var(--font-display);
+}
+
+.dv-name {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.dv-team {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.dv-country {
+    font-size: 0.72rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.dv-empty { color: var(--color-text-secondary, #888); font-family: var(--font-display); }

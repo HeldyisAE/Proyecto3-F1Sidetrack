@@ -1,24 +1,49 @@
-// src/hooks/useF1Menu.js
-import { useState } from 'react';
-import * as f1Service from '../services/f1Service'; // Importas todo el servicio
+import { useState, useCallback } from 'react';
+import * as f1Service from '../services/f1Service';
 
 export const useF1Menu = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [activeView, setActiveView] = useState(null);
 
-    const handleConsult = async (serviceName, params = null) => {
+    const handleConsult = useCallback(async (serviceName, params = null) => {
+        if (activeView === serviceName) {
+            setActiveView(null);
+            setData(null);
+            setError(null);
+            return;
+        }
+
         setLoading(true);
         setError(null);
+        setData(null);
+        setActiveView(serviceName);
+
         try {
-            const result = await f1Service[serviceName](params);
+            const result = params
+                ? await f1Service[serviceName](params)
+                : await f1Service[serviceName]();
             setData(result);
         } catch (err) {
-            setError(err.message);
+            setError(err.message ?? 'Error desconocido al consultar la API.');
         } finally {
             setLoading(false);
         }
-    };
+    }, [activeView]);
 
-    return { data, loading, error, handleConsult };
+    const clearView = useCallback(() => {
+        setData(null);
+        setError(null);
+        setActiveView(null);
+    }, []);
+
+    return {
+        data,
+        loading,
+        error,
+        activeView, 
+        handleConsult,
+        clearView,
+    };
 };

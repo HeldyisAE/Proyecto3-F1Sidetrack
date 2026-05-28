@@ -1,0 +1,93 @@
+.tv-container { width: 100%; }
+
+.tv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.tv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.tv-card {
+    border: 1px solid var(--color-border, #333);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--color-surface, #111);
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.tv-card:hover { border-color: var(--team-color, #E10600); transform: translateY(-2px); }
+
+.tv-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--color-border, #222);
+}
+
+.tv-color-bar {
+    width: 4px;
+    height: 24px;
+    border-radius: 2px;
+    background-color: var(--team-color, #E10600);
+    flex-shrink: 0;
+}
+
+.tv-team-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.tv-drivers { padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.tv-driver-row { display: flex; align-items: center; gap: 0.75rem; }
+
+.tv-driver-headshot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+    flex-shrink: 0;
+}
+
+.tv-driver-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--team-color, #E10600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.tv-driver-name {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.tv-driver-meta {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.tv-empty { color: var(--color-text-secondary, #888); font-family: var(--font-display); }

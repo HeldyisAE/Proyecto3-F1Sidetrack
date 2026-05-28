@@ -1,0 +1,84 @@
+.rv-container { width: 100%; }
+
+.rv-header { margin-bottom: 1.5rem; }
+
+.rv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 0.25rem;
+}
+
+.rv-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary, #888);
+    font-family: var(--font-display);
+}
+
+.rv-table-wrapper { width: 100%; overflow-x: auto; }
+
+.rv-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-display);
+}
+
+.rv-th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary, #888);
+    border-bottom: 1px solid var(--color-border, #333);
+    padding: 0.5rem 0.75rem;
+}
+
+.rv-row { border-bottom: 1px solid var(--color-border, #222); transition: background 0.15s; }
+.rv-row:hover { background: rgba(255,255,255,0.03); }
+
+.rv-td { padding: 0.65rem 0.75rem; vertical-align: middle; }
+
+.rv-td--pos { width: 50px; text-align: center; }
+
+.rv-medal { font-size: 1.3rem; }
+
+.rv-pos-num {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.rv-driver-info { display: flex; align-items: center; gap: 0.75rem; }
+
+.rv-headshot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+}
+
+.rv-driver-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.rv-driver-num {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.rv-team-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.rv-empty { color: var(--color-text-secondary, #888); font-family: var(--font-display); }

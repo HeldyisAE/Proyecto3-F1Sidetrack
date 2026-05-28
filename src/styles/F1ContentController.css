@@ -1,0 +1,81 @@
+/* src/styles/F1ContentController.css */
+
+.f1cc-welcome {
+    width: 100%;
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f1cc-welcome-text {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--color-text-secondary, #888);
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+/* Estado genérico: loading / error */
+.f1cc-state {
+    width: 100%;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-text-secondary, #888);
+    font-family: var(--font-display);
+}
+
+/* Spinner */
+.f1cc-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border, #333);
+    border-top-color: #E10600;
+    border-radius: 50%;
+    animation: f1cc-spin 0.7s linear infinite;
+}
+
+@keyframes f1cc-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error */
+.f1cc-error {
+    color: #E10600;
+}
+
+.f1cc-error-icon {
+    font-size: 2rem;
+}
+
+.f1cc-retry-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #E10600;
+    color: #E10600;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.f1cc-retry-btn:hover {
+    background: #E10600;
+    color: #fff;
+}
+
+/* Contenedor de la vista activa */
+.f1cc-content {
+    width: 100%;
+    animation: f1cc-fadeIn 0.25s ease;
+}
+
+@keyframes f1cc-fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,66 @@
+.nv-container { width: 100%; }
+
+.nv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.nv-year { color: #E10600; }
+
+.nv-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.nv-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-border, #333);
+    border-radius: 6px;
+    background: var(--color-surface, #111);
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.nv-card:hover { border-color: #E10600; transform: translateX(3px); }
+
+.nv-card-left { flex-shrink: 0; }
+
+.nv-icon { font-size: 1.6rem; }
+
+.nv-card-body { flex: 1; min-width: 0; }
+
+.nv-card-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nv-card-sub {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0 0 0.2rem;
+}
+
+.nv-card-date {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #888);
+    margin: 0;
+}
+
+.nv-card-right { flex-shrink: 0; }
+
+.nv-flag {
+    width: 32px;
+    height: auto;
+    border-radius: 2px;
+    display: block;
+}
+
+.nv-empty { color: var(--color-text-secondary, #888); font-family: var(--font-display); }
