@@ -4,6 +4,7 @@ import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
 import Searchbar from './searchbar';
+import ConfigButton from './ConfigButton';
 
 function Header() {
 
@@ -18,7 +19,7 @@ function Header() {
                 <Searchbar />
             </div>
             <div className="right">
-                <h1>Right</h1>
+                <ConfigButton />
             </div>
         </div>
     )

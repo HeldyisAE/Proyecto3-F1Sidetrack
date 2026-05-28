@@ -1,0 +1,75 @@
+.configbutton-container {
+
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.config-button {
+
+    height: 100%;
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2.5rem 0.5rem;
+
+    padding-inline: clamp(10px, 1vw, 16px);
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-text-primary);
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.config-icon {
+
+    font-size: clamp(1.35rem, 1.6vw, 1.7rem);
+
+    transition:
+        color 0.2s ease,
+        transform 0.25s ease;
+}
+
+.config-button:hover .config-icon {
+
+    color: #E10600;
+
+    transform: rotate(90deg) scale(1.08);
+}
+
+.config-button:active {
+    transform: scale(0.96);
+}
+
+.config-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0%;
+    height: 2px;
+
+    background-color: #E10600;
+
+    transition: width 0.2s ease;
+}
+
+.config-button:hover::after {
+    width: 100%;
+}
