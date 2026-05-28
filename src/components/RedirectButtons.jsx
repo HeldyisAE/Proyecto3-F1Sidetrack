@@ -1,20 +1,32 @@
-import '../styles/RedirectButtons.css'
+// src/components/RedirectButtons.jsx
+import '../styles/RedirectButtons.css';
 import { useTranslation } from 'react-i18next';
-import { useF1Menu } from '../hooks/useF1Menu';
 
-function RedirectButtons() {
+// Recibe handleConsult y activeView como props desde Header → Home
+function RedirectButtons({ handleConsult, activeView }) {
     const { t } = useTranslation();
-    const { handleConsult } = useF1Menu();
 
-    return(
+    const buttons = [
+        { service: 'getSchedule', label: t('navigation.schedule') },
+        { service: 'getResults',  label: t('navigation.results')  },
+        { service: 'getDrivers',  label: t('navigation.pilots')   },
+        { service: 'getTeams',    label: t('navigation.teams')    },
+        { service: 'getNews',     label: t('navigation.news')     },
+    ];
+
+    return (
         <div className="redirect-container">
-            <button className="redirect-button" onClick={() => handleConsult('getSchedule')}>{t("navigation.schedule")}</button>
-            <button className="redirect-button" onClick={() => handleConsult('getResults')}>{t("navigation.results")}</button>
-            <button className="redirect-button" onClick={() => handleConsult('getDrivers')}>{t("navigation.pilots")}</button>
-            <button className="redirect-button" onClick={() => handleConsult('getTeams')}>{t("navigation.teams")}</button>
-            <button className="redirect-button" onClick={() => handleConsult('getNews')}>{t("navigation.news")}</button>
+            {buttons.map(({ service, label }) => (
+                <button
+                    key={service}
+                    className={`redirect-button ${activeView === service ? 'redirect-button--active' : ''}`}
+                    onClick={() => handleConsult(service)}
+                >
+                    {label}
+                </button>
+            ))}
         </div>
-    )
-};
+    );
+}
 
 export default RedirectButtons;

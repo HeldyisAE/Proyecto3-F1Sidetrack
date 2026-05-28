@@ -1,3 +1,6 @@
+/* src/styles/RedirectButtons.css
+   Agrega el estado activo al CSS existente de tu compañero */
+
 .redirect-container {
     display: flex;
     justify-content: flex-start;
@@ -8,27 +11,17 @@
 }
 
 .redirect-button {
-
     height: 100%;
-
     position: relative;
-
     padding: 2.5rem 0.5rem;
-
     border: none;
     background: transparent;
-
     color: var(--color-text-primary);
-
     font-family: var(--font-display);
-    font-size: clamp(1rem, 1.2vw, 1.1rem) ;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
     font-weight: 500;
-
     cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        transform 0.15s ease;
+    transition: color 0.2s ease, transform 0.15s ease;
 }
 
 .redirect-button:hover {
@@ -39,23 +32,28 @@
     transform: scale(0.96);
 }
 
+/* Línea inferior animada */
 .redirect-button::after {
-
     content: "";
-
     position: absolute;
-
     left: 0;
     bottom: 0;
-
     width: 0%;
     height: 2px;
-
     background-color: var(--color-primary);
-
     transition: width 0.2s ease;
 }
 
 .redirect-button:hover::after {
     width: 100%;
+}
+
+/* ── Estado activo (botón seleccionado) ── */
+.redirect-button--active {
+    color: #E10600;
+}
+
+.redirect-button--active::after {
+    width: 100%;
+    background-color: #E10600;
 }
