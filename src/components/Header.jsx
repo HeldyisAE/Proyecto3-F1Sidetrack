@@ -5,6 +5,7 @@ import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
 import Searchbar from './searchbar';
 import ConfigButton from './ConfigButton';
+import UserButton from './userButton';
 
 function Header() {
 
@@ -17,9 +18,11 @@ function Header() {
                 <RedirectButtons />
                 <FanShopButton />
                 <Searchbar />
+                <ConfigButton />
             </div>
             <div className="right">
-                <ConfigButton />
+                
+                <UserButton />
             </div>
         </div>
     )

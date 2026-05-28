@@ -1,12 +1,12 @@
 .searchbar-container {
 
     width: 100%;
-    max-width: 520px;
+    max-width: 470px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.7rem 5rem;
+    padding: 1.7rem 4.3rem;
 }
 
 .searchbar-wrapper {

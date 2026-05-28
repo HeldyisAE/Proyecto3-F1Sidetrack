@@ -1,7 +1,7 @@
 .header {
     width: 100%;
     display: grid;
-    grid-template-columns: auto 2fr auto; 
+    grid-template-columns: auto 1fr auto; 
     padding-inline: 2vw;
     align-items: center;
     box-sizing: border-box;
@@ -23,5 +23,4 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-left: 1px solid red;
 }
