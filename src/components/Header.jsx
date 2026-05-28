@@ -3,6 +3,7 @@ import '../styles/Header.css'
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
+import Searchbar from './searchbar';
 
 function Header() {
 
@@ -14,6 +15,7 @@ function Header() {
             <div className="center">
                 <RedirectButtons />
                 <FanShopButton />
+                <Searchbar />
             </div>
             <div className="right">
                 <h1>Right</h1>
