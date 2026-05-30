@@ -2,6 +2,7 @@ import '../styles/HomeLayout.css'
 
 import SectionNews from '../components/SectionNews';
 import StandingSection from '../components/StandingSection';
+import NextRaceSection from '../components/NextRaceSection';
 
 function HomeLayout() {
     return (
@@ -15,7 +16,7 @@ function HomeLayout() {
                 </div>
             </div>
             <div className="nextrace-section">
-                <p>Next race</p>
+                <NextRaceSection />
             </div>
             <div className="results-section">
                 <p>Last results</p>

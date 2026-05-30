@@ -1,0 +1,140 @@
+/* ── next race container ── */
+.next-race {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: center;
+
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.next-race:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(225, 6, 0, 0.35);
+  transform: translateY(-3px);
+}
+
+.next-race:active {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── info panel ── */
+.race-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2vw;
+  gap: 1.75rem;
+}
+
+/* ── label de sección ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #E10600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section-label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #E10600;
+  border-radius: 999px;
+}
+
+/* ── título de carrera ── */
+.race-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ── grid de datos ── */
+.race-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+/* ── cada dato ── */
+.race-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid rgba(225, 6, 0, 0.5);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.race-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: #E10600;
+  transform: translateY(-2px);
+}
+
+.item-label {
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.item-value {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ── preview del circuito ── */
+.circuit-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 2rem);
+  position: relative;
+}
+
+.circuit-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(225, 6, 0, 0.06) 0%,
+    transparent 70%
+  );
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.circuit-image {
+  width: 100%;
+  max-width: 420px;
+  object-fit: contain;
+  filter: brightness(0.9) contrast(1.1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+}
+
+.circuit-image:hover {
+  transform: scale(1.05);
+  filter: brightness(1) contrast(1.15);
+}
