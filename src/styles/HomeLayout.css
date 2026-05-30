@@ -21,7 +21,7 @@
 
 .hero-card {
 
-    min-height: clamp(320px, 40vh, 500px);
+    height: clamp(320px, 47vh, 500px);
 
     border: 1px solid var(--color-border);
 

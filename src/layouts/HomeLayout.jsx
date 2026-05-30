@@ -1,6 +1,7 @@
 import '../styles/HomeLayout.css'
 
 import SectionNews from '../components/SectionNews';
+import StandingSection from '../components/StandingSection';
 
 function HomeLayout() {
     return (
@@ -10,7 +11,7 @@ function HomeLayout() {
                     <SectionNews />
                 </div>
                 <div className="hero-card">
-                    <p>Standings</p>
+                    <StandingSection />
                 </div>
             </div>
             <div className="nextrace-section">

@@ -1,0 +1,191 @@
+/* ── contenedor principal ── */
+.standings-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(20px, 2vw, 28px);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── header ── */
+.standings-header {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── toggle pill ── */
+.standings-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  padding: 4px;
+  width: 100%;
+}
+
+.toggle-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 7px 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary, #999);
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  border-radius: 999px;
+}
+
+.toggle-btn.active {
+  color: #fff;
+}
+
+/* pill que se desliza */
+.toggle-pill {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: #E10600;
+  border-radius: 999px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.toggle-pill.right {
+  transform: translateX(calc(100% + 0px));
+}
+
+/* ── barra de progreso auto-rotate ── */
+.standings-progress {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.standings-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #E10600;
+  border-radius: 999px;
+  animation: progressFill 7s linear forwards;
+}
+
+@keyframes progressFill {
+  from { width: 0% }
+  to   { width: 100% }
+}
+
+/* ── lista ── */
+.standings-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 4px;
+}
+
+.standings-list::-webkit-scrollbar { width: 4px; }
+.standings-list::-webkit-scrollbar-track { background: transparent; }
+.standings-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
+}
+.standings-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 6, 0, 0.6);
+}
+
+/* ── fila ── */
+.standing-row {
+  display: grid;
+  grid-template-columns: 32px 4px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  animation: rowFadeIn 0.3s ease both;
+}
+
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.standing-row:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.07);
+  transform: translateX(3px);
+}
+
+/* posición */
+.position {
+  color: var(--color-text-secondary, #777);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.position.podium {
+  color: #fff;
+}
+
+/* barra de color del equipo */
+.team-color {
+  width: 4px;
+  height: 22px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* nombre */
+.name {
+  color: var(--color-text-primary, #fff);
+  font-size: 0.9rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* puntos */
+.points {
+  color: #E10600;
+  font-weight: 800;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.pts-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(225, 7, 0, 0.884);
+  letter-spacing: 0.05em;
+}
+
+/* loading */
+.standings-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-secondary, #777);
+}
