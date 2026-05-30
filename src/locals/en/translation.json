@@ -6,6 +6,10 @@
         "teams": "Teams",
         "news": "News",
         "shop": "Shop",
-        "searchbar": "Find drivers, teams, tracks..."
+        "searchbar": "Find drivers, teams, tracks...",
+        "contact" : "Contact",
+        "partners" : "Partners",
+        "terms" : "Terms",
+        "privacy" : "Privacy"
     }
 }

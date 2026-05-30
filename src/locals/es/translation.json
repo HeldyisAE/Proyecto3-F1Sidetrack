@@ -6,6 +6,10 @@
         "teams": "Equipos",
         "news": "Noticias",
         "shop": "Tienda",
-        "searchbar": "Encuentre pilotos, equipos, pistas..."
+        "searchbar": "Encuentre pilotos, equipos, pistas...",
+        "contact" : "Contacto",
+        "partners" : "Socios",
+        "terms" : "Términos",
+        "privacy" : "Privacidad"
     }
 }

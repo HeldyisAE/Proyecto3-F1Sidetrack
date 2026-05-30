@@ -7,10 +7,12 @@ import {
 } from "react-icons/fa6";
 
 import { SiF1 } from "react-icons/si";
+import { useTranslation } from 'react-i18next';
 
 import '../styles/Footer.css';
 
 function Footer() {
+    const { t } = useTranslation();
 
     return (
 
@@ -20,10 +22,10 @@ function Footer() {
 
                 <div className="footer-links">
 
-                    <span>Contact</span>
-                    <span>Partners</span>
-                    <span>Terms</span>
-                    <span>Privacy</span>
+                    <span>{t("navigation.contact")}</span>
+                    <span>{t("navigation.partners")}</span>
+                    <span>{t("navigation.terms")}</span>
+                    <span>{t("navigation.privacy")}</span>
 
                 </div>
 
