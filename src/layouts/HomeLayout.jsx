@@ -3,6 +3,7 @@ import '../styles/HomeLayout.css'
 import SectionNews from '../components/SectionNews';
 import StandingSection from '../components/StandingSection';
 import NextRaceSection from '../components/NextRaceSection';
+import LastRaceResults from '../components/LastRaceResults';
 
 function HomeLayout() {
     return (
@@ -19,7 +20,7 @@ function HomeLayout() {
                 <NextRaceSection />
             </div>
             <div className="results-section">
-                <p>Last results</p>
+                <LastRaceResults />
             </div>
             <div className="drivers-section">
                 <div className="drivers-card">
