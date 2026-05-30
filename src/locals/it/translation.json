@@ -1,15 +1,30 @@
 {
-    "navigation": {
-        "schedule": "Calendario",
-        "results": "Risultati",
-        "pilots": "Piloti",
-        "teams": "Squadre",
-        "news": "Notizie",
-        "shop": "Negozio",
-        "searchbar": "Trova piloti, squadre, circuiti...",
-        "contact" : "Contatti",
-        "partners" : "Partner",
-        "terms" : "Termini",
-        "privacy" : "Privacy"
+  "navigation": {
+    "schedule": "Calendario",
+    "results": "Risultati",
+    "pilots": "Piloti",
+    "teams": "Squadre",
+    "news": "Notizie",
+    "shop": "Negozio",
+    "searchbar": "Trova piloti, squadre, circuiti...",
+    "contact": "Contatti",
+    "partners": "Partner",
+    "terms": "Termini",
+    "privacy": "Privacy"
+  },
+  "news": {
+    "breaking": "ULTIM'ORA",
+
+    "antonelli": {
+      "title": "Antonelli guida il mondiale a soli 19 anni"
+    },
+
+    "nodrs": {
+      "title": "Il Gran Premio di Monaco si correrà senza DRS"
+    },
+
+    "v8return": {
+      "title": "La Formula 1 lavora intensamente per il ritorno dei motori V8"
     }
+  }
 }

@@ -1,15 +1,31 @@
 {
-    "navigation": {
-        "schedule": "Schedule",
-        "results": "Results",
-        "pilots": "Pilots",
-        "teams": "Teams",
-        "news": "News",
-        "shop": "Shop",
-        "searchbar": "Find drivers, teams, tracks...",
-        "contact" : "Contact",
-        "partners" : "Partners",
-        "terms" : "Terms",
-        "privacy" : "Privacy"
+  "navigation": {
+    "schedule": "Schedule",
+    "results": "Results",
+    "pilots": "Pilots",
+    "teams": "Teams",
+    "news": "News",
+    "shop": "Shop",
+    "searchbar": "Find drivers, teams, tracks...",
+    "contact": "Contact",
+    "partners": "Partners",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+
+  "news": {
+    "breaking": "BREAKING NEWS",
+
+    "antonelli": {
+      "title": "Antonelli leads the championship at just 19 years old"
+    },
+
+    "nodrs": {
+      "title": "Monaco Grand Prix to be run without DRS"
+    },
+
+    "v8return": {
+      "title": "Formula 1 pushes hard for the return of V8 engines"
     }
+  }
 }

@@ -2,6 +2,7 @@ import '../styles/Home.css'
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import HomeLayout from '../layouts/HomeLayout';
 
 function Home() {
 
@@ -12,7 +13,7 @@ function Home() {
             </div>
             <div className="mid">
                 <div className='content-container'>
-                    <h1>Content</h1>  
+                    <HomeLayout />  
                 </div>
             </div>
             <div className="bottom">

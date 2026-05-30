@@ -1,15 +1,30 @@
 {
-    "navigation": {
-        "schedule": "Calendario",
-        "results": "Resultados",
-        "pilots": "Pilotos",
-        "teams": "Equipos",
-        "news": "Noticias",
-        "shop": "Tienda",
-        "searchbar": "Encuentre pilotos, equipos, pistas...",
-        "contact" : "Contacto",
-        "partners" : "Socios",
-        "terms" : "Términos",
-        "privacy" : "Privacidad"
+  "navigation": {
+    "schedule": "Calendario",
+    "results": "Resultados",
+    "pilots": "Pilotos",
+    "teams": "Equipos",
+    "news": "Noticias",
+    "shop": "Tienda",
+    "searchbar": "Encuentre pilotos, equipos, pistas...",
+    "contact": "Contacto",
+    "partners": "Socios",
+    "terms": "Términos",
+    "privacy": "Privacidad"
+  },
+  "news": {
+    "breaking": "ÚLTIMA HORA",
+
+    "antonelli": {
+      "title": "Antonelli lidera el mundial con tan solo 19 años"
+    },
+
+    "nodrs": {
+      "title": "El Gran Premio de Mónaco se disputará sin DRS"
+    },
+
+    "v8return": {
+      "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8"
     }
+  }
 }
