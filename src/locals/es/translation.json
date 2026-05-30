@@ -26,5 +26,11 @@
     "v8return": {
       "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8"
     }
+  },
+  "standings": {
+    "drivers": "Pilotos",
+    "constructors": "Constructores",
+    "loading": "Cargando clasificación...",
+    "points": "PTS"
   }
 }

@@ -27,5 +27,11 @@
     "v8return": {
       "title": "Formula 1 pushes hard for the return of V8 engines"
     }
+  },
+  "standings": {
+    "drivers": "Drivers",
+    "constructors": "Constructors",
+    "loading": "Loading standings...",
+    "points": "PTS"
   }
 }
