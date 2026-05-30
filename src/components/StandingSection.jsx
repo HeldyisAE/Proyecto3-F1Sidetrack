@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { getDriverStandings, getTeamStandings } from "../services/f1Service";
 import "../styles/StandingSection.css";
+import { useTranslation } from "react-i18next";
 
 const AUTO_INTERVAL = 7000;
 
@@ -10,6 +11,8 @@ function StandingSection() {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const intervalRef = useRef(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadData = async () => {
@@ -52,7 +55,7 @@ function StandingSection() {
   const list = mode === "drivers" ? drivers : teams;
 
   if (loading) {
-    return <div className="standings-loading">Loading standings...</div>;
+    return <div className="standings-loading">{t("standings.loading")}</div>;
   }
 
   const TEAM_COLORS = {
@@ -77,13 +80,13 @@ function StandingSection() {
             className={`toggle-btn ${mode === "drivers" ? "active" : ""}`}
             onClick={() => handleToggle("drivers")}
           >
-            Drivers
+            {t("standings.drivers")}
           </button>
           <button
             className={`toggle-btn ${mode === "teams" ? "active" : ""}`}
             onClick={() => handleToggle("teams")}
           >
-            Constructors
+            {t("standings.constructors")}
           </button>
           <div className={`toggle-pill ${mode === "teams" ? "right" : ""}`} />
         </div>
@@ -113,7 +116,7 @@ function StandingSection() {
               <span className={`position ${pos <= 3 ? "podium" : ""}`}>{pos}</span>
               <span className="team-color" style={{ background: color }} />
               <span className="name">{name}</span>
-              <span className="points">{pts} <span className="pts-label">PTS</span></span>
+              <span className="points">{pts} <span className="pts-label">{t("standings.points")}</span></span>
             </div>
           );
         })}
