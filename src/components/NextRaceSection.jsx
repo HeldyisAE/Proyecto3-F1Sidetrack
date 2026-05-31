@@ -13,7 +13,7 @@ function NextRaceSection() {
           <div className="race-item">
             <span className="item-label">Round</span>
 
-            <span className="item-value">9</span>
+            <span className="item-value">6</span>
           </div>
 
           <div className="race-item">

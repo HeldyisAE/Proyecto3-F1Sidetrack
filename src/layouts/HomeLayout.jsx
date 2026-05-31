@@ -4,6 +4,7 @@ import SectionNews from '../components/SectionNews';
 import StandingSection from '../components/StandingSection';
 import NextRaceSection from '../components/NextRaceSection';
 import LastRaceResults from '../components/LastRaceResults';
+import FavoriteDriverSection from '../components/FavoriteDriverSection';
 
 function HomeLayout() {
     return (
@@ -24,7 +25,7 @@ function HomeLayout() {
             </div>
             <div className="drivers-section">
                 <div className="drivers-card">
-                    <p>Favorite drivers</p>
+                    <FavoriteDriverSection />
                 </div>
 
                 <div className="drivers-card">
