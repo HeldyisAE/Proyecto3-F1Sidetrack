@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
-import { getDriverStandings } from "../services/f1Service";
 import "../styles/FavoriteDriverSection.css";
 
-function FavoriteDriverSection() {
-  const [favoriteDrivers, setFavoriteDrivers] = useState([]);
+function FavoriteDriverSection({ standings }) {
+  const favoriteDrivers = standings.filter((driver) =>
+    [3, 43, 11].includes(driver.driver_number),
+  );
 
-  useEffect(() => {
-    const loadDrivers = async () => {
-      const standings = await getDriverStandings();
-
-      const favorites = standings.filter((driver) =>
-        [3, 43, 11].includes(driver.driver_number),
-      );
-
-      setFavoriteDrivers(favorites);
-    };
-
-    loadDrivers();
-  }, []);
+  if (!standings?.length) {
+    return null;
+  }
 
   return (
     <div className="favorite-drivers">

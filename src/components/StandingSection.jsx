@@ -1,34 +1,15 @@
 import { useEffect, useState, useRef } from "react";
-import { getDriverStandings, getTeamStandings } from "../services/f1Service";
+
 import "../styles/StandingSection.css";
 import { useTranslation } from "react-i18next";
 
 const AUTO_INTERVAL = 7000;
 
-function StandingSection() {
+function StandingSection({ standings, teamStandings }) {
   const [mode, setMode] = useState("drivers");
-  const [drivers, setDrivers] = useState([]);
-  const [teams, setTeams] = useState([]);
-  const [loading, setLoading] = useState(true);
   const intervalRef = useRef(null);
 
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const driverData = await getDriverStandings();
-        const teamData = await getTeamStandings();
-        setDrivers(driverData);
-        setTeams(teamData);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadData();
-  }, []);
 
   const resetInterval = () => {
     clearInterval(intervalRef.current);
@@ -46,15 +27,11 @@ function StandingSection() {
     if (newMode === mode) return;
     setMode(newMode);
     resetInterval(); // reinicia el timer al hacer clic manual
-  };
+  }; 
 
-  useEffect(() => {
-    console.log("teams sample:", teams[0]);
-    }, [teams]); 
+  const list = mode === "drivers" ? standings : teamStandings;
 
-  const list = mode === "drivers" ? drivers : teams;
-
-  if (loading) {
+  if (standings.length === 0 || teamStandings.length === 0) {
     return <div className="standings-loading">{t("standings.loading")}</div>;
   }
 
