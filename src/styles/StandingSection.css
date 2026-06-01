@@ -112,8 +112,15 @@
 /* ── fila ── */
 .standing-row {
   display: grid;
-  grid-template-columns: 32px 4px 1fr auto;
+  grid-template-columns:
+    32px
+    4px
+    48px
+    1fr
+    auto;
+
   align-items: center;
+
   gap: 12px;
   padding: 10px 12px;
   border-radius: 10px;
@@ -162,6 +169,44 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.standing-avatar {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 2px solid rgba(255,255,255,0.08);
+
+  background: rgba(255,255,255,0.04);
+
+  flex-shrink: 0;
+}
+
+.standing-car {
+  width: 56px;
+  height: 28px;
+
+  object-fit: contain;
+
+  margin-right: 8px;
+
+  filter:
+    drop-shadow(0 0 8px rgba(0,0,0,0.35));
+
+  transition:
+    transform 0.2s ease;
+}
+
+.standing-row:hover .standing-car {
+  transform: translateX(3px);
+}
+
+.standing-row:hover .standing-avatar {
+  transform: scale(1.05);
 }
 
 /* puntos */
