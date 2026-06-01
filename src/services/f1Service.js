@@ -1,5 +1,15 @@
 const API_URL = "https://api.openf1.org/v1";
 
+// Cache en memoria
+const cache = {
+    driverStandings: null,
+    teamStandings: null,
+    nextRace: null,
+    drivers: null,
+    teams: null,
+    schedule: null,
+};
+
 const request = async (endpoint) => {
     const response = await fetch(`${API_URL}/${endpoint}`);
     if (!response.ok) throw new Error(`Error al consultar: ${endpoint}`);
@@ -18,6 +28,10 @@ export const getSchedule = async () => {
 
 export const getDriverStandings = async () => {
 
+    if (cache.driverStandings) {
+        return cache.driverStandings;
+    }
+
     const standings = await request(
         "championship_drivers?session_key=latest"
     );
@@ -29,18 +43,15 @@ export const getDriverStandings = async () => {
     const driversMap = {};
 
     drivers.forEach(driver => {
-
         driversMap[driver.driver_number] = driver;
-
     });
 
-    return standings
+    const result = standings
         .sort(
             (a, b) =>
                 a.position_current - b.position_current
         )
         .map(driver => ({
-
             ...driver,
 
             full_name:
@@ -58,24 +69,33 @@ export const getDriverStandings = async () => {
             headshot_url:
                 driversMap[driver.driver_number]?.headshot_url
                 ?? null
-
         }));
 
+    cache.driverStandings = result;
+
+    return result;
 };
 
 // ─── CONSTRUCTOR STANDINGS ───────────────────────────────────────
 
 export const getTeamStandings = async () => {
 
+    if (cache.teamStandings) {
+        return cache.teamStandings;
+    }
+
     const standings = await request(
         "championship_teams?session_key=latest"
     );
 
-    return standings.sort(
+    const result = standings.sort(
         (a, b) =>
             a.position_current - b.position_current
     );
 
+    cache.teamStandings = result;
+
+    return result;
 };
 
 // ─── RESULTADOS ──────────────────────────────────────────────────────────────
@@ -211,4 +231,51 @@ export const getNews = async () => {
     });
 
     return { year: currentYear, news };
+};
+
+export const getNextRace = async () => {
+
+    if (cache.nextRace) {
+        return cache.nextRace;
+    }
+
+    try {
+
+        const currentYear = new Date().getFullYear();
+
+        const meetings = await request(
+            `meetings?year=${currentYear}`
+        );
+
+        const now = new Date();
+
+        const nextRace = meetings
+            .filter(
+                meeting => new Date(meeting.date_start) > now
+            )
+            .sort(
+                (a, b) =>
+                    new Date(a.date_start) -
+                    new Date(b.date_start)
+            )[0];
+
+        if (!nextRace) {
+            throw new Error(
+                "No upcoming races found."
+            );
+        }
+
+        cache.nextRace = nextRace;
+
+        return nextRace;
+
+    } catch (error) {
+
+        console.error(
+            "API Error in getNextRace:",
+            error
+        );
+
+        throw error;
+    }
 };
