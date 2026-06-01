@@ -7,6 +7,7 @@ import NextRaceSection from "../components/NextRaceSection";
 import LastRaceResults from "../components/LastRaceResults";
 import FavoriteDriverSection from "../components/FavoriteDriverSection";
 import TrendDriversSection from "../components/TrendDriversSection";
+import ShopSpotLightSection from "../components/ShopSpotlightSection";
 
 function HomeLayout() {
   const [driverStandings, setDriverStandings] = useState([]);
@@ -56,7 +57,7 @@ function HomeLayout() {
         </div>
       </div>
       <div className="shop-spotlight-section">
-        <p>shop spotlight</p>
+        <ShopSpotLightSection />
       </div>
     </div>
   );
