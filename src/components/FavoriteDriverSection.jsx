@@ -1,102 +1,67 @@
-import '../styles/FavoriteDriverSection.css'
+import { useEffect, useState } from "react";
+import { getDriverStandings } from "../services/f1Service";
+import "../styles/FavoriteDriverSection.css";
 
 function FavoriteDriverSection() {
+  const [favoriteDrivers, setFavoriteDrivers] = useState([]);
 
-    const favoriteDrivers = [
-      {
-        driver_number: 1,
-        name: "Max Verstappen",
-        team: "Red Bull Racing",
-        position: 3,
-        points: 185,
-        color: "#3671C6",
-        headshot_url: "https://placehold.co/200x200",
-      },
-      {
-        driver_number: 43,
-        name: "Franco Colapinto",
-        team: "Alpine",
-        position: 14,
-        points: 22,
-        color: "#FF87BC",
-        headshot_url: "https://placehold.co/200x200",
-      },
-      {
-        driver_number: 11,
-        name: "Sergio Pérez",
-        team: "Red Bull Racing",
-        position: 8,
-        points: 91,
-        color: "#3671C6",
-        headshot_url: "https://placehold.co/200x200",
-      },
-    ];
+  useEffect(() => {
+    const loadDrivers = async () => {
+      const standings = await getDriverStandings();
 
-    return (
-        <div className="favorite-drivers">
+      const favorites = standings.filter((driver) =>
+        [3, 43, 11].includes(driver.driver_number),
+      );
 
-            <div className="favorite-header">
+      setFavoriteDrivers(favorites);
+    };
 
-                <span className="section-label">
-                    Favorite Drivers
-                </span>
+    loadDrivers();
+  }, []);
 
-                <span className="favorite-subtitle">
-                    Keep an eye on the drivers you support
-                </span>
+  return (
+    <div className="favorite-drivers">
+      <div className="favorite-header">
+        <span className="section-label">Favorite Drivers</span>
 
+        <span className="favorite-subtitle">
+          Keep an eye on the drivers you support
+        </span>
+      </div>
+
+      <div className="favorite-list">
+        {favoriteDrivers.map((driver) => (
+          <div
+            key={driver.driver_number}
+            className="favorite-card"
+            style={{
+              "--team-color": `#${driver.team_colour}`,
+            }}
+          >
+            <img
+              src={driver.headshot_url}
+              alt={driver.full_name}
+              className="driver-avatar"
+            />
+
+            <div className="driver-info">
+              <span className="driver-name">{driver.full_name}</span>
+
+              <span className="driver-team">{driver.team_name}</span>
             </div>
 
-            <div className="favorite-list">
+            <div className="driver-stats">
+              <span className="driver-position">
+                Championship position {driver.position_current}
+              </span>
 
-                {favoriteDrivers.map(driver => (
-
-                    <div
-                        key={driver.name}
-                        className="favorite-card"
-                        style={{
-                            "--team-color": driver.color
-                        }}
-                    >
-
-                        <img
-                            src={driver.headshot_url}
-                            alt={driver.name}
-                            className="driver-avatar"
-                        />
-
-                        <div className="driver-info">
-
-                            <span className="driver-name">
-                                {driver.name}
-                            </span>
-
-                            <span className="driver-team">
-                                {driver.team}
-                            </span>
-
-                        </div>
-
-                        <div className="driver-stats">
-
-                            <span className="driver-position">
-                                P{driver.position}
-                            </span>
-
-                            <span className="driver-points">
-                                {driver.points} pts
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                ))}
-
+              <span className="driver-points">{driver.points_current} pts</span>
             </div>
-
-        </div>
-    )
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default FavoriteDriverSection;
