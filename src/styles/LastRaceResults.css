@@ -85,6 +85,23 @@
     align-items: flex-end;
     justify-content: center;
     gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.podium-avatar {
+
+    width: 72px;
+    height: 72px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--team-color);
+
+    background: #222;
+
+    margin-bottom: 0.75rem;
 }
 
 .podium-step {
@@ -156,6 +173,29 @@
         0 12px 32px rgba(0, 210, 190, 0.18);
 }
 
+.first::after {
+
+    content: "12";
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    font-size: 5rem;
+    font-weight: 800;
+
+    opacity: 0.05;
+
+    pointer-events: none;
+}
+
+.first .podium-avatar {
+
+    width: 82px;
+    height: 82px;
+}
+
 .second {
     border-color: rgba(225, 6, 0, 0.35);
 
@@ -210,6 +250,27 @@
     animation: base-in 0.4s ease 0.55s forwards;
 }
 
+/* ── Fila avatar + nombre en highlights ── */
+.highlight-driver-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+}
+
+/* ── Ajuste de alturas del podio para que quepa el texto ── */
+.first  { width: 34%; min-height: 240px; height: auto; }
+.second { width: 28%; min-height: 200px; height: auto; }
+.third  { width: 28%; min-height: 170px; height: auto; }
+
+/* ── Número del piloto en podio ── */
+.podium-number {
+    font-size: 0.75rem;
+    opacity: 0.45;
+    letter-spacing: 0.05em;
+    margin-top: -0.15rem;
+}
+
 .podium-position {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3rem);
@@ -254,6 +315,20 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+}
+
+.highlight-avatar {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid var(--team-color);
+
+    flex-shrink: 0;
 }
 
 .highlight-card {

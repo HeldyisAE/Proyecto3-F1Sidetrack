@@ -45,7 +45,7 @@ function HomeLayout() {
         <NextRaceSection />
       </div>
       <div className="results-section">
-        <LastRaceResults />
+        <LastRaceResults standings={driverStandings}/>
       </div>
       <div className="drivers-section">
         <div className="drivers-card">
