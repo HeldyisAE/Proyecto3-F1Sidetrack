@@ -64,7 +64,7 @@ const teams = [
     {
         id: 'cadillac',
         name: 'Cadillac',
-        color: '#bdbab6',
+        color: '#636260',
         logo: 'https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000001/common/f1/2026/cadillac/2026cadillaclogowhite.webp'
     }
 ];

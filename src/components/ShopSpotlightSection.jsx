@@ -1,44 +1,8 @@
 import "../styles/ShopSpotlightSection.css";
 
-import NorrisHelmet from "../assets/shopProducts/NorrisHelmet_keyring1.png";
-import NorrisLego from "../assets/shopProducts/NorrisLego1.png";
-import MaxFunko from "../assets/shopProducts/MaxVerstappen_Funko1.png";
-import RedbullShirt from "../assets/shopProducts/Redbull_shirt1.png";
-import SennaPicture from "../assets/shopProducts/SennaPicture.png";
+import { products } from "../data/products";
 
 function ShopSpotLightSection() {
-  const products = [
-    {
-      name: "Norris Helmet Keyring",
-      image: NorrisHelmet,
-      team: "McLaren",
-      color: "#FF8000",
-    },
-    {
-      name: "Norris Lego",
-      image: NorrisLego,
-      team: "McLaren",
-      color: "#FF8000",
-    },
-    {
-      name: "Max Verstappen Funko",
-      image: MaxFunko,
-      team: "Red Bull",
-      color: "#3671C6",
-    },
-    {
-      name: "Red Bull Shirt",
-      image: RedbullShirt,
-      team: "Red Bull",
-      color: "#3671C6",
-    },
-    {
-      name: "Senna Tribute",
-      image: SennaPicture,
-      team: "Legacy",
-      color: "#FFD700",
-    },
-  ];
 
   return (
     <div className="shopspot-section">
