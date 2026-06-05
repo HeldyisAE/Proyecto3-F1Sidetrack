@@ -1,6 +1,7 @@
 import '../styles/ShopLayout.css'
 
 import TeamFilterBar from '../components/TeamFilterBar';
+import FeaturedMerchBanner from '../components/FeaturedMerchBanner';
 
 function ShopLayout() {
     return (
@@ -9,7 +10,7 @@ function ShopLayout() {
                 <TeamFilterBar />
             </div>
             <div className='featured-section'>
-                <h1>Featured</h1>
+                <FeaturedMerchBanner />
             </div>
             <div className='month-trend'>
                 <h1>Month trend</h1>

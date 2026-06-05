@@ -1,0 +1,189 @@
+.featuredmerchbanner {
+    position: relative;
+
+    width: 100%;
+    height: 85vh;
+
+    border: none;
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background: transparent;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.featuredmerchbanner:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.featuredmerchbanner-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.featuredmerchbanner:hover .featuredmerchbanner-image {
+    transform: scale(1.03);
+}
+
+.featuredmerchbanner-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 25%,
+            rgba(0, 0, 0, 0.15) 60%,
+            transparent 100%
+        );
+}
+
+.featuredmerchbanner-content {
+    position: absolute;
+
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    z-index: 2;
+
+    text-align: left;
+}
+
+.featuredmerchbanner-tag {
+    width: fit-content;
+
+    padding: 0.4rem 0.8rem;
+
+    border-radius: 999px;
+
+    background: rgba(225, 6, 0, 0.9);
+
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.featuredmerchbanner-content h2 {
+    color: white;
+
+    font-size: 2.2rem;
+    font-weight: 800;
+
+    line-height: 1.1;
+}
+
+.featuredmerchbanner-content p {
+    max-width: 600px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 1rem;
+
+    line-height: 1.5;
+}
+
+.featuredmerchbanner-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    position: relative;
+
+    width: fit-content;
+
+    margin-top: 0.75rem;
+
+    color: white;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+
+    opacity: 0.9;
+}
+
+.arrowIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+
+    font-size: 0.9rem;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.featuredmerchbanner-cta span {
+    transition: transform 0.25s ease;
+}
+
+.featuredmerchbanner:hover .featuredmerchbanner-cta {
+    opacity: 1;
+}
+
+.featuredmerchbanner:hover .arrowIcon {
+    transform: translateX(6px);
+
+    background: var(--color-primary);
+}
+
+.featuredmerchbanner-cta::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 100%;
+    height: 3px;
+
+    border-radius: 999px;
+
+    background: var(--color-primary);
+
+    transform: scaleX(0.7);
+    transform-origin: left;
+
+    transition: transform 0.25s ease;
+}
+
+.featuredmerchbanner:hover .featuredmerchbanner-cta::after {
+    transform: scaleX(1);
+}
