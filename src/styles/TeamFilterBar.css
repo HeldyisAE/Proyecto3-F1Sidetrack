@@ -1,0 +1,132 @@
+.teamfilter-container {
+    background: var(--color-surface);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 24px;
+
+    padding: 1.5rem;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.teamfilterbar {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+
+    padding: 0.7rem 2rem;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.teamfilter-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    margin-bottom: 1rem;
+}
+
+.teamfilter-header h3 {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.teamfilter-header h3::before {
+    content: "";
+
+    width: 20px;
+    height: 2px;
+
+    background: #E10600;
+    border-radius: 999px;
+}
+
+.teamfilter-header span {
+    color: rgba(255,255,255,0.7);
+
+    font-size: 0.95rem;
+}
+
+.teamfilterbar::-webkit-scrollbar {
+    display: none;
+}
+
+.team-button {
+    width: 68px;
+    height: 68px;
+
+    border: none;
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition: all 0.25s ease;
+}
+
+.team-button:hover {
+    transform: translateY(-5px) scale(1.08);
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,0.35);
+}
+
+.team-button.active {
+    outline: 3px solid white;
+
+    transform: scale(1.1);
+    box-shadow:
+        0 0 0 3px white,
+        0 0 20px rgba(255,255,255,0.5);
+}
+
+.team-button::before {
+    content: '';
+
+    position: absolute;
+    inset: -3px;
+
+    border-radius: 50%;
+
+    background: inherit;
+
+    opacity: 0.35;
+
+    z-index: -1;
+}
+
+.team-logo {
+    width: 70%;
+    height: 70%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+

@@ -1,10 +1,12 @@
 import '../styles/ShopLayout.css'
 
+import TeamFilterBar from '../components/TeamFilterBar';
+
 function ShopLayout() {
     return (
         <div className='shoplayout'>
             <div className='teams-products-select'>
-                <h1>Equipos</h1>
+                <TeamFilterBar />
             </div>
             <div className='featured-section'>
                 <h1>Featured</h1>
