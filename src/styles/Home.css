@@ -41,7 +41,7 @@
 }
 
 .bottom {
-    min-height: 7vh;
+    max-height: 7vh;
     display: flex;
     align-items: center;
     justify-content: center;

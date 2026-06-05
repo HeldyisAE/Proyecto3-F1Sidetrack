@@ -1,4 +1,5 @@
 import '../styles/Header.css'
+import { useLocation } from "react-router-dom";
 
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
@@ -9,6 +10,9 @@ import UserButton from './userButton';
 
 function Header() {
 
+    const location = useLocation();
+    const inShop = location.pathname === "/shop"
+
     return(
         <div className="header">
             <div className="left">
@@ -16,7 +20,7 @@ function Header() {
             </div>
             <div className="center">
                 <RedirectButtons />
-                <FanShopButton />
+                {!inShop && <FanShopButton />}
                 <Searchbar />
                 <ConfigButton />
             </div>

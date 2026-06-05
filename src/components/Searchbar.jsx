@@ -1,9 +1,13 @@
 import '../styles/Searchbar.css';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaSearch } from "react-icons/fa";
 
 function Searchbar() {
     const { t } = useTranslation();
+
+    const location = useLocation();
+    const inShop = location.pathname === "/shop"
 
     return(
 
@@ -16,7 +20,7 @@ function Searchbar() {
                 <input
                     className="searchbar-input"
 
-                    placeholder={t("navigation.searchbar")}
+                    placeholder={inShop ? t("navigation.searchbarShop") : t("navigation.searchbarHome")}
                 />
 
             </div>
