@@ -1,5 +1,7 @@
 import '../styles/TeamFilterBar.css';
 
+import F1Logo from '../assets/F1Logo.png'
+
 const teams = [
     {
         id: 'mercedes',
@@ -66,6 +68,12 @@ const teams = [
         name: 'Cadillac',
         color: '#636260',
         logo: 'https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000001/common/f1/2026/cadillac/2026cadillaclogowhite.webp'
+    },
+    {
+        id: 'legacy',
+        name: 'Legends',
+        color: '#ffffff',
+        logo: F1Logo
     }
 ];
 
