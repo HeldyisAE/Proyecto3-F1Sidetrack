@@ -27,7 +27,7 @@ export const products = [
         team: "McLaren",
         color: "#FF8000",
         category: "Collectibles",
-        price: 39.99,
+        price: 199.99,
         stock: 50,
         featured: true,
         trending: true
@@ -72,7 +72,7 @@ export const products = [
         price: 89.99,
         stock: 15,
         featured: true,
-        trending: false
+        trending: true
     },
 
     {
@@ -86,7 +86,7 @@ export const products = [
         price: 90.00,
         stock: 150,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -156,7 +156,7 @@ export const products = [
         price: 55.00,
         stock: 250,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -170,7 +170,7 @@ export const products = [
         price: 95.00,
         stock: 180,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -212,7 +212,7 @@ export const products = [
         price: 85.00,
         stock: 110,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -240,7 +240,7 @@ export const products = [
         price: 65.00,
         stock: 130,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -254,7 +254,7 @@ export const products = [
         price: 50.00,
         stock: 160,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -268,7 +268,7 @@ export const products = [
         price: 219.99,
         stock: 65,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -282,7 +282,7 @@ export const products = [
         price: 45.00,
         stock: 110,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -296,7 +296,7 @@ export const products = [
         price: 40.00,
         stock: 150,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -324,7 +324,7 @@ export const products = [
         price: 95.00,
         stock: 110,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -338,7 +338,7 @@ export const products = [
         price: 120.00,
         stock: 85,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -380,7 +380,7 @@ export const products = [
         price: 75.00,
         stock: 105,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -394,7 +394,7 @@ export const products = [
         price: 45.00,
         stock: 140,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -408,7 +408,7 @@ export const products = [
         price: 90.00,
         stock: 95,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -436,7 +436,7 @@ export const products = [
         price: 45.00,
         stock: 75,
         featured: false,
-        trending: true
+        trending: false
     },
 
     {
@@ -450,6 +450,6 @@ export const products = [
         price: 110.00,
         stock: 80,
         featured: false,
-        trending: true
+        trending: false
     }
 ];

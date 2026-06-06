@@ -1,60 +1,8 @@
-.shopspot-section {
+.product-card {
 
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 2rem;
-    padding: 1.5rem;
-
-    overflow: hidden;
-}
-
-.shopspot-header {
-
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-
-    flex-shrink: 0;
-}
-
-.shopspot-subtitle {
-
-    color: var(--color-text-secondary);
-    opacity: 0.65;
-    font-size: 1rem;
-}
-
-.shopspot-products {
-
-    flex: 1;
-
-    display: flex;
-    gap: 1rem;
-
-    align-items: stretch;
-}
-
-.shopspot-products:hover .product-cards {
-
-    opacity: 0.45;
-}
-
-.shopspot-products:hover .product-cards:hover {
-
-    opacity: 1;
-}
-
-.product-cards {
-
-    flex: 1;
+    flex: 0 0 260px;
 
     position: relative;
-
-    min-width: 0;
 
     display: flex;
     flex-direction: column;
@@ -71,23 +19,24 @@
 
     border: 1px solid rgba(255,255,255,0.08);
 
+    cursor: pointer;
+
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease,
         border-color 0.3s ease,
-        opacity 0.3s ease;
+        box-shadow 0.3s ease;
 }
 
-.product-cards:hover {
+.product-card:hover {
 
     transform:
-        translateY(-8px)
-        scale(1.03);
+        translateY(-6px)
+        scale(1.02);
 
     border-color: var(--product-color);
 
     box-shadow:
-        0 0 32px color-mix(
+        0 0 28px color-mix(
             in srgb,
             var(--product-color) 35%,
             transparent
@@ -96,7 +45,7 @@
 
 .product-image-wrapper {
 
-    flex: 1;
+    height: 120px;
 
     display: flex;
     justify-content: center;
@@ -110,13 +59,51 @@
 
     object-fit: contain;
 
-    transition:
-        transform 0.35s ease;
+    transition: transform 0.35s ease;
 }
 
-.product-cards:hover .product-image {
+.product-card:hover .product-image {
 
     transform: scale(1.08);
+}
+
+.product-info {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.35rem;
+}
+
+.product-team {
+
+    color: var(--product-color);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+.product-name {
+
+    color: var(--color-text-primary);
+
+    font-size: 1rem;
+
+    font-weight: 600;
+}
+
+.product-price {
+
+    color: white;
+
+    font-size: 1.1rem;
+
+    font-weight: 700;
 }
 
 .product-overlay {
@@ -143,7 +130,7 @@
     transition: opacity 0.25s ease;
 }
 
-.product-cards:hover .product-overlay {
+.product-card:hover .product-overlay {
 
     opacity: 1;
 }
@@ -154,20 +141,21 @@
 
     font-size: 0.7rem;
 
+    font-weight: 700;
+
     text-transform: uppercase;
 
     letter-spacing: 0.1em;
-
-    font-weight: 700;
 }
 
 .overlay-title {
 
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
 
     color: white;
 
     font-size: 1rem;
+
     font-weight: 700;
 }
 
@@ -184,11 +172,16 @@
 
 .overlay-button {
 
-    margin-top: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
+    margin-top: 0.9rem;
+
+    height: 5vh;
     width: fit-content;
 
-    padding: 0.55rem 0.9rem;
+    padding: 0.9rem 0.9rem;
 
     border: none;
     border-radius: 10px;
@@ -202,12 +195,16 @@
     cursor: pointer;
 }
 
-.product-name {
-
-    text-align: center;
-
-    color: var(--color-text-primary);
+.arrowIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     font-size: 0.9rem;
-    font-weight: 600;
+    transition: transform 0.2s ease;
 }
+
+.overlay-button:hover .arrowIcon {
+    transform: translateX(3px);
+}
+

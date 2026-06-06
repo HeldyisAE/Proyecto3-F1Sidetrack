@@ -18,7 +18,7 @@ function ShopSpotLightSection() {
         {products.filter((product) => product.featured).map((product) => (
           <div
             key={product.name}
-            className="product-card"
+            className="product-cards"
             style={{
               "--product-color": product.color,
             }}
