@@ -8,12 +8,58 @@ const cache = {
     drivers: null,
     teams: null,
     schedule: null,
+    latestRaceSession: null,
 };
 
 const request = async (endpoint) => {
     const response = await fetch(`${API_URL}/${endpoint}`);
     if (!response.ok) throw new Error(`Error al consultar: ${endpoint}`);
     return await response.json();
+};
+
+let latestRacePromise = null;
+
+const getLatestCompletedRaceSession = async () => {
+
+    if (cache.latestRaceSession) {
+        return cache.latestRaceSession;
+    }
+
+    if (latestRacePromise) {
+        return latestRacePromise;
+    }
+
+    latestRacePromise = (async () => {
+
+        const currentYear =
+            new Date().getFullYear();
+
+        const sessions =
+            await request(
+                `sessions?year=${currentYear}`
+            );
+
+        const latestRace = sessions
+            .filter(
+                session =>
+                    session.session_type === "Race" &&
+                    session.date_end &&
+                    new Date(session.date_end) < new Date()
+            )
+            .sort(
+                (a, b) =>
+                    new Date(b.date_end) -
+                    new Date(a.date_end)
+            )[0];
+
+        cache.latestRaceSession =
+            latestRace;
+
+        return latestRace;
+
+    })();
+
+    return latestRacePromise;
 };
 
 // ─── CALENDARIO ─────────────────────────────────────────────────────────────
@@ -27,143 +73,139 @@ export const getSchedule = async () => {
 // ─── DRIVER STANDINGS ─────────────────────────────────────────────
 
 export const getDriverStandings = async () => {
+  if (cache.driverStandings) {
+    return cache.driverStandings;
+  }
 
-    if (cache.driverStandings) {
-        return cache.driverStandings;
-    }
+  const latestRace = await getLatestCompletedRaceSession();
 
-    const standings = await request(
-        "championship_drivers?session_key=latest"
-    );
+  const sessionKey = latestRace.session_key;
 
-    const drivers = await request(
-        "drivers?session_key=latest"
-    );
+  const [standings, drivers] = await Promise.all([
+    request(`championship_drivers?session_key=${sessionKey}`),
+    request(`drivers?session_key=${sessionKey}`),
+  ]);
 
-    const driversMap = {};
+  const driversMap = {};
 
-    drivers.forEach(driver => {
-        driversMap[driver.driver_number] = driver;
-    });
+  drivers.forEach((driver) => {
+    driversMap[driver.driver_number] = driver;
+  });
 
-    const result = standings
-        .sort(
-            (a, b) =>
-                a.position_current - b.position_current
-        )
-        .map(driver => ({
-            ...driver,
+  const result = standings
+    .sort((a, b) => a.position_current - b.position_current)
+    .map((driver) => ({
+      ...driver,
 
-            full_name:
-                driversMap[driver.driver_number]?.full_name
-                ?? `Driver #${driver.driver_number}`,
+      full_name:
+        driversMap[driver.driver_number]?.full_name ??
+        `Driver #${driver.driver_number}`,
 
-            team_name:
-                driversMap[driver.driver_number]?.team_name
-                ?? "Unknown Team",
+      team_name: driversMap[driver.driver_number]?.team_name ?? "Unknown Team",
 
-            team_colour:
-                driversMap[driver.driver_number]?.team_colour
-                ?? "FFFFFF",
+      team_colour: driversMap[driver.driver_number]?.team_colour ?? "FFFFFF",
 
-            headshot_url:
-                driversMap[driver.driver_number]?.headshot_url
-                ?? null
-        }));
+      headshot_url: driversMap[driver.driver_number]?.headshot_url ?? null,
+    }));
 
-    cache.driverStandings = result;
+  cache.driverStandings = result;
 
-    return result;
+  return result;
 };
 
 // ─── CONSTRUCTOR STANDINGS ───────────────────────────────────────
 
 export const getTeamStandings = async () => {
+  if (cache.teamStandings) {
+    return cache.teamStandings;
+  }
 
-    if (cache.teamStandings) {
-        return cache.teamStandings;
-    }
+  const latestRace = await getLatestCompletedRaceSession();
 
-    const standings = await request(
-        "championship_teams?session_key=latest"
-    );
+  const standings = await request(
+    `championship_teams?session_key=${latestRace.session_key}`,
+  );
 
-    const result = standings.sort(
-        (a, b) =>
-            a.position_current - b.position_current
-    );
+  const result = standings.sort(
+    (a, b) => a.position_current - b.position_current,
+  );
 
-    cache.teamStandings = result;
+  cache.teamStandings = result;
 
-    return result;
+  return result;
 };
 
 // ─── RESULTADOS ──────────────────────────────────────────────────────────────
 export const getResults = async () => {
-    const currentYear = new Date().getFullYear();
-    const sessions = await request(`sessions?year=${currentYear}&session_type=Race`);
+  const lastRace = await getLatestCompletedRaceSession();
 
-    if (!sessions || sessions.length === 0) throw new Error("No hay resultados disponibles.");
+  const sessionKey = lastRace.session_key;
 
-    const lastRace = sessions
-        .filter(s => s.date_end && new Date(s.date_end) < new Date())
-        .sort((a, b) => new Date(b.date_end) - new Date(a.date_end))[0];
+  const positions = await request(
+    `position?session_key=${sessionKey}&position<=20`,
+  );
 
-    if (!lastRace) throw new Error("No hay carreras finalizadas esta temporada.");
+  const latest = {};
 
-    const sessionKey = lastRace.session_key;
+  positions.forEach((p) => {
+    const prev = latest[p.driver_number];
 
-    // Trae posiciones finales de la sesion 
-    const positions = await request(`position?session_key=${sessionKey}&position<=20`);
+    if (!prev || new Date(p.date) > new Date(prev.date)) {
+      latest[p.driver_number] = p;
+    }
+  });
 
-    // Snapshot de posición más reciente por piloto
-    const latest = {};
-    positions.forEach(p => {
-        const prev = latest[p.driver_number];
-        if (!prev || new Date(p.date) > new Date(prev.date)) {
-            latest[p.driver_number] = p;
-        }
-    });
+  const drivers = await request(`drivers?session_key=${sessionKey}`);
 
-    // Trae info de pilotos
-    const drivers = await request(`drivers?session_key=${sessionKey}`);
-    const driversMap = {};
-    drivers.forEach(d => { driversMap[d.driver_number] = d; });
+  const driversMap = {};
 
-    const results = Object.values(latest)
-        .sort((a, b) => a.position - b.position)
-        .map(p => ({
-            position: p.position,
-            driver_number: p.driver_number,
-            full_name: driversMap[p.driver_number]?.full_name ?? `Piloto #${p.driver_number}`,
-            team_name: driversMap[p.driver_number]?.team_name ?? "—",
-            team_colour: driversMap[p.driver_number]?.team_colour ?? "FFFFFF",
-            headshot_url: driversMap[p.driver_number]?.headshot_url ?? null,
-        }));
+  drivers.forEach((driver) => {
+    driversMap[driver.driver_number] = driver;
+  });
 
-    return { session: lastRace, results };
+  const results = Object.values(latest)
+    .sort((a, b) => a.position - b.position)
+    .map((position) => ({
+      position: position.position,
+
+      driver_number: position.driver_number,
+
+      full_name:
+        driversMap[position.driver_number]?.full_name ??
+        `Piloto #${position.driver_number}`,
+
+      team_name: driversMap[position.driver_number]?.team_name ?? "—",
+
+      team_colour: driversMap[position.driver_number]?.team_colour ?? "FFFFFF",
+
+      headshot_url: driversMap[position.driver_number]?.headshot_url ?? null,
+    }));
+
+  return {
+    session: lastRace,
+    results,
+  };
 };
 
 // ─── PILOTOS ─────────────────────────────────────────────────────────────────
 export const getDrivers = async () => {
-    const currentYear = new Date().getFullYear();
-    const sessions = await request(`sessions?year=${currentYear}`);
+  const latestRace = await getLatestCompletedRaceSession();
 
-    if (!sessions || sessions.length === 0) throw new Error("No hay sesiones disponibles.");
+  const drivers = await request(
+    `drivers?session_key=${latestRace.session_key}`,
+  );
 
-    // Sesión más reciente
-    const latestSession = sessions
-        .sort((a, b) => new Date(b.date_start) - new Date(a.date_start))[0];
+  const unique = {};
 
-    const drivers = await request(`drivers?session_key=${latestSession.session_key}`);
+  drivers.forEach((driver) => {
+    if (!unique[driver.driver_number]) {
+      unique[driver.driver_number] = driver;
+    }
+  });
 
-    // Elimina duplicados por número de piloto
-    const unique = {};
-    drivers.forEach(d => {
-        if (!unique[d.driver_number]) unique[d.driver_number] = d;
-    });
-
-    return Object.values(unique).sort((a, b) => a.driver_number - b.driver_number);
+  return Object.values(unique).sort(
+    (a, b) => a.driver_number - b.driver_number,
+  );
 };
 
 // ─── EQUIPOS ─────────────────────────────────────────────────────────────────

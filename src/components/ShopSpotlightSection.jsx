@@ -15,7 +15,7 @@ function ShopSpotLightSection() {
       </div>
 
       <div className="shopspot-products">
-        {products.map((product) => (
+        {products.filter((product) => product.featured).map((product) => (
           <div
             key={product.name}
             className="product-card"

@@ -19,6 +19,8 @@ function NextRaceSection({ race }) {
     day: "numeric",
   })}`;
 
+
+  console.log(race);
   return (
     <section className="next-race">
       <div className="race-info">
