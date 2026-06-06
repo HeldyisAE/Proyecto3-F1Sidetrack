@@ -13,6 +13,40 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.filter-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: var(--color-text-secondary);
+
+    border-radius: 999px;
+    padding: 0.65rem 1.25rem;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-primary);
+}
+
+.filter-chip.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text-primary);
+}
+
 .allproducts-header {
   display: flex;
   flex-direction: column;

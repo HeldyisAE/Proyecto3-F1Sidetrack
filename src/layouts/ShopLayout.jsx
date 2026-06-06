@@ -9,11 +9,11 @@ import { products } from "../data/products";
 function ShopLayout() {
     return (
         <div className='shoplayout'>
-            <div className='teams-products-select'>
-                <TeamFilterBar />
-            </div>
             <div className='featured-section'>
                 <FeaturedMerchBanner />
+            </div>
+            <div className='teams-products-select'>
+                <TeamFilterBar />
             </div>
             <div className='month-trend'>
                 <MonthTrendSection products={products}/>

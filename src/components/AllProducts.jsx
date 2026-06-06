@@ -1,9 +1,25 @@
+import { useState } from "react";
 import "../styles/AllProducts.css";
 import ProductCard from "./ProductCard";
 
 function AllProducts({ products }) {
 
-    const shuffledProducts = [...products].sort(
+    const [activeCategory, setActiveCategory] = useState("all");
+
+    const categories = [
+        { id: "all", label: "All" },
+        { id: "Accessories", label: "Accessories" },
+        { id: "Collectibles", label: "Collectibles" },
+        { id: "Apparel", label: "Apparel" },
+        { id: "Art", label: "Art" }
+    ];
+
+    const filteredProducts = products.filter(product =>
+        activeCategory === "all" ||
+        product.category === activeCategory
+    );
+
+    const shuffledProducts = [...filteredProducts].sort(
         () => Math.random() - 0.5
     );
 
@@ -20,6 +36,21 @@ function AllProducts({ products }) {
                     Browse All Products
                 </h2>
 
+                <div className="category-filters">
+                    {categories.map(category => (
+                        <button
+                            key={category.id}
+                            className={`filter-chip ${
+                                activeCategory === category.id
+                                    ? "active"
+                                    : ""
+                            }`}
+                            onClick={() => setActiveCategory(category.id)}
+                        >
+                            {category.label}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             <div className="all-products">

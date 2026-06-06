@@ -14,7 +14,7 @@ function FeaturedMerchBanner() {
 
             <div className="featuredmerchbanner-content">
                 <span className="featuredmerchbanner-tag">
-                    Featured Collection
+                    Featured Collection Incoming
                 </span>
 
                 <h2>Riviera Racing Heritage</h2>
@@ -24,10 +24,7 @@ function FeaturedMerchBanner() {
                     racing culture on the French Riviera.
                 </p>
                 <div className="featuredmerchbanner-cta">
-                    View Collection
-                    <div className='arrowIcon'>
-                        <TiArrowRightThick />
-                    </div>
+                    Comming soon...
                 </div>
             </div>
         </button>
