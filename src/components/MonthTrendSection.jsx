@@ -21,7 +21,8 @@ function MonthTrendSection({ products }) {
       <div className="monthtrend-container">
         
         {products.filter(product => product.trending).map(product => (
-          <ProductCard 
+          <ProductCard
+            variant="carousel"
             key={product.id}
             product={product}
           />

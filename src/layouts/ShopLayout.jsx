@@ -3,6 +3,7 @@ import '../styles/ShopLayout.css'
 import TeamFilterBar from '../components/TeamFilterBar';
 import FeaturedMerchBanner from '../components/FeaturedMerchBanner';
 import MonthTrendSection from '../components/MonthTrendSection';
+import AllProducts from '../components/AllProducts';
 import { products } from "../data/products";
 
 function ShopLayout() {
@@ -18,7 +19,7 @@ function ShopLayout() {
                 <MonthTrendSection products={products}/>
             </div>
             <div className='grid-products'>
-                <h1>Grid</h1>
+                <AllProducts products={products} />
             </div>
         </div>
     )

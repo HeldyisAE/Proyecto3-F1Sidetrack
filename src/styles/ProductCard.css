@@ -1,6 +1,35 @@
-.product-card {
+.product-card.carousel {
 
     flex: 0 0 260px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.75rem;
+
+    padding: 1rem;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card.grid {
+
+    width: 100%;
 
     position: relative;
 
