@@ -5,13 +5,13 @@ import F1Logo from '../assets/F1Logo.png'
 const teams = [
     {
         id: 'mercedes',
-        name: 'Mercedes',
+        name: 'Mercedes-AMG Petronas',
         color: '#00D2BE',
         logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000001/common/f1/2025/mercedes/2025mercedeslogowhite.webp'
     },
     {
         id: 'ferrari',
-        name: 'Ferrari',
+        name: 'Scuderia Ferrari',
         color: '#DC0000',
         logo: 'https://media.formula1.com/image/upload/c_fit,h_64/q_auto/v1740000001/common/f1/2025/ferrari/2025ferrarilogolight.webp'
     },
@@ -23,7 +23,7 @@ const teams = [
     },
     {
         id: 'redbull',
-        name: 'Red Bull',
+        name: 'Red Bull Racing',
         color: '#1E41FF',
         logo: 'https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000001/common/f1/2026/redbullracing/2026redbullracinglogowhite.webp'
     },
@@ -53,7 +53,7 @@ const teams = [
     },
     {
         id: 'audi',
-        name: 'Audi',
+        name: 'Audi F1 Team',
         color: '#975805',
         logo: 'https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000001/common/f1/2026/audi/2026audilogowhite.webp'
     },
@@ -65,19 +65,19 @@ const teams = [
     },
     {
         id: 'cadillac',
-        name: 'Cadillac',
+        name: 'Cadillac F1 Team',
         color: '#636260',
         logo: 'https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000001/common/f1/2026/cadillac/2026cadillaclogowhite.webp'
     },
     {
         id: 'legacy',
-        name: 'Legends',
+        name: 'Legacy',
         color: '#ffffff',
         logo: F1Logo
     }
 ];
 
-function TeamFilterBar() {
+function TeamFilterBar({ onSelectTeam, selectedTeam }) {
     return (
         <div className="teamfilter-container">
             <div className="teamfilter-header">
@@ -88,8 +88,9 @@ function TeamFilterBar() {
                 {teams.map(team => (
                     <button
                         key={team.id}
-                        className="team-button"
+                        className={`team-button ${selectedTeam === team.id ? "active" : ""}`}
                         style={{ backgroundColor: team.color }}
+                        onClick={() => onSelectTeam(team.id)}
                         aria-label={team.name}
                         title={team.name}
                     >

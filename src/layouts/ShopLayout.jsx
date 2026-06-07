@@ -1,7 +1,6 @@
 import '../styles/ShopLayout.css'
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import TeamFilterBar from '../components/TeamFilterBar';
 import FeaturedMerchBanner from '../components/FeaturedMerchBanner';
@@ -11,6 +10,12 @@ import ProductModal from '../components/ProductModal';
 import { products } from "../data/products";
 
 function ShopLayout() {
+
+    const navigate = useNavigate();
+    const productsRef = useRef(null);
+
+    const [selectedTeam, setSelectedTeam] = useState("all");
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const [searchParams] = useSearchParams();
     const productId = searchParams.get("product");
@@ -25,34 +30,58 @@ function ShopLayout() {
         }
     }, [initialProduct]);
 
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    useEffect(() => {
+        if (selectedTeam !== "all" && productsRef.current) {
+            productsRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }, [selectedTeam]);
+
+    const resetFilters = () => {
+        setSelectedTeam("all");
+    };
 
     return (
         <div className='shoplayout'>
+
             <div className='featured-section'>
                 <FeaturedMerchBanner />
             </div>
+
             <div className='teams-products-select'>
-                <TeamFilterBar />
-            </div>
-            <div className='month-trend'>
-                <MonthTrendSection products={products} onProductSelect={setSelectedProduct}/>
-            </div>
-            <div className='grid-products'>
-                <AllProducts products={products} onProductSelect={setSelectedProduct} />
+                <TeamFilterBar
+                    onSelectTeam={setSelectedTeam}
+                    selectedTeam={selectedTeam}
+                />
             </div>
 
-            {
-                selectedProduct && (
-                    <ProductModal
-                        product={selectedProduct}
-                        onClose={() => {
-                            setSelectedProduct(null);
-                            navigate("/shop", { replace: true });
-                        }}
-                    />
-                )
-            }
+            <div className='month-trend'>
+                <MonthTrendSection
+                    products={products}
+                    onProductSelect={setSelectedProduct}
+                />
+            </div>
+
+            <div ref={productsRef} className='grid-products'>
+                <AllProducts
+                    products={products}
+                    onProductSelect={setSelectedProduct}
+                    selectedTeam={selectedTeam}
+                    onResetTeam={resetFilters}
+                />
+            </div>
+
+            {selectedProduct && (
+                <ProductModal
+                    product={selectedProduct}
+                    onClose={() => {
+                        setSelectedProduct(null);
+                        navigate("/shop", { replace: true });
+                    }}
+                />
+            )}
 
         </div>
     )
