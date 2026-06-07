@@ -15,12 +15,30 @@ const STORAGE_KEY_LANGUAGE = 'f1sidetrack_language';
 
 //Tema ────────────────────────────────────────────────────────────────────
 
-export const getSavedTheme = () =>
-    localStorage.getItem(STORAGE_KEY_THEME) ?? THEMES.DARK;
+export const getSavedTheme = () => {
+    const saved = localStorage.getItem(STORAGE_KEY_THEME);
+    // Validar que el tema guardado sea válido
+    if (saved && Object.values(THEMES).includes(saved)) {
+        return saved;
+    }
+    return THEMES.DARK;
+};
 
 export const applyTheme = (theme) => {
+    // Validar que el tema sea válido
+    if (!Object.values(THEMES).includes(theme)) {
+        console.warn(`Tema inválido: ${theme}. Usando tema oscuro por defecto.`);
+        theme = THEMES.DARK;
+    }
+    
+    // Aplicar el tema al elemento raíz
     document.documentElement.setAttribute('data-theme', theme);
+    
+    // Guardar en localStorage
     localStorage.setItem(STORAGE_KEY_THEME, theme);
+    
+    // Disparar evento personalizado para que otros componentes reaccionen
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
 };
 
 //Lenguaje ──────────────────────────────────────────────────────────────────

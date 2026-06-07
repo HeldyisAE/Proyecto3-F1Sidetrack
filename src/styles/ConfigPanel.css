@@ -4,7 +4,7 @@
     background: rgba(0, 0, 0, 0);
     z-index: 999;
     pointer-events: none;
-    transition: background 0.25s ease;
+    transition: background var(--transition-normal);
 }
 
 .config-panel-overlay--visible {
@@ -63,12 +63,12 @@
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
-    transition: color 0.2s, background 0.2s;
+    transition: color var(--transition-fast), background var(--transition-fast);
 }
 
 .config-panel-close:hover {
     color: var(--color-text-primary);
-    background: var(--color-border);
+    background: var(--color-hover);
 }
 
 .config-section {
@@ -102,22 +102,36 @@
     gap: 0.4rem;
     padding: 0.75rem 0.5rem;
     background: var(--color-background);
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md, 8px);
     cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+    color: var(--color-text-primary);
 }
 
 .config-theme-btn:hover {
     border-color: var(--color-primary);
+    background: var(--color-hover);
+    transform: translateY(-2px);
+}
+
+.config-theme-btn:active {
+    transform: translateY(0);
 }
 
 .config-theme-btn--active {
     border-color: var(--color-primary);
-    background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+    background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.2);
 }
 
-.config-theme-icon { font-size: 1.25rem; }
+[data-theme="tritanopia"] .config-theme-btn--active {
+    box-shadow: 0 0 12px rgba(17, 255, 0, 0.2);
+}
+
+.config-theme-icon { 
+    font-size: 1.25rem; 
+}
 
 .config-theme-label {
     font-size: 0.72rem;
@@ -153,22 +167,25 @@
     border: 1px solid transparent;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
     width: 100%;
     text-align: left;
+    color: var(--color-text-primary);
 }
 
 .config-lang-btn:hover {
-    background: var(--color-background);
+    background: var(--color-hover);
     border-color: var(--color-border);
 }
 
 .config-lang-btn--active {
-    background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+    background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
     border-color: var(--color-primary);
 }
 
-.config-lang-flag { font-size: 1.1rem; }
+.config-lang-flag { 
+    font-size: 1.1rem; 
+}
 
 .config-lang-label {
     flex: 1;
