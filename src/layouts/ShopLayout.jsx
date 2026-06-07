@@ -46,6 +46,14 @@ function ShopLayout() {
     return (
         <div className='shoplayout'>
 
+            <div className="shop-header">
+                <span className="shop-label">Paddock Store</span>
+                <h1 className="shop-title">F1: SIDETRACK FAN SHOP</h1>
+                <p className="shop-subtitle">
+                    Explore helmets, apparel, collectibles and exclusive team gear from the Formula 1 paddock.
+                </p>
+            </div>
+
             <div className='featured-section'>
                 <FeaturedMerchBanner />
             </div>
