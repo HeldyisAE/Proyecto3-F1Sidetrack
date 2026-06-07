@@ -1,40 +1,47 @@
-import '../styles/Header.css'
-import { useLocation } from "react-router-dom";
-
+import '../styles/Header.css';
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
-import CartButton from './CartButton';
 import Searchbar from './searchbar';
 import ConfigButton from './ConfigButton';
 import UserButton from './userButton';
+import ConfigPanel from './ConfigPanel';
+import { useConfig } from '../hooks/useConfig';
 
 function Header() {
+    const config = useConfig();
 
-    const location = useLocation();
-    const inShop = location.pathname.startsWith("/shop");
-
-    return(
-        <div className="header">
-            <div className="left">
-                <LogoButton />
-            </div>
-            <div className="center">
-                <RedirectButtons />
-                {inShop ? (
-                    <CartButton />
-                ) : (
+    return (
+        <>
+            <div className="header">
+                <div className="left">
+                    <LogoButton />
+                </div>
+                <div className="center">
+                    <RedirectButtons />
                     <FanShopButton />
-                )}
-                <Searchbar />
-                <ConfigButton />
+                    <Searchbar />
+                    <ConfigButton
+                        onClick={config.togglePanel}
+                        isActive={config.isOpen}
+                    />
+                </div>
+                <div className="right">
+                    <UserButton />
+                </div>
             </div>
-            <div className="right">
-                
-                <UserButton />
-            </div>
-        </div>
-    )
-};
+
+            <ConfigPanel
+                isOpen={config.isOpen}
+                closePanel={config.closePanel}
+                theme={config.theme}
+                changeTheme={config.changeTheme}
+                language={config.language}
+                changeLanguage={config.changeLanguage}
+                LANGUAGES={config.LANGUAGES}
+            />
+        </>
+    );
+}
 
 export default Header;

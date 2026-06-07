@@ -1,0 +1,38 @@
+{
+  "navigation": {
+    "schedule":  "Calendário",
+    "results":   "Resultados",
+    "pilots":    "Pilotos",
+    "teams":     "Equipes",
+    "news":      "Notícias",
+    "shop":      "Loja",
+    "searchbar": "Encontre pilotos, equipes, pistas...",
+    "contact":   "Contacto",
+    "partners":  "Parceiros",
+    "terms":     "Termos",
+    "privacy":   "Privacidade"
+  },
+  "news": {
+    "breaking": "ÚLTIMAS NOTÍCIAS",
+    "antonelli": { "title": "Antonelli lidera o campeonato com apenas 19 anos" },
+    "nodrs":     { "title": "O Grande Prêmio de Mônaco será disputado sem DRS" },
+    "v8return":  { "title": "A Fórmula 1 trabalha intensamente para trazer os motores V8 de volta" }
+  },
+  "standings": {
+    "drivers":      "Pilotos",
+    "constructors": "Construtores",
+    "loading":      "Carregando classificação...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":      "Configurações",
+    "appearance": "Aparência",
+    "language":   "Idioma",
+    "theme": {
+      "dark":       "Escuro",
+      "light":      "Claro",
+      "tritanopia": "Daltônico"
+    },
+    "tritanopiaNote": "Modo otimizado para tritanopia: cores ajustadas para melhorar a distinção sem depender do azul ou do verde."
+  }
+}

@@ -6,8 +6,7 @@
     "teams": "Equipos",
     "news": "Noticias",
     "shop": "Tienda",
-    "searchbarHome": "Encuentre pilotos, equipos, pistas...",
-    "searchbarShop": "Encuentre ropa, coleccionables y más...",
+    "searchbar": "Encuentre pilotos, equipos, pistas...",
     "contact": "Contacto",
     "partners": "Socios",
     "terms": "Términos",
@@ -15,23 +14,25 @@
   },
   "news": {
     "breaking": "ÚLTIMA HORA",
-
-    "antonelli": {
-      "title": "Antonelli lidera el mundial con tan solo 19 años"
-    },
-
-    "nodrs": {
-      "title": "El Gran Premio de Mónaco se disputará sin DRS"
-    },
-
-    "v8return": {
-      "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8"
-    }
+    "antonelli": { "title": "Antonelli lidera el mundial con tan solo 19 años" },
+    "nodrs":     { "title": "El Gran Premio de Mónaco se disputará sin DRS" },
+    "v8return":  { "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8" }
   },
   "standings": {
-    "drivers": "Pilotos",
+    "drivers":      "Pilotos",
     "constructors": "Constructores",
-    "loading": "Cargando clasificación...",
-    "points": "PTS"
+    "loading":      "Cargando clasificación...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":       "Configuración",
+    "appearance":  "Apariencia",
+    "language":    "Idioma",
+    "theme": {
+      "dark":       "Oscuro",
+      "light":      "Claro",
+      "tritanopia": "Daltónico"
+    },
+    "tritanopiaNote": "Modo optimizado para tritanopia: colores ajustados para mejorar la distinción sin depender del azul o el verde."
   }
 }

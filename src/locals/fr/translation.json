@@ -1,0 +1,38 @@
+{
+  "navigation": {
+    "schedule":  "Calendrier",
+    "results":   "Résultats",
+    "pilots":    "Pilotes",
+    "teams":     "Équipes",
+    "news":      "Actualités",
+    "shop":      "Boutique",
+    "searchbar": "Trouver des pilotes, des équipes, des circuits...",
+    "contact":   "Contact",
+    "partners":  "Partenaires",
+    "terms":     "Conditions",
+    "privacy":   "Confidentialité"
+  },
+  "news": {
+    "breaking": "DERNIÈRE MINUTE",
+    "antonelli": { "title": "Antonelli mène le championnat à seulement 19 ans" },
+    "nodrs":     { "title": "Le Grand Prix de Monaco se disputera sans DRS" },
+    "v8return":  { "title": "La Formule 1 travaille activement au retour des moteurs V8" }
+  },
+  "standings": {
+    "drivers":      "Pilotes",
+    "constructors": "Constructeurs",
+    "loading":      "Chargement du classement...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":      "Paramètres",
+    "appearance": "Apparence",
+    "language":   "Langue",
+    "theme": {
+      "dark":       "Sombre",
+      "light":      "Clair",
+      "tritanopia": "Daltonien"
+    },
+    "tritanopiaNote": "Mode optimisé pour la tritanopie : couleurs ajustées pour améliorer la distinction sans dépendre du bleu ou du vert."
+  }
+}

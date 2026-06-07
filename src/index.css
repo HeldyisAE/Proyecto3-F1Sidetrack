@@ -1,53 +1,44 @@
 :root {
-
-  --font-primary:
-    system-ui, 'Segoe UI', Roboto, sans-serif;
-
+  --font-primary: system-ui, 'Segoe UI', Roboto, sans-serif;
   --radius-md: 12px;
-
   --spacing-md: 16px;
 }
 
+/* ── Tema por defecto ── */
 [data-theme="dark"] {
-
-  --color-background: #0f0f0f;
-
-  --color-surface: #1C1C1C;
-
-  --color-primary: #E10600;
-
-  --color-text-primary: #FFFFFF;
-
+  --color-background:     #0f0f0f;
+  --color-surface:        #1C1C1C;
+  --color-primary:        #E10600;
+  --color-text-primary:   #FFFFFF;
   --color-text-secondary: #B3B3B3;
-
-  --color-border: #2A2A2A;
+  --color-border:         #2A2A2A;
 }
 
+/* ── Tema claro ── */
 [data-theme="light"] {
-
-  --color-background: #F5F5F5;
-
-  --color-surface: #FFFFFF;
-
-  --color-primary: #E10600;
-
-  --color-text-primary: #121212;
-
+  --color-background:     #F5F5F5;
+  --color-surface:        #FFFFFF;
+  --color-primary:        #E10600;
+  --color-text-primary:   #121212;
   --color-text-secondary: #666666;
+  --color-border:         #DDDDDD;
+}
 
-  --color-border: #DDDDDD;
+/* ── Tema daltónico: Tritanopia ──*/
+[data-theme="tritanopia"] {
+  --color-background:     #111111;
+  --color-surface:        #242018;
+  --color-primary:        #11ff00;
+  --color-text-primary:   #FFFFFF;
+  --color-text-secondary: #D4C9A8;
+  --color-border:         #4A4030;
 }
 
 body {
-
   margin: 0;
-
   background-color: var(--color-background);
-
   color: var(--color-text-primary);
-
   font-family: var(--font-primary);
-
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -56,7 +47,6 @@ body {
 
 #root {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
 }
@@ -64,4 +54,3 @@ body {
 * {
   box-sizing: border-box;
 }
-
