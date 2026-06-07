@@ -2,11 +2,12 @@ import "../styles/ProductCard.css";
 
 import { TiArrowRightThick } from "react-icons/ti";
 
-function ProductCard({ product, variant = "carousel" }) {
+function ProductCard({ product, variant = "carousel", onClick }) {
 
     return (
         <div
             className={`product-card ${variant}`}
+            onClick={onClick}
             style={{
                 "--product-color": product.color,
             }}

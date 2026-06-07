@@ -4,7 +4,7 @@ import '../data/products.js'
 
 import ProductCard from './ProductCard';
 
-function MonthTrendSection({ products }) {
+function MonthTrendSection({ products, onProductSelect }) {
   return (
     <section className="monthtrend-section">
         
@@ -25,6 +25,7 @@ function MonthTrendSection({ products }) {
             variant="carousel"
             key={product.id}
             product={product}
+            onClick={() => onProductSelect(product)}
           />
         ))} 
       </div>

@@ -1,8 +1,11 @@
 import "../styles/ShopSpotlightSection.css";
 
 import { products } from "../data/products";
+import { useNavigate } from "react-router-dom";
 
 function ShopSpotLightSection() {
+
+  const navigate = useNavigate();
 
   return (
     <div className="shopspot-section">
@@ -54,7 +57,7 @@ function ShopSpotLightSection() {
                   "Legendary motorsport artwork"}
               </span>
 
-              <button className="overlay-button">View Product →</button>
+              <button className="overlay-button" onClick={() => navigate(`/shop?product=${product.id}`)}>View Product →</button>
             </div>
           </div>
         ))}

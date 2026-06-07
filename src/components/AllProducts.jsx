@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "../styles/AllProducts.css";
 import ProductCard from "./ProductCard";
+import { useMemo } from "react";
 
-function AllProducts({ products }) {
+function AllProducts({ products, onProductSelect }) {
 
     const [activeCategory, setActiveCategory] = useState("all");
 
@@ -19,9 +20,21 @@ function AllProducts({ products }) {
         product.category === activeCategory
     );
 
-    const shuffledProducts = [...filteredProducts].sort(
-        () => Math.random() - 0.5
-    );
+    const orderedProducts = useMemo(() => {
+        const first = [];
+        const second = [];
+        filteredProducts.forEach((product, index) => {
+            if (index % 2 === 0) {
+                first.push(product);
+            } else {
+                second.push(product);
+            }
+        });
+        return [
+            ...first,
+            ...second.reverse()
+        ];
+    }, [filteredProducts]);
 
     return (
         <section className="allproducts-section">
@@ -55,11 +68,12 @@ function AllProducts({ products }) {
 
             <div className="all-products">
 
-                {shuffledProducts.map(product => (
+                {orderedProducts.map(product => (
                     <ProductCard
                         variant="grid"
                         key={product.id}
                         product={product}
+                        onClick={() => onProductSelect(product)}
                     />
                 ))}
 
