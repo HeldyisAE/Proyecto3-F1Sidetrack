@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
+import CartButton from './CartButton';
 import Searchbar from './searchbar';
 import ConfigButton from './ConfigButton';
 import UserButton from './userButton';
@@ -11,7 +12,7 @@ import UserButton from './userButton';
 function Header() {
 
     const location = useLocation();
-    const inShop = location.pathname === "/shop"
+    const inShop = location.pathname.startsWith("/shop");
 
     return(
         <div className="header">
@@ -20,7 +21,11 @@ function Header() {
             </div>
             <div className="center">
                 <RedirectButtons />
-                {!inShop && <FanShopButton />}
+                {inShop ? (
+                    <CartButton />
+                ) : (
+                    <FanShopButton />
+                )}
                 <Searchbar />
                 <ConfigButton />
             </div>
