@@ -1,23 +1,18 @@
 .favorite-drivers {
-
     width: 100%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
-
     gap: 1rem;
     padding: clamp(1.25rem, 2vw, 2rem);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    background: #1a1a1a;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
 }
 
 .favorite-header {
-
     display: flex;
     flex-direction: column;
-
     gap: 0.3rem;
 }
 
@@ -26,39 +21,26 @@
 }
 
 .favorite-subtitle {
-
     color: var(--color-text-secondary);
     font-size: 1rem;
     opacity: 0.65;
 }
 
 .favorite-list {
-
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
 .favorite-card {
-
     display: flex;
     align-items: center;
-
     gap: 1rem;
-
     padding: 1rem;
-
     border-radius: 16px;
-
-    background:
-        rgba(255,255,255,0.03);
-
-    border:
-        1px solid rgba(255,255,255,0.08);
-
-    border-left:
-        3px solid var(--team-color);
-
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--team-color);
     transition:
         transform 0.25s ease,
         border-color 0.25s ease,
@@ -67,87 +49,52 @@
 }
 
 .favorite-card:hover {
-
     transform: translateY(-3px);
-
-    background:
-        rgba(255,255,255,0.05);
-
-    box-shadow:
-        0 0 20px color-mix(
-            in srgb,
-            var(--team-color) 25%,
-            transparent
-        );
+    background: var(--color-focus);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--team-color) 25%, transparent);
 }
 
 .driver-avatar {
-
     width: 58px;
     height: 58px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
-    border:
-        2px solid rgba(255,255,255,0.12);
+    border: 2px solid var(--color-border-light);
 }
 
 .driver-info {
-
     flex: 1;
-
     display: flex;
     flex-direction: column;
-
     gap: 0.2rem;
 }
 
 .driver-name {
-
     font-family: var(--font-display);
-
-    color:
-        var(--color-text-primary);
-
+    color: var(--color-text-primary);
     font-size: 0.95rem;
-
     font-weight: 600;
 }
 
 .driver-team {
-
-    color:
-        var(--color-text-secondary);
-
+    color: var(--color-text-secondary);
     font-size: 0.8rem;
 }
 
 .driver-stats {
-
     display: flex;
     flex-direction: column;
-
     align-items: flex-end;
-
     gap: 0.2rem;
 }
 
 .driver-position {
-
-    color:
-        var(--team-color);
-
+    color: var(--team-color);
     font-weight: 700;
-
     font-size: 0.95rem;
 }
 
 .driver-points {
-
-    color:
-        var(--color-text-secondary);
-
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }

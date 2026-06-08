@@ -6,27 +6,22 @@
   --transition-normal: 0.3s ease;
 }
 
-/* ── Tema oscuro (por defecto) ── */
+/* ── Tema oscuro ── */
 [data-theme="dark"] {
-  /* Colores base */
   --color-background:     #0f0f0f;
   --color-surface:        #1C1C1C;
   --color-primary:        #E10600;
   
-  /* Texto */
   --color-text-primary:   #FFFFFF;
   --color-text-secondary: #B3B3B3;
   --color-text-tertiary:  #808080;
   
-  /* Bordes y separadores */
   --color-border:         #2A2A2A;
   --color-border-light:   #383838;
   
-  /* Estados */
   --color-hover:          #262626;
   --color-focus:          #2A2A2A;
   
-  /* Funcional */
   --color-success:        #10B981;
   --color-warning:        #F59E0B;
   --color-error:          #EF4444;
@@ -35,56 +30,46 @@
 
 /* ── Tema claro ── */
 [data-theme="light"] {
-  /* Colores base */
   --color-background:     #F5F5F5;
   --color-surface:        #FFFFFF;
   --color-primary:        #E10600;
   
-  /* Texto */
   --color-text-primary:   #121212;
   --color-text-secondary: #666666;
   --color-text-tertiary:  #999999;
   
-  /* Bordes y separadores */
   --color-border:         #DDDDDD;
   --color-border-light:   #E8E8E8;
   
-  /* Estados */
   --color-hover:          #F0F0F0;
   --color-focus:          #E8E8E8;
   
-  /* Funcional */
   --color-success:        #059669;
   --color-warning:        #D97706;
   --color-error:          #DC2626;
   --color-info:           #2563EB;
 }
 
-/* ── Tema daltónico: Tritanopia ── */
+/* ── Tema daltónico ── */
 [data-theme="tritanopia"] {
-  /* Colores base - optimizados para tritanopia (sin azul/verde) */
   --color-background:     #111111;
-  --color-surface:        #242018;
-  --color-primary:        #11ff00;
-  
-  /* Texto - alto contraste para accesibilidad */
-  --color-text-primary:   #FFFFFF;
-  --color-text-secondary: #D4C9A8;
-  --color-text-tertiary:  #A69E7E;
-  
-  /* Bordes y separadores */
-  --color-border:         #4A4030;
-  --color-border-light:   #5A5245;
-  
-  /* Estados */
-  --color-hover:          #3A3028;
-  --color-focus:          #4A4030;
-  
-  /* Funcional - colores accesibles para tritanopia */
-  --color-success:        #FFD700;
-  --color-warning:        #FF8C00;
-  --color-error:          #FF6B6B;
-  --color-info:           #FFB84D;
+  --color-surface:        #1a1717;
+  --color-primary:        #ac2804;
+
+  --color-text-primary:   #f8f8f8;
+  --color-text-secondary: #B3B3B3;
+  --color-text-tertiary:  #808080;
+
+  --color-border:         #2A2A2A;
+  --color-border-light:   #383838;
+
+  --color-hover:          #262626;
+  --color-focus:          #2A2A2A;
+
+  --color-success:        #2600ff;
+  --color-warning:        #FF6D00;
+  --color-error:          #862200;
+  --color-info:           #01ff23;
 }
 
 body {

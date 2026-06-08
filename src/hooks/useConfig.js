@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { useTheme } from './useTheme';
+import { useThemeContext } from '../context/ThemeContext';
 import { useLanguage } from './useLanguage';
 
 export const useConfig = () => {
@@ -8,7 +8,7 @@ export const useConfig = () => {
     const togglePanel = useCallback(() => setIsOpen(prev => !prev), []);
     const closePanel  = useCallback(() => setIsOpen(false), []);
 
-    const themeState    = useTheme();
+    const themeState    = useThemeContext();
     const languageState = useLanguage();
 
     return {

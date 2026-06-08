@@ -1,16 +1,13 @@
 .allproducts-section {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 1.5rem;
-  padding: 2rem 1rem;
-
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .category-filters {
@@ -21,72 +18,56 @@
 }
 
 .filter-chip {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
     color: var(--color-text-secondary);
-
     border-radius: 999px;
     padding: 0.65rem 1.25rem;
-
     font-size: 0.9rem;
     font-weight: 500;
-
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .filter-chip:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--color-focus);
     color: var(--color-text-primary);
 }
 
 .filter-chip.active {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-text-primary);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
 }
 
 .filter-chip.reset {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 42px;   /* o el mismo alto que los chips */
+    width: 42px;
     height: 42px;
-
     padding: 0;
-
     border-radius: 999px;
 }
 
-.filter-chip.reset:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.filter-chip.reset svg {
-    font-size: 1.2rem;
-}
+.filter-chip.reset:hover { opacity: 1; transform: translateY(-2px); }
+.filter-chip.reset svg { font-size: 1.2rem; }
 
 .allproducts-header {
-  display: flex;
-  flex-direction: column;
-
-  gap: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .allproducts-title {
-  font-size: 2rem;
-  font-weight: 700;
-
-  color: var(--color-text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
 }
 
 .all-products {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 1.5rem;
-  width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
 }

@@ -1,5 +1,3 @@
-
-
 /* ── Variables F1 ── */
 :root {
     --f1-red: #E8002D;
@@ -11,40 +9,29 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
     padding: 1.5rem 2rem 3rem;
 }
 
-/* ── Header ── */
 .shop-header {
     padding: 3.5rem 2rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--color-border);
     margin-bottom: 1rem;
     position: relative;
     overflow: hidden;
 }
 
-/* Línea roja superior animada */
 .shop-header::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--f1-stripe) 20%,
-        var(--f1-red) 50%,
-        var(--f1-stripe) 80%,
-        transparent 100%
-    );
+    background: linear-gradient(90deg, transparent 0%, var(--f1-stripe) 20%, var(--f1-red) 50%, var(--f1-stripe) 80%, transparent 100%);
     animation: sweep 2.4s ease-in-out infinite alternate;
 }
 
@@ -53,21 +40,14 @@
     to   { background-position: 200% 0; }
 }
 
-/* Grid de carbono sutil */
 .shop-header::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 59px,
-        rgba(232, 0, 45, 0.04) 60px
-    );
+    background: repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(232, 0, 45, 0.04) 60px);
     pointer-events: none;
 }
 
-/* ── Label ── */
 .shop-label {
     font-family: 'Share Tech Mono', monospace;
     font-size: 1rem;
@@ -89,7 +69,6 @@
     flex-shrink: 0;
 }
 
-/* ── Título ── */
 .shop-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(3rem, 7vw, 4.8rem);
@@ -102,7 +81,6 @@
     animation: slideIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
-/* Añade .accent al span de la palabra clave */
 .shop-title .accent {
     color: var(--f1-red);
     position: relative;
@@ -120,7 +98,6 @@
     animation: underlineIn 0.4s ease 0.7s forwards;
 }
 
-/* ── Subtítulo ── */
 .shop-subtitle {
     max-width: 560px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -132,7 +109,6 @@
     animation: fadeUp 0.5s ease 0.4s both;
 }
 
-/* ── Animaciones ── */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -143,41 +119,30 @@
     to   { opacity: 1; transform: translateX(0) skewX(0); }
 }
 
-@keyframes underlineIn {
-    to { transform: scaleX(1); }
-}
+@keyframes underlineIn { to { transform: scaleX(1); } }
 
 .teams-products-select {
     width: 100%;
     min-height: 100px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-
     padding: 1.5rem 0.2rem 1rem;
-
 }
 
 .featured-section {
     width: 100%;
     max-height: 120vh;
-
     overflow: hidden;
     position: relative;
 }
 
 .month-trend {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.grid-products {
-    width: 100%;
-}
-
-
+.grid-products { width: 100%; }
