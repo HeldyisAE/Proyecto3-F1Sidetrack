@@ -1,0 +1,18 @@
+.login {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.55)
+        ),
+        url("https://static.vecteezy.com/system/resources/thumbnails/047/553/042/small/silhouette-of-a-formula-one-car-under-dramatic-lighting-photo.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
