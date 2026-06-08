@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import AntonelliLeader from "../assets/AntonelliLeader.jpg";
 import NoDRS from "../assets/NoDRS.jpg";
 import V8Return from "../assets/V8Return.jpg";
 
@@ -14,11 +13,11 @@ function SectionNews() {
     const news = [
       {
         title: t("news.antonelli.title"),
-        image: AntonelliLeader,
+        image: "https://imagenes.eleconomista.com.mx/files/webp_768_448/files/fp/uploads/2026/06/07/6a25c4a241899.r_d.2631-1945-1305.jpeg"
       },
       {
         title: t("news.nodrs.title"),
-        image: NoDRS,
+        image: "https://ca-times.brightspotcdn.com/dims4/default/7750d83/2147483647/strip/true/crop/7989x5326+0+0/resize/1200x800!/format/webp/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F21%2Fbc%2F49a71f6d401c827ac77d30bb3b17%2Fcadillac-punto-esquivo-75971.jpg",
       },
       {
         title: t("news.v8return.title"),
