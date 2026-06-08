@@ -1,11 +1,11 @@
 import '../styles/Login.css'
-import LoginCard from '../components/LoginCard';
+import AuthCard from "../components/AuthCard";
 
 function Login() {
     return (
     <div className="login">
         <div className="login-card">
-            <LoginCard />
+            <AuthCard />
         </div>
     </div>
     )

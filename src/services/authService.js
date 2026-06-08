@@ -25,3 +25,13 @@ export async function loginAsDemoUser() {
         user => Number(user.id) === 1
     );
 }
+
+export function createUser(user) {
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
+
+    return user;
+}

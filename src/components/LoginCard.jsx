@@ -4,7 +4,7 @@ import { login, loginAsDemoUser } from "../services/authService";
 import { useState } from "react";
 import "../styles/LoginCard.css";
 
-function LoginCard() {
+function LoginCard({ onRegisterClick }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -69,7 +69,7 @@ function LoginCard() {
                 Don't have an account?{" "}
                 <span
                     className="login-link"
-                    onClick={() => navigate("/register")}
+                    onClick={onRegisterClick}
                 >
                     Register
                 </span>
