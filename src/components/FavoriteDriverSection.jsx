@@ -5,11 +5,12 @@ function FavoriteDriverSection({ standings }) {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     const favoriteIds =
-      (currentUser?.favoriteDrivers || [])
-        .map(Number);
+        currentUser.favoriteDrivers ||
+        currentUser.favoritePilots?.split("|").map(Number) ||
+        [];
 
     const favoriteDrivers = standings.filter(driver =>
-      favoriteIds.includes(Number(driver.driver_number))
+        favoriteIds.includes(Number(driver.driver_number))
     );
 
     if (!standings?.length) return null;
