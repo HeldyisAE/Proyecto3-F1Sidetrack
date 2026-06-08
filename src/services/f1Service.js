@@ -321,3 +321,63 @@ export const getNextRace = async () => {
         throw error;
     }
 };
+
+export const getLastRacePodium = async () => {
+
+  const latestRace =
+    await getLatestCompletedRaceSession();
+
+  const sessionKey =
+    latestRace.session_key;
+
+  const [
+    podiumResults,
+    drivers,
+  ] = await Promise.all([
+    request(
+      `session_result?session_key=${sessionKey}&position<=3`
+    ),
+    request(
+      `drivers?session_key=${sessionKey}`
+    ),
+  ]);
+
+  const driversMap = {};
+
+  drivers.forEach(driver => {
+    driversMap[
+      driver.driver_number
+    ] = driver;
+  });
+
+  return podiumResults
+    .sort(
+      (a, b) =>
+        a.position - b.position
+    )
+    .map(result => ({
+
+      position:
+        result.position,
+
+      driver_number:
+        result.driver_number,
+
+      full_name:
+        driversMap[result.driver_number]
+          ?.full_name,
+
+      team_name:
+        driversMap[result.driver_number]
+          ?.team_name,
+
+      team_colour:
+        driversMap[result.driver_number]
+          ?.team_colour,
+
+      headshot_url:
+        driversMap[result.driver_number]
+          ?.headshot_url,
+
+    }));
+};

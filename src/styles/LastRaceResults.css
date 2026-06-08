@@ -143,8 +143,8 @@
 /* ── Tamaños y delays — orden visual P2 | P1 | P3 ── */
 
 .first  { width: 34%; min-height: 240px; height: auto; animation-delay: 0.1s; }
-.second { width: 28%; min-height: 200px; height: auto; animation-delay: 0.2s; }
-.third  { width: 28%; min-height: 170px; height: auto; animation-delay: 0.3s; }
+.second { width: 28%; min-height: 225px; height: auto; animation-delay: 0.2s; }
+.third  { width: 28%; max-height: 205px; height: auto; animation-delay: 0.3s; }
 
 /* ── P1 ── */
 

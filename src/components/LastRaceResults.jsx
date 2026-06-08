@@ -7,15 +7,20 @@ function LastRaceResults({ standings }) {
 
   const kimi  = standings.find((d) => d.driver_number === 12);
   const lewis = standings.find((d) => d.driver_number === 44);
-  const max   = standings.find((d) => d.driver_number === 3);
-  const george = standings.find((d) => d.driver_number === 63);
+  const hadjar   = standings.find((d) => d.driver_number === 6);
 
   // Orden visual: P2 | P1 | P3
   const podium = [
     { pos: 2, data: lewis, cls: "second" },
-    { pos: 1, data: kimi,  cls: "first"  },
-    { pos: 3, data: max,   cls: "third"  },
+    { pos: 1, data: kimi, cls: "first"  },
+    { pos: 3, data: hadjar, cls: "third"  },
   ];
+
+  console.log(
+    standings.find(
+      d => d.driver_number === 6
+    )
+  );
 
   return (
     <div className="last-race-results">
@@ -24,9 +29,9 @@ function LastRaceResults({ standings }) {
       <div className="results-header">
         <div className="results-header-left">
           <span className="results-title">Last Race Summary</span>
-          <span className="results-subtitle">Canada Grand Prix • Round 5</span>
+          <span className="results-subtitle">Monaco Grand Prix • Round 6</span>
         </div>
-        <span className="results-round-badge">Round 5 / 24</span>
+        <span className="results-round-badge">Round 6 / 24</span>
       </div>
 
       {/* Podio */}
@@ -56,20 +61,20 @@ function LastRaceResults({ standings }) {
         {/* Pole Position */}
         <div
           className="highlight-card"
-          style={{ "--team-color": `#${george?.team_colour}` }}
+          style={{ "--team-color": `#${kimi?.team_colour}` }}
         >
           <div className="highlight-icon"><FaStopwatch/></div>
           <div className="highlight-content">
             <span className="highlight-label">Pole Position</span>
             <div className="highlight-driver-row">
               <img
-                src={george?.headshot_url}
-                alt={george?.full_name}
+                src={kimi?.headshot_url}
+                alt={kimi?.full_name}
                 className="highlight-avatar"
               />
-              <span className="highlight-driver">{george?.full_name}</span>
+              <span className="highlight-driver">{kimi?.full_name}</span>
             </div>
-            <span className="highlight-time">1:12.578</span>
+            <span className="highlight-time">1:12.051</span>
           </div>
         </div>
 
@@ -89,7 +94,7 @@ function LastRaceResults({ standings }) {
               />
               <span className="highlight-driver">{kimi?.full_name}</span>
             </div>
-            <span className="highlight-time">1:14.210</span>
+            <span className="highlight-time">1:13.481</span>
           </div>
         </div>
 

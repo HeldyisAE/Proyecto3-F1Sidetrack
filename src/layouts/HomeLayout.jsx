@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import {
   getDriverStandings,
   getTeamStandings,
-  getNextRace
+  getNextRace,
+  getLastRacePodium
 } from "../services/f1Service";
 import SectionNews from "../components/SectionNews";
 import StandingSection from "../components/StandingSection";
@@ -17,6 +18,7 @@ function HomeLayout() {
   const [driverStandings, setDriverStandings] = useState([]);
   const [teamStandings, setTeamStandings] = useState([]);
   const [nextRace, setNextRace] = useState(null);
+  const [lastRacePodium, setLastRacePodium] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -25,6 +27,7 @@ function HomeLayout() {
           getDriverStandings(),
           getTeamStandings(),
           getNextRace(),
+
         ]);
 
         setDriverStandings(drivers);
@@ -55,7 +58,7 @@ function HomeLayout() {
         <NextRaceSection race={nextRace} />
       </div>
       <div className="results-section">
-        <LastRaceResults standings={driverStandings} />
+        <LastRaceResults standings={driverStandings}/>
       </div>
       <div className="drivers-section">
         <div className="drivers-card">

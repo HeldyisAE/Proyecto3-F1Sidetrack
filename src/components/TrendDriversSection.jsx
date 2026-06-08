@@ -6,29 +6,29 @@ function TrendDriversSection({ standings }) {
   }
   
   const trendingDrivers = standings
-    .filter((driver) => [12, 43, 44].includes(driver.driver_number))
+    .filter((driver) => [12, 14, 6].includes(driver.driver_number))
     .map((driver) => {
       if (driver.driver_number === 12) {
         return {
           ...driver,
           title: "Race Winner",
-          description: "First Formula 1 victory",
+          description: "First victory in Monaco",
         };
       }
 
-      if (driver.driver_number === 43) {
+      if (driver.driver_number === 14) {
         return {
           ...driver,
-          title: "Strong Consistency",
-          description: "Excellent race pace throughout",
+          title: "Back to top ten",
+          description: "Managed to score a point",
         };
       }
 
-      if (driver.driver_number === 44) {
+      if (driver.driver_number === 6) {
         return {
           ...driver,
-          title: "Back on the Podium",
-          description: "Returns to the top three",
+          title: "First podium with Red Bull Racing",
+          description: "Returns to the top three with the big team",
         };
       }
 
