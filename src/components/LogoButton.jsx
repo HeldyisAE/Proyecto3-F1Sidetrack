@@ -9,7 +9,7 @@ function LogoButton() {
     return(
         <div className="logobutton-container">
             <button 
-                onClick={() => navigate("/")} 
+                onClick={() => navigate("/home")} 
                 className="logo-button"
             >
                 <img 

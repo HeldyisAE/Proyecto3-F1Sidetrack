@@ -4,7 +4,7 @@
 
     padding: 2rem;
 
-    background: rgba(10, 8, 8, 0.55);
+    background: rgba(10, 8, 8, 0.507);
 
     border: 1px solid rgba(225, 6, 0, 0.45);
     border-radius: 16px;
@@ -92,4 +92,28 @@
 .login-link:hover {
     color: #ff2a26;
     text-decoration: none;
+}
+
+.login-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.login-btn {
+    flex: 1;
+}
+
+.google-btn {
+    width: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+    color: #444;
+}
+
+.google-btn:hover {
+    background: #f0f0f0;
 }

@@ -21,7 +21,7 @@
 
     padding: 2.3rem 0.5rem;
 
-    padding-inline: clamp(12px, 1vw, 18px);
+    padding-inline: clamp(2px, 0.2vw, 6px);
 
     border: none;
 
@@ -83,4 +83,16 @@
 
 .user-button:hover::after {
     width: 100%;
+}
+
+.userbutton-container {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.user-name {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
