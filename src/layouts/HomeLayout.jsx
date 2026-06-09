@@ -1,6 +1,6 @@
 import "../styles/HomeLayout.css";
 
-import { useF1Data } from "../hooks/useF1Data";
+import { useF1 } from "../hooks/useF1";
 
 import SectionNews from "../components/SectionNews";
 import StandingSection from "../components/StandingSection";
@@ -16,7 +16,7 @@ function HomeLayout() {
     driverStandings,
     teamStandings,
     nextRace
-  } = useF1Data();
+  } = useF1();
 
   return (
     <div className="homelayout">

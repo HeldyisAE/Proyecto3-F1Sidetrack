@@ -1,31 +1,74 @@
 const API_URL = "https://api.openf1.org/v1";
 
-// ─── CACHÉ EN MEMORIA ────────────────────────────────────────────────────────
+// ─── MODO DEMO ───────────────────────────────────────────────────────────────
+// true  → siempre usa caché (ignora expiración). Nunca hace fetch.
+// false → lógica normal de expiración.
+const DEMO_MODE = false;
+
+// ─── TIEMPOS DE EXPIRACIÓN (ms) ──────────────────────────────────────────────
+const TTL = {
+    driverStandings: 24 * 60 * 60 * 1000,
+    teamStandings:   24 * 60 * 60 * 1000,
+    nextRace:        24 * 60 * 60 * 1000,
+    lastRacePodium:  24 * 60 * 60 * 1000,
+    drivers:         24 * 60 * 60 * 1000,
+    teams:           24 * 60 * 60 * 1000,
+    schedule:        24 * 60 * 60 * 1000,
+    news:             6 * 60 * 60 * 1000,
+    // Internos (sesiones y meetings): misma vida que los datos derivados
+    sessions:        24 * 60 * 60 * 1000,
+    meetings:        24 * 60 * 60 * 1000,
+};
+
+// ─── HELPERS DE CACHÉ PERSISTENTE (localStorage) ─────────────────────────────
+
+/**
+ * Lee una entrada de caché desde localStorage.
+ * Devuelve el objeto { timestamp, data } o null si no existe / está corrupto.
+ */
+function loadCache(key) {
+    try {
+        const raw = localStorage.getItem(`f1_${key}`);
+        if (!raw) return null;
+        return JSON.parse(raw);
+    } catch {
+        return null;
+    }
+}
+
+/**
+ * Guarda data en localStorage con la estructura { timestamp, data }.
+ */
+function saveCache(key, data) {
+    try {
+        localStorage.setItem(`f1_${key}`, JSON.stringify({ timestamp: Date.now(), data }));
+    } catch {
+        // localStorage puede estar lleno o deshabilitado; continuamos sin error.
+    }
+}
+
+/**
+ * Devuelve true si la entrada de caché sigue siendo válida.
+ * En DEMO_MODE siempre devuelve true (nunca expira).
+ */
+function isCacheValid(entry, maxAge) {
+    if (!entry) return false;
+    if (DEMO_MODE) return true;
+    return Date.now() - entry.timestamp < maxAge;
+}
+
+// ─── CACHÉ EN MEMORIA (deduplicación de promesas en vuelo) ───────────────────
 //
-// Cada entrada almacena el valor resuelto 
-// Las entradas de "promesas en vuelo" se guardan en los mapas *Promise
-// para evitar race conditions: si dos llamadas llegan antes de que la
-// primera resuelva, ambas reciben la misma promesa en lugar de lanzar
-// dos fetches paralelos idénticos.
+// Los *Promise evitan lanzar múltiples fetches simultáneos al mismo endpoint
+// antes de que el primero resuelva (race condition).
 
-const cache = {
-    // Valores resueltos
-    latestRaceSession: null,
-    driverStandings:   null,
-    teamStandings:     null,
-    nextRace:          null,
-
-    //Por sesión
-    driversBySession:  {},
-
-    //Por año
-    meetingsByYear:    {},
-    sessionsByYear:    {},
-
+const mem = {
+    latestRaceSession:         null,
     latestRacePromise:         null,
-    driversBySessionPromises:  {},  
-    meetingsByYearPromises:    {}, 
-    sessionsByYearPromises:    {},   
+    driversBySession:          {},
+    driversBySessionPromises:  {},
+    meetingsByYearPromises:    {},
+    sessionsByYearPromises:    {},
 };
 
 // ─── CAPA DE TRANSPORTE ──────────────────────────────────────────────────────
@@ -36,140 +79,168 @@ const request = async (endpoint) => {
     return response.json();
 };
 
-// ─── HELPERS INTERNOS CON CACHÉ Y DEDUPLICACIÓN ──────────────────────────────
+// ─── HELPERS INTERNOS CON CACHÉ PERSISTENTE Y DEDUPLICACIÓN ─────────────────
 
 /**
- * Devuelve los meetings del año solicitado.
- * Una sola llamada HTTP por año, compartida por getSchedule y getNews.
+ * Meetings por año.
+ * Persistido en localStorage; compartido por getSchedule, getNews y getNextRace.
  */
 const getMeetingsByYear = (year) => {
-    if (cache.meetingsByYear[year]) {
-        return Promise.resolve(cache.meetingsByYear[year]);
+    const cacheKey = `meetings_${year}`;
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.meetings)) {
+        return Promise.resolve(entry.data);
     }
 
-    if (cache.meetingsByYearPromises[year]) {
-        return cache.meetingsByYearPromises[year];
+    if (mem.meetingsByYearPromises[year]) {
+        return mem.meetingsByYearPromises[year];
     }
 
-    cache.meetingsByYearPromises[year] = request(`meetings?year=${year}`)
+    mem.meetingsByYearPromises[year] = request(`meetings?year=${year}`)
         .then((meetings) => {
-            cache.meetingsByYear[year] = meetings;
+            saveCache(cacheKey, meetings);
             return meetings;
         });
 
-    return cache.meetingsByYearPromises[year];
+    return mem.meetingsByYearPromises[year];
 };
 
 /**
- * Devuelve las sesiones del año solicitado.
- * Una sola llamada HTTP por año, compartida entre funciones.
+ * Sesiones por año.
+ * Persistido en localStorage; compartido por getLatestCompletedRaceSession y getNews.
  */
 const getSessionsByYear = (year) => {
-    if (cache.sessionsByYear[year]) {
-        return Promise.resolve(cache.sessionsByYear[year]);
+    const cacheKey = `sessions_${year}`;
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.sessions)) {
+        return Promise.resolve(entry.data);
     }
 
-    if (cache.sessionsByYearPromises[year]) {
-        return cache.sessionsByYearPromises[year];
+    if (mem.sessionsByYearPromises[year]) {
+        return mem.sessionsByYearPromises[year];
     }
 
-    cache.sessionsByYearPromises[year] = request(`sessions?year=${year}`)
+    mem.sessionsByYearPromises[year] = request(`sessions?year=${year}`)
         .then((sessions) => {
-            cache.sessionsByYear[year] = sessions;
+            saveCache(cacheKey, sessions);
             return sessions;
         });
 
-    return cache.sessionsByYearPromises[year];
+    return mem.sessionsByYearPromises[year];
 };
 
 /**
- * Devuelve los pilotos de una sesión concreta.
- * Una sola llamada HTTP por session_key, compartida entre
- * getDriverStandings, getResults y getDrivers.
+ * Pilotos por session_key.
+ * Persistido en localStorage; compartido por getDriverStandings, getResults,
+ * getDrivers y getLastRacePodium.
  */
 const getDriversBySession = (sessionKey) => {
-    if (cache.driversBySession[sessionKey]) {
-        return Promise.resolve(cache.driversBySession[sessionKey]);
+    // 1. Memoria (ya resuelto en esta sesión de pestaña)
+    if (mem.driversBySession[sessionKey]) {
+        return Promise.resolve(mem.driversBySession[sessionKey]);
     }
 
-    if (cache.driversBySessionPromises[sessionKey]) {
-        return cache.driversBySessionPromises[sessionKey];
+    // 2. localStorage
+    const cacheKey = `drivers_${sessionKey}`;
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.drivers)) {
+        mem.driversBySession[sessionKey] = entry.data; // hidrata memoria también
+        return Promise.resolve(entry.data);
     }
 
-    cache.driversBySessionPromises[sessionKey] = request(`drivers?session_key=${sessionKey}`)
+    // 3. Promesa en vuelo (deduplicación)
+    if (mem.driversBySessionPromises[sessionKey]) {
+        return mem.driversBySessionPromises[sessionKey];
+    }
+
+    mem.driversBySessionPromises[sessionKey] = request(`drivers?session_key=${sessionKey}`)
         .then((drivers) => {
-            cache.driversBySession[sessionKey] = drivers;
+            saveCache(cacheKey, drivers);
+            mem.driversBySession[sessionKey] = drivers;
             return drivers;
         });
 
-    return cache.driversBySessionPromises[sessionKey];
+    return mem.driversBySessionPromises[sessionKey];
 };
 
 /**
- * Devuelve la sesión de carrera más reciente ya finalizada.
- * Reutiliza getMeetingsByYear para no duplicar el fetch de sesiones.
+ * Sesión de carrera más reciente ya finalizada.
+ * Se deriva de getSessionsByYear (ya persistido).
  */
 const getLatestCompletedRaceSession = () => {
-    if (cache.latestRaceSession) {
-        return Promise.resolve(cache.latestRaceSession);
+    if (mem.latestRaceSession) {
+        return Promise.resolve(mem.latestRaceSession);
     }
 
-    if (cache.latestRacePromise) {
-        return cache.latestRacePromise;
+    if (mem.latestRacePromise) {
+        return mem.latestRacePromise;
     }
 
     const currentYear = new Date().getFullYear();
 
-    cache.latestRacePromise = getSessionsByYear(currentYear)
+    mem.latestRacePromise = getSessionsByYear(currentYear)
         .then((sessions) => {
             const latestRace = sessions
                 .filter(
-                    (session) =>
-                        session.session_type === "Race" &&
-                        session.date_end &&
-                        new Date(session.date_end) < new Date()
+                    (s) =>
+                        s.session_type === "Race" &&
+                        s.date_end &&
+                        new Date(s.date_end) < new Date()
                 )
                 .sort((a, b) => new Date(b.date_end) - new Date(a.date_end))[0];
 
-            cache.latestRaceSession = latestRace;
+            mem.latestRaceSession = latestRace;
             return latestRace;
         });
 
-    return cache.latestRacePromise;
+    return mem.latestRacePromise;
 };
 
 // ─── CALENDARIO ──────────────────────────────────────────────────────────────
 
 export const getSchedule = async () => {
+    const cacheKey = "schedule";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.schedule)) {
+        return entry.data;
+    }
+
     const currentYear = new Date().getFullYear();
     const meetings = await getMeetingsByYear(currentYear);
-    return [...meetings].sort(
+    const result = [...meetings].sort(
         (a, b) => new Date(a.date_start) - new Date(b.date_start)
     );
+
+    saveCache(cacheKey, result);
+    return result;
 };
 
 // ─── DRIVER STANDINGS ────────────────────────────────────────────────────────
 
 export const getDriverStandings = async () => {
-    if (cache.driverStandings) {
-        return cache.driverStandings;
+    const cacheKey = "driverStandings";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.driverStandings)) {
+        return entry.data;
     }
 
     const latestRace = await getLatestCompletedRaceSession();
-    if (!latestRace) {
-      throw new Error("No completed race session found");
-    }
+    if (!latestRace) throw new Error("No completed race session found");
+
     const sessionKey = latestRace.session_key;
 
     const [standings, drivers] = await Promise.all([
         request(`championship_drivers?session_key=${sessionKey}`),
-        getDriversBySession(sessionKey),   // ← reutiliza caché compartido
+        getDriversBySession(sessionKey),
     ]);
 
     const driversMap = {};
-    drivers.forEach((driver) => {
-        driversMap[driver.driver_number] = driver;
-    });
+    drivers.forEach((d) => { driversMap[d.driver_number] = d; });
 
     const result = standings
         .sort((a, b) => a.position_current - b.position_current)
@@ -181,22 +252,22 @@ export const getDriverStandings = async () => {
             headshot_url: driversMap[driver.driver_number]?.headshot_url ?? null,
         }));
 
-    cache.driverStandings = result;
+    saveCache(cacheKey, result);
     return result;
 };
 
 // ─── CONSTRUCTOR STANDINGS ───────────────────────────────────────────────────
 
 export const getTeamStandings = async () => {
-    if (cache.teamStandings) {
-        return cache.teamStandings;
+    const cacheKey = "teamStandings";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.teamStandings)) {
+        return entry.data;
     }
 
     const latestRace = await getLatestCompletedRaceSession();
-
-    if (!latestRace) {
-      throw new Error("No completed race session found");
-    }
+    if (!latestRace) throw new Error("No completed race session found");
 
     const standings = await request(
         `championship_teams?session_key=${latestRace.session_key}`
@@ -206,11 +277,13 @@ export const getTeamStandings = async () => {
         (a, b) => a.position_current - b.position_current
     );
 
-    cache.teamStandings = result;
+    saveCache(cacheKey, result);
     return result;
 };
 
 // ─── RESULTADOS ──────────────────────────────────────────────────────────────
+// getResults no tiene TTL propio en los requisitos, pero se beneficia de la
+// caché compartida de drivers y sessions para no hacer fetches extra.
 
 export const getResults = async () => {
     const lastRace = await getLatestCompletedRaceSession();
@@ -218,7 +291,7 @@ export const getResults = async () => {
 
     const [positions, drivers] = await Promise.all([
         request(`position?session_key=${sessionKey}&position<=20`),
-        getDriversBySession(sessionKey),   // ← reutiliza caché compartido
+        getDriversBySession(sessionKey),
     ]);
 
     const latest = {};
@@ -230,9 +303,7 @@ export const getResults = async () => {
     });
 
     const driversMap = {};
-    drivers.forEach((driver) => {
-        driversMap[driver.driver_number] = driver;
-    });
+    drivers.forEach((d) => { driversMap[d.driver_number] = d; });
 
     const results = Object.values(latest)
         .sort((a, b) => a.position - b.position)
@@ -251,24 +322,39 @@ export const getResults = async () => {
 // ─── PILOTOS ─────────────────────────────────────────────────────────────────
 
 export const getDrivers = async () => {
+    const cacheKey = "drivers";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.drivers)) {
+        return entry.data;
+    }
+
     const latestRace = await getLatestCompletedRaceSession();
-    const drivers = await getDriversBySession(latestRace.session_key);   // ← reutiliza caché compartido
+    const drivers = await getDriversBySession(latestRace.session_key);
 
     const unique = {};
-    drivers.forEach((driver) => {
-        if (!unique[driver.driver_number]) {
-            unique[driver.driver_number] = driver;
-        }
+    drivers.forEach((d) => {
+        if (!unique[d.driver_number]) unique[d.driver_number] = d;
     });
 
-    return Object.values(unique).sort(
+    const result = Object.values(unique).sort(
         (a, b) => a.driver_number - b.driver_number
     );
+
+    saveCache(cacheKey, result);
+    return result;
 };
 
 // ─── EQUIPOS ─────────────────────────────────────────────────────────────────
 
 export const getTeams = async () => {
+    const cacheKey = "teams";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.teams)) {
+        return entry.data;
+    }
+
     const drivers = await getDrivers();
 
     const teamsMap = {};
@@ -290,14 +376,24 @@ export const getTeams = async () => {
         });
     });
 
-    return Object.values(teamsMap).sort((a, b) =>
+    const result = Object.values(teamsMap).sort((a, b) =>
         a.team_name.localeCompare(b.team_name)
     );
+
+    saveCache(cacheKey, result);
+    return result;
 };
 
 // ─── NOTICIAS ────────────────────────────────────────────────────────────────
 
 export const getNews = async () => {
+    const cacheKey = "news";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.news)) {
+        return entry.data;
+    }
+
     const currentYear = new Date().getFullYear();
 
     const [meetings, sessions] = await Promise.all([
@@ -311,9 +407,7 @@ export const getNews = async () => {
         .slice(0, 10);
 
     const meetingsMap = {};
-    meetings.forEach((m) => {
-        meetingsMap[m.meeting_key] = m;
-    });
+    meetings.forEach((m) => { meetingsMap[m.meeting_key] = m; });
 
     const news = recentSessions.map((s) => {
         const meeting = meetingsMap[s.meeting_key] ?? {};
@@ -335,14 +429,19 @@ export const getNews = async () => {
         };
     });
 
-    return { year: currentYear, news };
+    const result = { year: currentYear, news };
+    saveCache(cacheKey, result);
+    return result;
 };
 
 // ─── PRÓXIMA CARRERA ─────────────────────────────────────────────────────────
 
 export const getNextRace = async () => {
-    if (cache.nextRace) {
-        return cache.nextRace;
+    const cacheKey = "nextRace";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.nextRace)) {
+        return entry.data;
     }
 
     try {
@@ -351,14 +450,12 @@ export const getNextRace = async () => {
 
         const now = new Date();
         const nextRace = meetings
-            .filter((meeting) => new Date(meeting.date_start) > now)
+            .filter((m) => new Date(m.date_start) > now)
             .sort((a, b) => new Date(a.date_start) - new Date(b.date_start))[0];
 
-        if (!nextRace) {
-            throw new Error("No upcoming races found.");
-        }
+        if (!nextRace) throw new Error("No upcoming races found.");
 
-        cache.nextRace = nextRace;
+        saveCache(cacheKey, nextRace);
         return nextRace;
 
     } catch (error) {
@@ -370,30 +467,37 @@ export const getNextRace = async () => {
 // ─── PODIO ÚLTIMA CARRERA ────────────────────────────────────────────────────
 
 export const getLastRacePodium = async () => {
-    const latestRace = await getLatestCompletedRaceSession();
-    if (!latestRace) {
-      throw new Error("No completed race session found");
+    const cacheKey = "lastRacePodium";
+    const entry = loadCache(cacheKey);
+
+    if (isCacheValid(entry, TTL.lastRacePodium)) {
+        return entry.data;
     }
+
+    const latestRace = await getLatestCompletedRaceSession();
+    if (!latestRace) throw new Error("No completed race session found");
+
     const sessionKey = latestRace.session_key;
 
     const [podiumResults, drivers] = await Promise.all([
         request(`session_result?session_key=${sessionKey}&position<=3`),
-        getDriversBySession(sessionKey),   // ← reutiliza caché compartido
+        getDriversBySession(sessionKey),
     ]);
 
     const driversMap = {};
-    drivers.forEach((driver) => {
-        driversMap[driver.driver_number] = driver;
-    });
+    drivers.forEach((d) => { driversMap[d.driver_number] = d; });
 
-    return podiumResults
+    const result = podiumResults
         .sort((a, b) => a.position - b.position)
-        .map((result) => ({
-            position:      result.position,
-            driver_number: result.driver_number,
-            full_name:     driversMap[result.driver_number]?.full_name,
-            team_name:     driversMap[result.driver_number]?.team_name,
-            team_colour:   driversMap[result.driver_number]?.team_colour,
-            headshot_url:  driversMap[result.driver_number]?.headshot_url,
+        .map((r) => ({
+            position:      r.position,
+            driver_number: r.driver_number,
+            full_name:     driversMap[r.driver_number]?.full_name,
+            team_name:     driversMap[r.driver_number]?.team_name,
+            team_colour:   driversMap[r.driver_number]?.team_colour,
+            headshot_url:  driversMap[r.driver_number]?.headshot_url,
         }));
+
+    saveCache(cacheKey, result);
+    return result;
 };

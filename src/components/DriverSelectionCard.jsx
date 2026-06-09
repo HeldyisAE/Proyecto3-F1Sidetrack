@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useF1Data } from "../hooks/useF1Data";
+import { useF1 } from "../hooks/useF1";
 import { createUser } from "../services/authService";
 
 import "../styles/DriverSelectionCard.css";
@@ -9,7 +9,7 @@ import "../styles/DriverSelectionCard.css";
 function DriverSelectionCard({ pendingUser, onBack }) {
 
     const navigate = useNavigate();
-    const { driverStandings } = useF1Data();
+    const { driverStandings } = useF1();
 
     const [selectedDrivers, setSelectedDrivers] = useState([]);
 
