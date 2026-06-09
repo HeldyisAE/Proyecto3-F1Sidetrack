@@ -6,66 +6,44 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
 function UserProfileModal({ user, onClose }) {
-
     const navigate = useNavigate();
 
     if (!user) return null;
 
     const handleLogout = () => {
-
         localStorage.removeItem("currentUser");
 
         navigate("/", {
-            replace: true
+            replace: true,
         });
     };
 
     return (
-        <div
-            className="profile-overlay"
-            onClick={onClose}
-        >
-            
-
-            <div
-                className="profile-modal"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <button
-                    className="profile-close-icon"
-                    onClick={onClose}
-                >
+        <div className="profile-overlay" onClick={onClose}>
+            <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
+                <button className="profile-close-icon" onClick={onClose}>
                     <IoClose />
                 </button>
 
                 <h2>User Profile</h2>
 
                 <div className="profile-info">
-
                     <div className="profile-row">
-                        <span className="profile-label">
-                            Username
-                        </span>
+                        <span className="profile-label">Username</span>
 
-                        <span className="profile-value">
-                            {user.username}
-                        </span>
+                        <span className="profile-value">{user.username}</span>
                     </div>
 
                     <div className="profile-row">
-                        <span className="profile-label">
-                            Email
-                        </span>
+                        <span className="profile-label">Email</span>
 
                         <span className="profile-value">
                             {user.mail || user.email}
                         </span>
                     </div>
-
                 </div>
 
                 <div className="profile-actions">
-
                     <button className="profile-option">
                         <MdSupportAgent />
                         <span>Support</span>
@@ -80,18 +58,12 @@ function UserProfileModal({ user, onClose }) {
                         <IoSettingsSharp />
                         <span>Settings</span>
                     </button>
-
                 </div>
 
-                <button
-                    className="logout-button"
-                    onClick={handleLogout}
-                >
+                <button className="logout-button" onClick={handleLogout}>
                     Sign Out
                 </button>
-
             </div>
-
         </div>
     );
 }
