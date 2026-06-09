@@ -1,8 +1,19 @@
 import "../styles/ProductModal.css";
 import { IoClose } from "react-icons/io5";
 import { FiPlusCircle } from "react-icons/fi";
+import { addToCart } from "../services/cartService";
 
-function ProductModal({ product, onClose }) {
+function ProductModal({ product, onClose, onAddToCart }) {
+
+    const handleAddToCart = () => {
+
+        addToCart(product);
+
+        onAddToCart?.();
+
+        onClose();
+    };
+
     return (
         <div className="product-modal-overlay">
 
@@ -49,7 +60,7 @@ function ProductModal({ product, onClose }) {
                     </div>
 
                     <div className="modal-actions">
-                        <button className="add-cart-button">
+                        <button className="add-cart-button" onClick={handleAddToCart}>
                             Add to Cart 
                             <div className="plus-icon">
                                 <FiPlusCircle />

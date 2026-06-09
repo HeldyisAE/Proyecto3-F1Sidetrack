@@ -4,15 +4,18 @@ import { FaGooglePay } from "react-icons/fa";
 import { FaApplePay } from "react-icons/fa";
 
 import OrderSuccessModal from "./OrderSuccessModal";
+import { clearCart } from "../services/cartService";
 
 import "../styles/PaymentDetails.css";
 
-function PaymentDetails() {
+function PaymentDetails({ onOrderSuccess }) {
     const [paymentMethod, setPaymentMethod] = useState(null);
 
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleOrder = () => {
+        clearCart();
+        onOrderSuccess?.();
         setShowSuccess(true);
     };
 

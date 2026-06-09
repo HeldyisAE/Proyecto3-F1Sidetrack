@@ -2,6 +2,10 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import SelectedProducts from "../components/SelectedProducts";
+
+import { getCart, removeFromCart } from "../services/cartService";
+
 import PaymentDetails from "../components/PaymentDetails";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/ProductModal";
@@ -10,6 +14,14 @@ import { products } from "../data/products";
 import "../styles/CartLayout.css";
 
 function CartLayout() {
+    
+    const [cart, setCart] = useState(getCart());
+
+    const handleRemoveProduct = (productId) => {
+        removeFromCart(productId);
+
+        setCart(getCart());
+    };
 
     const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -17,9 +29,11 @@ function CartLayout() {
         setSelectedProduct(product);
     };
 
-    const recommendedProducts = [...products]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 5);
+    const recommendedProducts = useState(() =>
+        [...products]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 5)
+    )[0];
 
     const navigate = useNavigate();
 
@@ -49,17 +63,20 @@ function CartLayout() {
                     </div>
 
                     <div className="cart-products-container">
-                        {/* CartItem / ProductCard variant="cart" */}
+                        <SelectedProducts
+                            cart={cart}
+                            onRemove={handleRemoveProduct}
+                        />
                     </div>
                 </section>
 
                 <aside className="cart-payment-section">
                     <div className="payment-card">
-                        <PaymentDetails />
-
-                        <div className="payment-form-container">
-                            {/* Payment Form */}
-                        </div>
+                        <PaymentDetails
+                            onOrderSuccess={() => {
+                                setCart([]);
+                            }}  
+                        />
                     </div>
                 </aside>
             </main>
@@ -87,6 +104,9 @@ function CartLayout() {
                 <ProductModal
                     product={selectedProduct}
                     onClose={() => setSelectedProduct(null)}
+                    onAddToCart={() => {
+                        setCart(getCart());
+                    }}
                 />
             )}
         </div>
