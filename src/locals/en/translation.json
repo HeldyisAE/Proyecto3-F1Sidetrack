@@ -1,38 +1,38 @@
 {
   "navigation": {
-    "schedule": "Calendario",
-    "results": "Resultados",
-    "pilots": "Pilotos",
-    "teams": "Equipos",
-    "news": "Noticias",
-    "shop": "Tienda",
-    "searchbar": "Encuentre pilotos, equipos, pistas...",
-    "contact": "Contacto",
-    "partners": "Socios",
-    "terms": "Términos",
-    "privacy": "Privacidad"
+    "schedule":  "Schedule",
+    "results":   "Results",
+    "pilots":    "Pilots",
+    "teams":     "Teams",
+    "news":      "News",
+    "shop":      "Shop",
+    "searchbar": "Find drivers, teams, circuits...",
+    "contact":   "Contact",
+    "partners":  "Partners",
+    "terms":     "Terms",
+    "privacy":   "Privacy"
   },
   "news": {
-    "breaking": "ÚLTIMA HORA",
-    "antonelli": { "title": "Antonelli lidera el mundial con tan solo 19 años" },
-    "nodrs":     { "title": "El Gran Premio de Mónaco se disputará sin DRS" },
-    "v8return":  { "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8" }
+    "breaking": "BREAKING NEWS",
+    "antonelli": { "title": "Antonelli leads the championship at just 19 years old" },
+    "nodrs":     { "title": "Monaco Grand Prix to be run without DRS" },
+    "v8return":  { "title": "Formula 1 pushes hard for the return of V8 engines" }
   },
   "standings": {
-    "drivers":      "Pilotos",
-    "constructors": "Constructores",
-    "loading":      "Cargando clasificación...",
+    "drivers":      "Drivers",
+    "constructors": "Constructors",
+    "loading":      "Loading standings...",
     "points":       "PTS"
   },
   "config": {
-    "title":       "Configuración",
-    "appearance":  "Apariencia",
-    "language":    "Idioma",
+    "title":      "Settings",
+    "appearance": "Appearance",
+    "language":   "Language",
     "theme": {
-      "dark":       "Oscuro",
-      "light":      "Claro",
-      "tritanopia": "Daltónico"
+      "dark":       "Dark",
+      "light":      "Light",
+      "tritanopia": "Color Blind"
     },
-    "tritanopiaNote": "Modo optimizado para tritanopia: colores ajustados para mejorar la distinción sin depender del azul o el verde."
+    "tritanopiaNote": "Optimized mode for tritanopia: colors adjusted to improve distinction without relying on blue or green."
   }
 }
