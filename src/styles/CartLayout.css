@@ -147,7 +147,7 @@
     display: flex;
     flex-direction: column;
 
-    gap: .25rem;
+    gap: 0.25rem;
 }
 
 .recommendations-header span {
@@ -159,9 +159,10 @@
 
     display: flex;
 
-    gap: 1rem;
+    gap: 1.7rem;
 
     overflow-x: auto;
 
-    padding-bottom: .5rem;
+    padding-top: 30px;
+    padding-bottom: 2rem;
 }
