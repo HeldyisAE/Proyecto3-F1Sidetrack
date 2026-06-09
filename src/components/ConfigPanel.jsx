@@ -3,13 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { THEMES, THEME_LABELS } from '../services/themeService';
 import { useEffect, useRef } from 'react';
 
-// Íconos de tema
-const THEME_ICONS = {
-    dark:       '🌙',
-    light:      '☀️',
-    tritanopia: '👁️',
-};
-
 function ConfigPanel({ isOpen, closePanel, theme, changeTheme, language, changeLanguage, LANGUAGES }) {
     const { t } = useTranslation();
     const panelRef = useRef(null);
@@ -55,7 +48,6 @@ function ConfigPanel({ isOpen, closePanel, theme, changeTheme, language, changeL
                                 onClick={() => changeTheme(t_key)}
                                 title={t(THEME_LABELS[t_key])}
                             >
-                                <span className="config-theme-icon">{THEME_ICONS[t_key]}</span>
                                 <span className="config-theme-label">{t(THEME_LABELS[t_key])}</span>
                             </button>
                         ))}

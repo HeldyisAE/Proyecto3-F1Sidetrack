@@ -1,16 +1,13 @@
-// src/hooks/useTheme.js
 import { useState, useEffect, useCallback } from 'react';
 import { applyTheme, getSavedTheme, THEMES } from '../services/themeService';
 
 export const useTheme = () => {
     const [theme, setTheme] = useState(() => {
         const savedTheme = getSavedTheme();
-        // Aplicar el tema inmediatamente al inicializar
         applyTheme(savedTheme);
         return savedTheme;
     });
 
-    // Aplicar tema cada vez que cambia
     useEffect(() => {
         applyTheme(theme);
     }, [theme]); 

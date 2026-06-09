@@ -33,7 +33,7 @@
       "light":      "Light",
       "tritanopia": "Color Blind"
     },
-    "tritanopiaNote": "Optimized for tritanopia"
+    "tritanopiaNote": "Optimized mode for tritanopia: colors adjusted to improve distinction without relying on blue or green."
   },
   "nextRace": {
     "title":     "NEXT RACE",
