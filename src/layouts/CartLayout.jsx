@@ -1,6 +1,8 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
+import PaymentDetails from "../components/PaymentDetails";
+
 import "../styles/CartLayout.css";
 
 function CartLayout() {
@@ -51,7 +53,7 @@ function CartLayout() {
 
                     <div className="payment-card">
 
-                        <h2>Payment Details</h2>
+                        <PaymentDetails />
 
                         <div className="payment-form-container">
 
