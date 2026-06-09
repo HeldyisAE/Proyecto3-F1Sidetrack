@@ -33,6 +33,30 @@
       "light":      "Light",
       "tritanopia": "Color Blind"
     },
-    "tritanopiaNote": "Optimized mode for tritanopia: colors adjusted to improve distinction without relying on blue or green."
+    "tritanopiaNote": "Optimized for tritanopia"
+  },
+  "nextRace": {
+    "title":     "NEXT RACE",
+    "location":  "Location",
+    "country":   "Country",
+    "circuit":   "Circuit",
+    "date":      "Date",
+    "permanent": "Permanent"
+  },
+  "lastRace": {
+    "title":        "LAST RACE SUMMARY",
+    "round":        "Round",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Fastest Lap"
+  },
+  "favoriteDrivers": {
+    "title":    "FAVORITE DRIVERS",
+    "subtitle": "Keep an eye on the drivers you support",
+    "position": "Championship position",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "TRENDING DRIVERS",
+    "subtitle": "Standout performers from the last race weekend"
   }
 }

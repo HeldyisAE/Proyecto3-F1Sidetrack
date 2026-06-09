@@ -33,6 +33,30 @@
       "light":      "Clair",
       "tritanopia": "Daltonien"
     },
-    "tritanopiaNote": "Mode optimisé pour la tritanopie : couleurs ajustées pour améliorer la distinction sans dépendre du bleu ou du vert."
+    "tritanopiaNote": "Optimisé pour la tritanopie"
+  },
+  "nextRace": {
+    "title":     "PROCHAINE COURSE",
+    "location":  "Lieu",
+    "country":   "Pays",
+    "circuit":   "Circuit",
+    "date":      "Date",
+    "permanent": "Permanent"
+  },
+  "lastRace": {
+    "title":        "RÉSUMÉ DERNIÈRE COURSE",
+    "round":        "Manche",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Meilleur Tour"
+  },
+  "favoriteDrivers": {
+    "title":    "PILOTES FAVORIS",
+    "subtitle": "Suivez les pilotes que vous soutenez",
+    "position": "Position au championnat",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "PILOTES EN TENDANCE",
+    "subtitle": "Performances remarquables du dernier week-end"
   }
 }

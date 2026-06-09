@@ -33,6 +33,30 @@
       "light":      "Chiaro",
       "tritanopia": "Daltonico"
     },
-    "tritanopiaNote": "Modalità ottimizzata per la tritanopia: colori adattati per migliorare la distinzione senza dipendere dal blu o dal verde."
+    "tritanopiaNote": "Ottimizzata per la tritanopia"
+  },
+  "nextRace": {
+    "title":     "PROSSIMA GARA",
+    "location":  "Località",
+    "country":   "Paese",
+    "circuit":   "Circuito",
+    "date":      "Data",
+    "permanent": "Permanente"
+  },
+  "lastRace": {
+    "title":        "RIEPILOGO ULTIMA GARA",
+    "round":        "Round",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Giro Più Veloce"
+  },
+  "favoriteDrivers": {
+    "title":    "PILOTI PREFERITI",
+    "subtitle": "Tieni d'occhio i piloti che sostieni",
+    "position": "Posizione nel campionato",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "PILOTI DI TENDENZA",
+    "subtitle": "Protagonisti dell'ultimo fine settimana"
   }
 }
