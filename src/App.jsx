@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import Driver from "./pages/Driver";
+import Team from "./pages/Team";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/shop" element={<Shop />}/>
         <Route path="/cart" element={<Cart />}/>
         <Route path="/driver/:driverNumber" element={<Driver />}/>
+        <Route path="/team/:teamId" element={<Team />} />
       </Routes>
     </ThemeProvider>
   );

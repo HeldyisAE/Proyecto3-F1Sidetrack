@@ -1,0 +1,325 @@
+/* ── Page ── */
+.team-page {
+    min-height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+/* ── Back button ── */
+.team-back-button {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    backdrop-filter: blur(12px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.team-back-button:hover {
+    background: rgba(255, 255, 255, 0.13);
+    transform: scale(1.06);
+}
+
+/* ── Hero ── */
+.team-hero {
+    position: relative;
+    height: 38vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.team-hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55%;
+    height: 40px;
+    background: var(--team-color, #e10600);
+    opacity: 0.12;
+    filter: blur(36px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.team-logo-container {
+    position: absolute;
+    top: 2rem;
+    left: 10rem;
+    z-index: 3;
+}
+
+.team-logo {
+    width: 64px;
+    object-fit: contain;
+    opacity: 1;
+}
+
+.team-car {
+    width: min(960px, 78vw);
+    object-fit: contain;
+    z-index: 2;
+    position: relative;
+}
+
+/* ── Driver chips ── */
+.team-drivers {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 3;
+}
+
+.team-driver-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.4rem 1rem 0.4rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(15, 15, 15, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.team-driver-chip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--team-color, rgba(255, 255, 255, 0.2));
+}
+
+.team-driver-chip img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.team-driver-chip span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+
+/* ── Content grid ── */
+.team-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.8fr 1.1fr;
+    gap: 1rem;
+    padding: 1.5rem 3rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Cards base ── */
+.team-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.75rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Info card ── */
+.team-info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid var(--team-color, #e10600);
+}
+
+.team-info-card > h2 {
+    margin: 0 0 1.25rem;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: white;
+}
+
+.team-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem 2rem;
+}
+
+.team-info-grid div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.team-info-grid span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.team-info-grid strong {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Season card ── */
+.team-current-season-card {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.5rem;
+}
+
+.season-stats-row {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    gap: 1rem;
+}
+
+.season-stat {
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.25rem;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.season-value {
+
+    font-size: 2.9rem;
+    font-weight: 800;
+
+    color: var(--team-color);
+}
+
+.season-label {
+
+    margin-top: 0.35rem;
+
+    font-size: 0.85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    color: rgba(255,255,255,0.7);
+}
+
+/* ── Achievements card ── */
+.team-achievements-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-achievements-card > h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.achievement-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.achievement-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.achievement-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.38);
+    line-height: 1.3;
+}
+
+/* ── Description section ── */
+.team-description-section {
+    padding: 0 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.team-description-card {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+}
+
+.team-description-card > h2 {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.team-description-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.62);
+}
