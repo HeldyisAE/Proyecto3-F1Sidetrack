@@ -21,11 +21,13 @@ function Searchbar() {
 
     const { driverStandings } = useF1();
 
-    const suggestions = useSearch(query, driverStandings, teams);
-
     const location = useLocation();
 
-    const inShop = location.pathname === "/shop";
+    const isShop = location.pathname.startsWith("/shop");
+
+    const suggestions = !isShop
+        ? useSearch(query, driverStandings, teams)
+        : [];
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -47,6 +49,11 @@ function Searchbar() {
         };
     }, []);
 
+    useEffect(() => {
+        setQuery("");
+        setIsFocused(false);
+    }, [location.pathname]);
+
     return (
         <div className="searchbar-container" ref={searchbarRef}>
             <div className="searchbar-wrapper">
@@ -58,7 +65,7 @@ function Searchbar() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder={
-                        inShop
+                        isShop
                             ? t("navigation.searchbarShop")
                             : t("navigation.searchbarHome")
                     }
