@@ -1,37 +1,63 @@
 {
   "navigation": {
-    "schedule": "Calendario",
-    "results": "Resultados",
-    "pilots": "Pilotos",
-    "teams": "Equipos",
-    "news": "Noticias",
-    "shop": "Tienda",
+    "schedule":      "Calendario",
+    "results":       "Resultados",
+    "pilots":        "Pilotos",
+    "teams":         "Equipos",
+    "news":          "Noticias",
+    "shop":          "Tienda",
     "searchbarHome": "Encuentre pilotos, equipos, pistas...",
     "searchbarShop": "Encuentre ropa, coleccionables y más...",
-    "contact": "Contacto",
-    "partners": "Socios",
-    "terms": "Términos",
-    "privacy": "Privacidad"
+    "contact":       "Contacto",
+    "partners":      "Socios",
+    "terms":         "Términos",
+    "privacy":       "Privacidad"
   },
   "news": {
     "breaking": "ÚLTIMA HORA",
-
-    "antonelli": {
-      "title": "Antonelli lidera el mundial con tan solo 19 años"
-    },
-
-    "nodrs": {
-      "title": "Cadillac perdió su oportunidad de puntuar"
-    },
-
-    "v8return": {
-      "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8"
-    }
+    "antonelli": { "title": "Antonelli lidera el mundial con tan solo 19 años" },
+    "nodrs":     { "title": "Cadillac perdió su oportunidad de puntuar" },
+    "v8return":  { "title": "La Fórmula 1 trabaja intensamente para recuperar los motores V8" }
   },
   "standings": {
-    "drivers": "Pilotos",
+    "drivers":      "Pilotos",
     "constructors": "Constructores",
-    "loading": "Cargando clasificación...",
-    "points": "PTS"
+    "loading":      "Cargando clasificación...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":      "Configuración",
+    "appearance": "Apariencia",
+    "language":   "Idioma",
+    "theme": {
+      "dark":       "Oscuro",
+      "light":      "Claro",
+      "tritanopia": "Daltónico"
+    },
+    "tritanopiaNote": "Optimizado para tritanopia"
+  },
+  "nextRace": {
+    "title":     "PRÓXIMA CARRERA",
+    "location":  "Ubicación",
+    "country":   "País",
+    "circuit":   "Circuito",
+    "date":      "Fecha",
+    "permanent": "Permanente"
+  },
+  "lastRace": {
+    "title":        "RESUMEN ÚLTIMA CARRERA",
+    "round":        "Ronda",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Vuelta Rápida"
+  },
+  "favoriteDrivers": {
+    "title":    "PILOTOS FAVORITOS",
+    "subtitle": "Sigue a los pilotos que apoyas",
+    "position": "Posición en el campeonato",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "PILOTOS EN TENDENCIA",
+    "subtitle": "Destacados del último fin de semana"
   }
 }

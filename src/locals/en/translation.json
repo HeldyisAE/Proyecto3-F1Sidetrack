@@ -1,38 +1,63 @@
 {
   "navigation": {
-    "schedule": "Schedule",
-    "results": "Results",
-    "pilots": "Pilots",
-    "teams": "Teams",
-    "news": "News",
-    "shop": "Shop",
+    "schedule":      "Schedule",
+    "results":       "Results",
+    "pilots":        "Pilots",
+    "teams":         "Teams",
+    "news":          "News",
+    "shop":          "Shop",
     "searchbarHome": "Find drivers, teams, circuits...",
     "searchbarShop": "Find clothing, collectibles and more...",
-    "contact": "Contact",
-    "partners": "Partners",
-    "terms": "Terms",
-    "privacy": "Privacy"
+    "contact":       "Contact",
+    "partners":      "Partners",
+    "terms":         "Terms",
+    "privacy":       "Privacy"
   },
-
   "news": {
     "breaking": "BREAKING NEWS",
-
-    "antonelli": {
-      "title": "Antonelli leads the championship at just 19 years old"
-    },
-
-    "nodrs": {
-      "title": "Cadillac lost their chance to score"
-    },
-
-    "v8return": {
-      "title": "Formula 1 pushes hard for the return of V8 engines"
-    }
+    "antonelli": { "title": "Antonelli leads the championship at just 19 years old" },
+    "nodrs":     { "title": "Cadillac lost their chance to score" },
+    "v8return":  { "title": "Formula 1 pushes hard for the return of V8 engines" }
   },
   "standings": {
-    "drivers": "Drivers",
+    "drivers":      "Drivers",
     "constructors": "Constructors",
-    "loading": "Loading standings...",
-    "points": "PTS"
+    "loading":      "Loading standings...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":      "Settings",
+    "appearance": "Appearance",
+    "language":   "Language",
+    "theme": {
+      "dark":       "Dark",
+      "light":      "Light",
+      "tritanopia": "Color Blind"
+    },
+    "tritanopiaNote": "Optimized for tritanopia"
+  },
+  "nextRace": {
+    "title":     "NEXT RACE",
+    "location":  "Location",
+    "country":   "Country",
+    "circuit":   "Circuit",
+    "date":      "Date",
+    "permanent": "Permanent"
+  },
+  "lastRace": {
+    "title":        "LAST RACE SUMMARY",
+    "round":        "Round",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Fastest Lap"
+  },
+  "favoriteDrivers": {
+    "title":    "FAVORITE DRIVERS",
+    "subtitle": "Keep an eye on the drivers you support",
+    "position": "Championship position",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "TRENDING DRIVERS",
+    "subtitle": "Standout performers from the last race weekend"
   }
 }
