@@ -25,19 +25,20 @@ function Header() {
                     <LogoButton />
                 </div>
                 <div className="center">
-                    <RedirectButtons activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+                    <RedirectButtons activeMenu={activeMenu} setActiveMenu={setActiveMenu}/>
                     {inShop ? (
                         <CartButton />
                     ) : (
                         <FanShopButton />
                     )}
                     <Searchbar />
+                    <ConfigButton />
+                </div>
+                <div className="right">
                     <ConfigButton
                         onClick={config.togglePanel}
                         isActive={config.isOpen}
                     />
-                </div>
-                <div className="right">
                     <UserButton />
                 </div>
             </div>
