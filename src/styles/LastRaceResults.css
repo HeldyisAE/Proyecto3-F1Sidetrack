@@ -6,9 +6,8 @@
     padding: clamp(1.25rem, 2.5vw, 2rem);
     box-sizing: border-box;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    background: #1a1a1a;
-    cursor: default;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
     transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
