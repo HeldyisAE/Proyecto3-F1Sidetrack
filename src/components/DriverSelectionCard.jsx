@@ -73,7 +73,7 @@ function DriverSelectionCard({ pendingUser, onBack }) {
                     {selectedDrivers.length} / 3
                 </div>
 
-                <div className="drivers-grid">
+                <div className="drivers-grid-selection">
 
                     {driverStandings.map(driver => {
 

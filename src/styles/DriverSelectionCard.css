@@ -60,7 +60,7 @@
     margin-bottom: 0.5rem;
 }
 
-.drivers-grid {
+.drivers-grid-selection {
 
     flex: 1;
 
@@ -77,16 +77,16 @@
     gap: 0.8rem;
 }
 
-.drivers-grid::-webkit-scrollbar {
+.drivers-grid-selection::-webkit-scrollbar {
     width: 6px;
 }
 
-.drivers-grid::-webkit-scrollbar-thumb {
+.drivers-grid-selection::-webkit-scrollbar-thumb {
     background: rgba(225, 6, 0, 0.4);
     border-radius: 10px;
 }
 
-.drivers-grid::-webkit-scrollbar-track {
+.drivers-grid-selection::-webkit-scrollbar-track {
     background: transparent;
 }
 
@@ -116,7 +116,7 @@
     letter-spacing: 0.04em;
 }
 
-.drivers-grid {
+.drivers-grid-selection {
     display: grid;
 
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
