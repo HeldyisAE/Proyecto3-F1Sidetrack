@@ -1,0 +1,211 @@
+.config-panel-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999;
+    pointer-events: none;
+    transition: background var(--transition-normal);
+}
+
+.config-panel-overlay--visible {
+    background: rgba(0, 0, 0, 0.45);
+    pointer-events: all;
+}
+
+.config-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    background: var(--color-surface);
+    border-left: 1px solid var(--color-border);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.config-panel--open {
+    transform: translateX(0);
+}
+
+.config-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-surface);
+    z-index: 1;
+}
+
+.config-panel-title {
+    font-family: var(--font-display, var(--font-primary));
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.config-panel-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.config-panel-close:hover {
+    color: var(--color-text-primary);
+    background: var(--color-hover);
+}
+
+.config-section {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.config-section-title {
+    font-family: var(--font-display, var(--font-primary));
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.config-theme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.config-theme-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem 0.5rem;
+    background: var(--color-background);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+    color: var(--color-text-primary);
+}
+
+.config-theme-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-hover);
+    transform: translateY(-2px);
+}
+
+.config-theme-btn:active {
+    transform: translateY(0);
+}
+
+.config-theme-btn--active {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.2);
+}
+
+[data-theme="tritanopia"] .config-theme-btn--active {
+    box-shadow: 0 0 12px rgba(17, 255, 0, 0.2);
+}
+
+.config-theme-icon { 
+    font-size: 1.25rem; 
+}
+
+.config-theme-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.config-accessibility-note {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    background: var(--color-background);
+    border-left: 3px solid var(--color-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 4px 4px 0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.config-lang-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.config-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+    width: 100%;
+    text-align: left;
+    color: var(--color-text-primary);
+}
+
+.config-lang-btn:hover {
+    background: var(--color-hover);
+    border-color: var(--color-border);
+}
+
+.config-lang-btn--active {
+    background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
+    border-color: var(--color-primary);
+}
+
+.config-lang-flag { 
+    font-size: 1.1rem; 
+}
+
+.config-lang-label {
+    flex: 1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.config-lang-check {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.config-button--active .config-icon {
+    color: var(--color-primary);
+    animation: config-spin 1.5s linear infinite;
+}
+
+@keyframes config-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}

@@ -1,0 +1,62 @@
+{
+  "navigation": {
+    "schedule":  "Calendrier",
+    "results":   "Résultats",
+    "pilots":    "Pilotes",
+    "teams":     "Équipes",
+    "news":      "Actualités",
+    "shop":      "Boutique",
+    "searchbar": "Trouver des pilotes, des équipes, des circuits...",
+    "contact":   "Contact",
+    "partners":  "Partenaires",
+    "terms":     "Conditions",
+    "privacy":   "Confidentialité"
+  },
+  "news": {
+    "breaking": "DERNIÈRE MINUTE",
+    "antonelli": { "title": "Antonelli mène le championnat à seulement 19 ans" },
+    "nodrs":     { "title": "Le Grand Prix de Monaco se disputera sans DRS" },
+    "v8return":  { "title": "La Formule 1 travaille activement au retour des moteurs V8" }
+  },
+  "standings": {
+    "drivers":      "Pilotes",
+    "constructors": "Constructeurs",
+    "loading":      "Chargement du classement...",
+    "points":       "PTS"
+  },
+  "config": {
+    "title":      "Paramètres",
+    "appearance": "Apparence",
+    "language":   "Langue",
+    "theme": {
+      "dark":       "Sombre",
+      "light":      "Clair",
+      "tritanopia": "Daltonien"
+    },
+    "tritanopiaNote": "Optimisé pour la tritanopie"
+  },
+  "nextRace": {
+    "title":     "PROCHAINE COURSE",
+    "location":  "Lieu",
+    "country":   "Pays",
+    "circuit":   "Circuit",
+    "date":      "Date",
+    "permanent": "Permanent"
+  },
+  "lastRace": {
+    "title":        "RÉSUMÉ DERNIÈRE COURSE",
+    "round":        "Manche",
+    "polePosition": "Pole Position",
+    "fastestLap":   "Meilleur Tour"
+  },
+  "favoriteDrivers": {
+    "title":    "PILOTES FAVORIS",
+    "subtitle": "Suivez les pilotes que vous soutenez",
+    "position": "Position au championnat",
+    "pts":      "pts"
+  },
+  "trendDrivers": {
+    "title":    "PILOTES EN TENDANCE",
+    "subtitle": "Performances remarquables du dernier week-end"
+  }
+}

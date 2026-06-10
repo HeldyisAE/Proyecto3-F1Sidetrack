@@ -1,62 +1,90 @@
 :root {
-
-  --font-primary:
-    system-ui, 'Segoe UI', Roboto, sans-serif;
-
+  --font-primary: system-ui, 'Segoe UI', Roboto, sans-serif;
   --radius-md: 12px;
-
   --spacing-md: 16px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
 }
 
+/*Tema oscuro */
 [data-theme="dark"] {
-
-  --color-background: #0f0f0f;
-
-  --color-surface: #1C1C1C;
-
-  --color-primary: #E10600;
-
-  --color-text-primary: #FFFFFF;
-
+  --color-background:     #0f0f0f;
+  --color-surface:        #1C1C1C;
+  --color-primary:        #E10600;
+  
+  --color-text-primary:   #FFFFFF;
   --color-text-secondary: #B3B3B3;
-
-  --color-border: #2A2A2A;
+  --color-text-tertiary:  #808080;
+  
+  --color-border:         #2A2A2A;
+  --color-border-light:   #383838;
+  
+  --color-hover:          #262626;
+  --color-focus:          #2A2A2A;
+  
+  --color-success:        #10B981;
+  --color-warning:        #F59E0B;
+  --color-error:          #EF4444;
+  --color-info:           #3B82F6;
 }
 
+/*Tema claro */
 [data-theme="light"] {
-
-  --color-background: #F5F5F5;
-
-  --color-surface: #FFFFFF;
-
-  --color-primary: #E10600;
-
-  --color-text-primary: #121212;
-
+  --color-background:     #F5F5F5;
+  --color-surface:        #FFFFFF;
+  --color-primary:        #E10600;
+  
+  --color-text-primary:   #121212;
   --color-text-secondary: #666666;
+  --color-text-tertiary:  #999999;
+  
+  --color-border:         #DDDDDD;
+  --color-border-light:   #E8E8E8;
+  
+  --color-hover:          #F0F0F0;
+  --color-focus:          #E8E8E8;
+  
+  --color-success:        #059669;
+  --color-warning:        #D97706;
+  --color-error:          #DC2626;
+  --color-info:           #2563EB;
+}
 
-  --color-border: #DDDDDD;
+/*Tema daltónico */
+[data-theme="tritanopia"] {
+  --color-background:     #111111;
+  --color-surface:        #000000;
+  --color-primary:        #f1f1f1;
+  
+  --color-text-primary:   #FFFFFF;
+  --color-text-secondary: #D4C9A8;
+  --color-text-tertiary:  #A69E7E;
+  
+  --color-border:         #4A4030;
+  --color-border-light:   #5A5245;
+  
+  --color-hover:          #12100e;
+  --color-focus:          #252019;
+  
+  --color-success:        #FFD700;
+  --color-warning:        #FF8C00;
+  --color-error:          #FF6B6B;
+  --color-info:           #FFB84D;
 }
 
 body {
-
   margin: 0;
-
   background-color: var(--color-background);
-
   color: var(--color-text-primary);
-
   font-family: var(--font-primary);
-
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color var(--transition-normal),
+    color var(--transition-normal);
   overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
 }
@@ -64,4 +92,3 @@ body {
 * {
   box-sizing: border-box;
 }
-
