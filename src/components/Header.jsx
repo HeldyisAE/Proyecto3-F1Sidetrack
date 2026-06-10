@@ -11,6 +11,7 @@ import UserButton from './userButton';
 import ConfigPanel from './ConfigPanel';
 import DriversMegaMenu from './DriversMegaMenu';
 import { useConfig } from '../hooks/useConfig';
+import TeamsMegaMenu from "./TeamsMegaMenu";
 
 function Header() {
     const config = useConfig();
@@ -45,6 +46,10 @@ function Header() {
 
             {activeMenu === "drivers" && (
                 <DriversMegaMenu setActiveMenu={setActiveMenu} onClose={() => setActiveMenu(null)} />
+            )}
+
+            {activeMenu === "teams" && (
+                <TeamsMegaMenu setActiveMenu={setActiveMenu} onClose={() => setActiveMenu(null)}/>
             )}
 
             <ConfigPanel {...config} />
