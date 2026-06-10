@@ -52,25 +52,20 @@
 
 /*Tema daltónico */
 [data-theme="tritanopia"] {
-  /* Colores base - optimizados para tritanopia (sin azul/verde) */
   --color-background:     #111111;
-  --color-surface:        #242018;
+  --color-surface:        #000000;
   --color-primary:        #f1f1f1;
   
-  /* Texto - alto contraste para accesibilidad */
   --color-text-primary:   #FFFFFF;
   --color-text-secondary: #D4C9A8;
   --color-text-tertiary:  #A69E7E;
   
-  /* Bordes y separadores */
   --color-border:         #4A4030;
   --color-border-light:   #5A5245;
   
-  /* Estados */
-  --color-hover:          #3A3028;
-  --color-focus:          #4A4030;
+  --color-hover:          #12100e;
+  --color-focus:          #252019;
   
-  /* Funcional - colores accesibles para tritanopia */
   --color-success:        #FFD700;
   --color-warning:        #FF8C00;
   --color-error:          #FF6B6B;
