@@ -119,7 +119,7 @@
 }
 
 .search-suggestions::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
 }
 
 .search-suggestions::-webkit-scrollbar-track {
