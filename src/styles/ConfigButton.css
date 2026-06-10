@@ -17,9 +17,9 @@
     align-items: center;
     justify-content: center;
 
-    padding: 2.55rem 0.5rem;
+    padding: 2.55rem 0.2rem;
 
-    padding-inline: clamp(2px, 0.2vw, 12px);
+    padding-inline: clamp(5px, 1vw, 20px);
 
     border: none;
     background: transparent;

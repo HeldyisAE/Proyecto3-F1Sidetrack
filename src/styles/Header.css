@@ -1,3 +1,10 @@
+.header-wrapper {
+
+    position: relative;
+
+    width: 100%;
+}
+
 .header {
     width: 100%;
     display: grid;
@@ -21,9 +28,6 @@
 
 .right {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    gap: 2.0rem; 
-    white-space: nowrap;
-    flex-shrink: 0;
 }
