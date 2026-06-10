@@ -2,6 +2,7 @@
 import "../styles/LastRaceResults.css";
 import { FaStopwatch } from "react-icons/fa";
 import { BsLightning } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { useThemeContext } from "../context/ThemeContext";
 import { getTeamColor } from "../utils/colorUtils";
@@ -9,6 +10,7 @@ import { getTeamColor } from "../utils/colorUtils";
 function LastRaceResults({ standings }) {
   const { t } = useTranslation();
   const { theme } = useThemeContext();
+  const navigate = useNavigate();
 
   if (!standings?.length) return null;
 
@@ -39,7 +41,9 @@ function LastRaceResults({ standings }) {
           <div
             key={pos}
             className={`podium-step ${cls}`}
-            style={{ "--team-color": getTeamColor(theme, data?.team_colour) }}
+
+            style={{ "--team-color": `#${data?.team_colour}` }}
+            onClick={() => navigate(`/driver/${data.driver_number}`)}
           >
             <img src={data?.headshot_url} alt={data?.full_name} className="podium-avatar" />
             <span className="podium-position">{pos}</span>
@@ -52,8 +56,14 @@ function LastRaceResults({ standings }) {
 
       <div className="race-highlights">
 
-        <div className="highlight-card" style={{ "--team-color": getTeamColor(theme, kimi?.team_colour) }}>
-          <div className="highlight-icon"><FaStopwatch /></div>
+
+        {/* Pole Position */}
+        <div
+          className="highlight-card"
+          style={{ "--team-color": `#${kimi?.team_colour}` }}
+          onClick={() => navigate(`/driver/${kimi.driver_number}`)}
+        >
+          <div className="highlight-icon"><FaStopwatch/></div>
           <div className="highlight-content">
             <span className="highlight-label">{t('lastRace.polePosition')}</span>
             <div className="highlight-driver-row">
@@ -64,8 +74,14 @@ function LastRaceResults({ standings }) {
           </div>
         </div>
 
-        <div className="highlight-card" style={{ "--team-color": getTeamColor(theme, kimi?.team_colour) }}>
-          <div className="highlight-icon"><BsLightning /></div>
+
+        {/* Fastest Lap */}
+        <div
+          className="highlight-card"
+          style={{ "--team-color": `#${kimi?.team_colour}` }}
+          onClick={() => navigate(`/driver/${kimi.driver_number}`)}
+        >
+          <div className="highlight-icon"> <BsLightning/> </div>
           <div className="highlight-content">
             <span className="highlight-label">{t('lastRace.fastestLap')}</span>
             <div className="highlight-driver-row">

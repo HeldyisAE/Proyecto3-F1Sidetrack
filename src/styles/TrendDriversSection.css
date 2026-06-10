@@ -25,7 +25,12 @@
     background: var(--color-hover);
     border: 1px solid var(--color-border);
     border-left: 3px solid var(--team-color);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+    cursor: pointer;
 }
 
 .trend-card:hover {
