@@ -24,12 +24,11 @@
     padding-inline: clamp(14px, 1.2vw, 22px);
 
     border:
-        1px solid rgba(255,255,255,0.08);
+        2.2px solid rgba(162, 13, 13, 0.08);
 
     border-radius: clamp(12px, 1vw, 18px);
 
-    background:
-        rgba(255,255,255,0.03);
+    background: var(--color-surface);
 
     backdrop-filter: blur(10px);
 
@@ -42,8 +41,7 @@
 
 .searchbar-wrapper:hover {
 
-    border-color:
-        rgba(225, 6, 0, 0.25);
+    border-color: var(--color-primary);
 
     background:
         rgba(255,255,255,0.045);
@@ -51,10 +49,9 @@
 
 .searchbar-wrapper:focus-within {
 
-    border-color: #E10600;
+    border-color: var(--color-primary);
 
-    box-shadow:
-        0 0 0 4px rgba(225, 6, 0, 0.12);
+    box-shadow: 0 0 0 4px rgba(139, 48, 45, 0.12);
 
     transform: translateY(-1px);
 }
@@ -79,8 +76,7 @@
 
 .searchbar-input::placeholder {
 
-    color:
-        rgba(255,255,255,0.45);
+    color: var(--color-text-tertiary);
 
     transition: color 0.2s ease;
 }
@@ -96,8 +92,7 @@
 
     font-size: clamp(0.95rem, 1vw, 1.1rem);
 
-    color:
-        rgba(255,255,255,0.5);
+    color: var(--color-text-secondary);
 
     transition:
         color 0.2s ease,
@@ -107,7 +102,7 @@
 .searchbar-wrapper:focus-within
 .searchbar-icon {
 
-    color: #E10600;
+    color: var(--color-primary);
 
     transform: scale(1.08);
 }
