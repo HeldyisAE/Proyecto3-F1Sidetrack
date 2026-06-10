@@ -1,81 +1,91 @@
 import "../styles/TrendDriversSection.css";
+import { useNavigate } from "react-router-dom";
 
 function TrendDriversSection({ standings }) {
-  if (!standings?.length) {
-    return null;
-  }
-  
-  const trendingDrivers = standings
-    .filter((driver) => [12, 14, 6].includes(driver.driver_number))
-    .map((driver) => {
-      if (driver.driver_number === 12) {
-        return {
-          ...driver,
-          title: "Race Winner",
-          description: "First victory in Monaco",
-        };
-      }
+    const navigate = useNavigate();
 
-      if (driver.driver_number === 14) {
-        return {
-          ...driver,
-          title: "Back to top ten",
-          description: "Managed to score a point",
-        };
-      }
+    if (!standings?.length) {
+        return null;
+    }
 
-      if (driver.driver_number === 6) {
-        return {
-          ...driver,
-          title: "First podium with Red Bull Racing",
-          description: "Returns to the top three with the big team",
-        };
-      }
+    const trendingDrivers = standings
+        .filter((driver) => [12, 14, 6].includes(driver.driver_number))
+        .map((driver) => {
+            if (driver.driver_number === 12) {
+                return {
+                    ...driver,
+                    title: "Race Winner",
+                    description: "First victory in Monaco",
+                };
+            }
 
-      return driver;
-    });
+            if (driver.driver_number === 14) {
+                return {
+                    ...driver,
+                    title: "Back to top ten",
+                    description: "Managed to score a point",
+                };
+            }
 
-  return (
-    <div className="trend-drivers">
-      <div className="trend-header">
-        <span className="section-label">Trending Drivers</span>
+            if (driver.driver_number === 6) {
+                return {
+                    ...driver,
+                    title: "First podium with Red Bull Racing",
+                    description: "Returns to the top three with the big team",
+                };
+            }
 
-        <span className="trend-subtitle">
-          Standout performers from the last race weekend
-        </span>
-      </div>
+            return driver;
+        });
 
-      <div className="trend-list">
-        {trendingDrivers.map((driver) => (
-          <div
-            key={driver.driver_number}
-            className="trend-card"
-            style={{
-              "--team-color": `#${driver.team_colour}`,
-            }}
-          >
-            <img
-              src={driver.headshot_url}
-              alt={driver.full_name}
-              className="trend-avatar"
-            />
+    return (
+        <div className="trend-drivers">
+            <div className="trend-header">
+                <span className="section-label">Trending Drivers</span>
 
-            <div className="trend-info">
-              <span className="trend-name">{driver.full_name}</span>
-
-              <span className="trend-team">{driver.team_name}</span>
+                <span className="trend-subtitle">
+                    Standout performers from the last race weekend
+                </span>
             </div>
 
-            <div className="trend-highlight">
-              <span className="trend-title">{driver.title}</span>
+            <div className="trend-list">
+                {trendingDrivers.map((driver) => (
+                    <div
+                        key={driver.driver_number}
+                        className="trend-card"
+                        style={{
+                            "--team-color": `#${driver.team_colour}`,
+                        }}
+                        onClick={() => navigate(`/driver/${driver.driver_number}`)}
+                    >
+                        <img
+                            src={driver.headshot_url}
+                            alt={driver.full_name}
+                            className="trend-avatar"
+                        />
 
-              <span className="trend-description">{driver.description}</span>
+                        <div className="trend-info">
+                            <span className="trend-name">
+                                {driver.full_name}
+                            </span>
+
+                            <span className="trend-team">
+                                {driver.team_name}
+                            </span>
+                        </div>
+
+                        <div className="trend-highlight">
+                            <span className="trend-title">{driver.title}</span>
+
+                            <span className="trend-description">
+                                {driver.description}
+                            </span>
+                        </div>
+                    </div>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default TrendDriversSection;

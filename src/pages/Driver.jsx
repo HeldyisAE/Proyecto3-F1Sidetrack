@@ -53,8 +53,8 @@ function Driver() {
                         <div className="driver-current-card">
                             <h2>Current Championship Status</h2>
 
-                            <div className="championship-grid">
-                                <div className="championship-stat">
+                            <div className="championship-grid" style={{"--team-color": `#${driver.team_colour}`}}>
+                                <div className="championship-stat" >
                                     <span className="stat-label">Position</span>
 
                                     <span className="stat-value">

@@ -1,8 +1,12 @@
 import "../styles/LastRaceResults.css";
 import { FaStopwatch } from "react-icons/fa";
 import { BsLightning } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function LastRaceResults({ standings }) {
+
+  const navigate = useNavigate();
+
   if (!standings?.length) return null;
 
   const kimi  = standings.find((d) => d.driver_number === 12);
@@ -41,6 +45,7 @@ function LastRaceResults({ standings }) {
             key={pos}
             className={`podium-step ${cls}`}
             style={{ "--team-color": `#${data?.team_colour}` }}
+            onClick={() => navigate(`/driver/${data.driver_number}`)}
           >
             <img
               src={data?.headshot_url}
@@ -62,6 +67,7 @@ function LastRaceResults({ standings }) {
         <div
           className="highlight-card"
           style={{ "--team-color": `#${kimi?.team_colour}` }}
+          onClick={() => navigate(`/driver/${kimi.driver_number}`)}
         >
           <div className="highlight-icon"><FaStopwatch/></div>
           <div className="highlight-content">
@@ -82,6 +88,7 @@ function LastRaceResults({ standings }) {
         <div
           className="highlight-card"
           style={{ "--team-color": `#${kimi?.team_colour}` }}
+          onClick={() => navigate(`/driver/${kimi.driver_number}`)}
         >
           <div className="highlight-icon"> <BsLightning/> </div>
           <div className="highlight-content">

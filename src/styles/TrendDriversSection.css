@@ -57,6 +57,7 @@
         border-color 0.25s ease,
         box-shadow 0.25s ease,
         background 0.25s ease;
+    cursor: pointer;
 }
 
 .trend-card:hover {

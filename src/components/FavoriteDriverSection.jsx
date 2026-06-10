@@ -1,6 +1,9 @@
 import "../styles/FavoriteDriverSection.css";
+import { useNavigate } from "react-router-dom";
 
 function FavoriteDriverSection({ standings }) {
+
+    const navigate = useNavigate();
 
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -37,6 +40,7 @@ function FavoriteDriverSection({ standings }) {
                         style={{
                             "--team-color": `#${driver.team_colour}`,
                         }}
+                        onClick={() => navigate(`/driver/${driver.driver_number}`)}
                     >
                         <img
                             src={driver.headshot_url}
