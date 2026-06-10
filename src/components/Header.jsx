@@ -20,13 +20,13 @@ function Header() {
                 <div className="center">
                     <RedirectButtons />
                     <FanShopButton />
+                </div>
+                <div className="right">
                     <Searchbar />
                     <ConfigButton
                         onClick={config.togglePanel}
                         isActive={config.isOpen}
                     />
-                </div>
-                <div className="right">
                     <UserButton />
                 </div>
             </div>

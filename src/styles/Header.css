@@ -21,6 +21,9 @@
 
 .right {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
+    gap: 2.0rem; 
+    white-space: nowrap;
+    flex-shrink: 0;
 }
