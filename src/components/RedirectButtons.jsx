@@ -6,17 +6,15 @@ function RedirectButtons({ activeMenu, setActiveMenu }) {
 
     return(
         <div className="redirect-container">
-            <button className="redirect-button">{t("navigation.schedule")}</button>
+            <button className="redirect-button" onMouseEnter={() => setActiveMenu(null)}>{t("navigation.schedule")}</button>
 
-            <button className="redirect-button">{t("navigation.results")}</button>
+            <button className="redirect-button" onMouseEnter={() => setActiveMenu(null)}>{t("navigation.results")} </button>
 
-            <button className="redirect-button" onMouseEnter={() => setActiveMenu("drivers")}> 
-                    {t("navigation.pilots")} 
-            </button>
+            <button className="redirect-button" onMouseEnter={() => setActiveMenu("drivers")}> {t("navigation.pilots")} </button>
 
-            <button className="redirect-button">{t("navigation.teams")}</button>
+            <button className="redirect-button" onMouseEnter={() => setActiveMenu(null)}>{t("navigation.teams")}</button>
 
-            <button className="redirect-button">{t("navigation.news")}</button>
+            <button className="redirect-button" onMouseEnter={() => setActiveMenu(null)}>{t("navigation.news")}</button>
 
         </div>
         

@@ -44,7 +44,7 @@ function Header() {
             </div>
 
             {activeMenu === "drivers" && (
-                <DriversMegaMenu onClose={() => setActiveMenu(null)} />
+                <DriversMegaMenu setActiveMenu={setActiveMenu} onClose={() => setActiveMenu(null)} />
             )}
 
             <ConfigPanel {...config} />

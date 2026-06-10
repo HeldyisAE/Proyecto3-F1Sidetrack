@@ -2,12 +2,12 @@ import '../styles/DriversMegaMenu.css'
 import { useF1 } from "../hooks/useF1";
 import { useNavigate } from "react-router-dom";
 
-function DriversMegaMenu() {
+function DriversMegaMenu( {setActiveMenu} ) {
     const { driverStandings } = useF1();
     const navigate = useNavigate();
 
     return (
-        <div className="drivers-megamenu">
+        <div className="drivers-megamenu" onMouseEnter={() => setActiveMenu("drivers")} onMouseLeave={() => setActiveMenu(null)}>
             <div className="drivers-menu-header">
                 <span className="section-label">Drivers Directory</span>
                 <h3>Explore every driver on the grid</h3>
