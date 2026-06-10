@@ -56,6 +56,20 @@ function StandingSection({ standings, teamStandings }) {
         Cadillac: "814904",
     };
 
+    const TEAM_ROUTE_MAP = {
+        Mercedes: "mercedes",
+        Ferrari: "ferrari",
+        McLaren: "mclaren",
+        "Red Bull Racing": "redbull",
+        Alpine: "alpine",
+        "Racing Bulls": "racingbulls",
+        "Haas F1 Team": "haas",
+        Williams: "williams",
+        Audi: "audi",
+        "Aston Martin": "astonmartin",
+        Cadillac: "cadillac",
+    };
+
     const TEAM_CARS = {
         Mercedes: "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/mercedes/2026mercedescarright.webp",
         Ferrari: "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/ferrari/2026ferraricarright.webp",
@@ -112,10 +126,16 @@ function StandingSection({ standings, teamStandings }) {
                     return (
                         <div
                             key={key}
-                            className={`standing-row ${mode === "drivers" ? "clickable" : ""}`}
+                            className={`standing-row clickable`}
                             onClick={() => {
                                 if (mode === "drivers") {
                                     navigate(`/driver/${item.driver_number}`);
+                                } else {
+                                    const teamId = TEAM_ROUTE_MAP[item.team_name];
+
+                                    if (teamId) {
+                                        navigate(`/team/${teamId}`);
+                                    }
                                 }
                             }}
                         >

@@ -78,8 +78,6 @@
     padding: 0.5rem 0.625rem;
     border-radius: 8px;
     cursor: pointer;
-
-    /* FIX 1: borde base transparente evita layout shift en hover */
     border: 1px solid transparent;
     border-left: 3px solid transparent;
 

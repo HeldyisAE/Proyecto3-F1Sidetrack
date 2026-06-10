@@ -47,7 +47,7 @@
 .team-card:hover {
     transform: none;
     border-color: rgba(255, 255, 255, 0.06);
-    border-left-color: var(--team-color);
+    border-left: 3px solid var(--team-color);
     background: rgba(255, 255, 255, 0.055);
 }
 
