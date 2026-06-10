@@ -13,7 +13,6 @@ export const useTheme = () => {
     }, [theme]); 
 
     const changeTheme = useCallback((newTheme) => {
-        // Validar que el nuevo tema sea válido
         if (!Object.values(THEMES).includes(newTheme)) {
             console.warn(`Tema inválido: ${newTheme}`);
             return;

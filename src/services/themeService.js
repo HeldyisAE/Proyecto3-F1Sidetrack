@@ -25,19 +25,15 @@ export const getSavedTheme = () => {
 };
 
 export const applyTheme = (theme) => {
-    // Validar que el tema sea válido
     if (!Object.values(THEMES).includes(theme)) {
         console.warn(`Tema inválido: ${theme}. Usando tema oscuro por defecto.`);
         theme = THEMES.DARK;
     }
     
-    // Aplicar el tema al elemento raíz
     document.documentElement.setAttribute('data-theme', theme);
     
-    // Guardar en localStorage
     localStorage.setItem(STORAGE_KEY_THEME, theme);
     
-    // Disparar evento personalizado para que otros componentes reaccionen
     window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
 };
 
