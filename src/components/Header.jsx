@@ -4,6 +4,7 @@ import { useState } from 'react';
 import LogoButton from './LogoButton';
 import RedirectButtons from './RedirectButtons';
 import FanShopButton from './FanShopButton';
+import CartButton from './CartButton';
 import Searchbar from './searchbar';
 import ConfigButton from './ConfigButton';
 import UserButton from './userButton';
@@ -25,14 +26,13 @@ function Header() {
                     <LogoButton />
                 </div>
                 <div className="center">
-                    <RedirectButtons activeMenu={activeMenu} setActiveMenu={setActiveMenu}/>
+                    <RedirectButtons activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
                     {inShop ? (
                         <CartButton />
                     ) : (
                         <FanShopButton />
                     )}
                     <Searchbar />
-                    <ConfigButton />
                 </div>
                 <div className="right">
                     <ConfigButton
