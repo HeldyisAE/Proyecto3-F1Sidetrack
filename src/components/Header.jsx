@@ -15,26 +15,26 @@ import { useConfig } from '../hooks/useConfig';
 function Header() {
     const config = useConfig();
     const [activeMenu, setActiveMenu] = useState(null);
-
     const location = useLocation();
     const inShop = location.pathname.startsWith("/shop");
 
     return (
         <div className="header-wrapper" onMouseLeave={() => setActiveMenu(null)}>
             <div className="header">
+                {/* 1. Izquierda */}
                 <div className="left">
                     <LogoButton />
                 </div>
+
+                {/* 2. Centro: Navegación (Flexible) */}
                 <div className="center">
                     <RedirectButtons activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-                    {inShop ? (
-                        <CartButton />
-                    ) : (
-                        <FanShopButton />
-                    )}
-                    <Searchbar />
+                    {inShop ? <CartButton /> : <FanShopButton />}
                 </div>
+
+                {/* 3. Derecha: Acciones (Fijas) */}
                 <div className="right">
+                    <Searchbar />
                     <ConfigButton
                         onClick={config.togglePanel}
                         isActive={config.isOpen}
@@ -47,15 +47,7 @@ function Header() {
                 <DriversMegaMenu onClose={() => setActiveMenu(null)} />
             )}
 
-            <ConfigPanel
-                isOpen={config.isOpen}
-                closePanel={config.closePanel}
-                theme={config.theme}
-                changeTheme={config.changeTheme}
-                language={config.language}
-                changeLanguage={config.changeLanguage}
-                LANGUAGES={config.LANGUAGES}
-            />
+            <ConfigPanel {...config} />
         </div>
     );
 }

@@ -1,17 +1,17 @@
 .header-wrapper {
-
     position: relative;
-
     width: 100%;
 }
 
 .header {
     width: 100%;
     display: grid;
+    /* Columna central flexible (1fr), laterales ajustados al contenido (auto) */
     grid-template-columns: auto 1fr auto; 
     padding-inline: 2vw;
     align-items: center;
     box-sizing: border-box;
+    gap: 1rem;
 }
 
 .left {
@@ -23,11 +23,17 @@
 .center {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden; /* Corta el desborde en lugar de romper el layout */
+    min-width: 0;     /* Permite que el contenedor central se encoja correctamente */
 }
 
 .right {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;   /* Evita que los iconos se hagan pequeños */
 }
