@@ -66,6 +66,8 @@
 
     height: 100%;
 
+    width: 13vw;
+
     border: none;
     outline: none;
 
@@ -96,10 +98,10 @@
     position: absolute;
 
     top: 5rem;
-    left: 3.7rem;
+    left: 3.9rem;
     right: 0;
 
-    width: 300px;
+    width: 305px;
 
     z-index: 999;
 

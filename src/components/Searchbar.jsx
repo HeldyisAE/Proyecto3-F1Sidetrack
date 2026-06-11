@@ -7,10 +7,15 @@ import { FaSearch } from "react-icons/fa";
 import { useSearch } from "../hooks/useSearch";
 import { useF1 } from "../hooks/useF1";
 import { teams } from "../data/teams";
+import { useProductSearch } from "../hooks/useProductSearch";
+import { products } from "../data/products";
 
 import SuggestionCard from "./SuggestionCard";
+import ProductModal from "./ProductModal";
 
-function Searchbar() {
+function Searchbar({ onProductSelect }) {
+
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const [isFocused, setIsFocused] = useState(false);
     const searchbarRef = useRef(null);
@@ -25,9 +30,14 @@ function Searchbar() {
 
     const isShop = location.pathname.startsWith("/shop");
 
-    const suggestions = !isShop
-        ? useSearch(query, driverStandings, teams)
-        : [];
+    const sportSuggestions = useSearch(query, driverStandings, teams);
+
+    const productSuggestions = useProductSearch(query, products);
+
+    const suggestions =
+        isShop
+            ? productSuggestions
+            : sportSuggestions;
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -76,11 +86,17 @@ function Searchbar() {
                 <div className="search-suggestions">
                     {suggestions.map((item) => (
                         <SuggestionCard
-                            key={`${item.type}-${item.id}`}
                             item={item}
+                            onProductSelect={setSelectedProduct}
                         />
                     ))}
                 </div>
+            )}
+            {selectedProduct && (
+                <ProductModal
+                    product={selectedProduct}
+                    onClose={() => setSelectedProduct(null)}
+                />
             )}
         </div>
     );
