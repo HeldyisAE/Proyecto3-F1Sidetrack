@@ -1,6 +1,6 @@
 import "../styles/Searchbar.css";
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaSearch } from "react-icons/fa";
 
@@ -14,6 +14,7 @@ import SuggestionCard from "./SuggestionCard";
 import ProductModal from "./ProductModal";
 
 function Searchbar({ onProductSelect }) {
+    const navigate = useNavigate();
 
     const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -34,10 +35,7 @@ function Searchbar({ onProductSelect }) {
 
     const productSuggestions = useProductSearch(query, products);
 
-    const suggestions =
-        isShop
-            ? productSuggestions
-            : sportSuggestions;
+    const suggestions = isShop ? productSuggestions : sportSuggestions;
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -52,10 +50,7 @@ function Searchbar({ onProductSelect }) {
         document.addEventListener("mousedown", handleClickOutside);
 
         return () => {
-            document.removeEventListener(
-                "mousedown",
-                handleClickOutside
-            );
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
@@ -63,6 +58,19 @@ function Searchbar({ onProductSelect }) {
         setQuery("");
         setIsFocused(false);
     }, [location.pathname]);
+
+    const handleSearch = () => {
+
+        if (!query.trim()) return;
+
+        if (!isShop) return;
+
+        navigate(
+            `/shop/search?q=${encodeURIComponent(query)}`
+        );
+
+        setIsFocused(false);
+    };
 
     return (
         <div className="searchbar-container" ref={searchbarRef}>
@@ -74,6 +82,11 @@ function Searchbar({ onProductSelect }) {
                     onFocus={() => setIsFocused(true)}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleSearch();
+                        }
+                    }}
                     placeholder={
                         isShop
                             ? t("navigation.searchbarShop")

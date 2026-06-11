@@ -1,0 +1,25 @@
+.shop-search-layout {
+
+    width: 1350px;
+    margin: 0 auto;
+
+    padding: 1rem 2rem;
+}
+
+.shop-search-header {
+
+    margin-bottom: 3rem;
+}
+
+.shop-search-title {
+
+    font-size: 2.5rem;
+    font-weight: 800;
+
+    margin: 0.5rem 0;
+}
+
+.shop-search-count {
+
+    color: rgba(255,255,255,0.6);
+}

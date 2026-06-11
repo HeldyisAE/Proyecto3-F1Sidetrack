@@ -44,7 +44,7 @@ function CartLayout() {
             <header className="cart-header">
                 <button
                     className="cart-back-button"
-                    onClick={() => navigate("/shop")}
+                    onClick={() => navigate(-1)}
                 >
                     <IoMdArrowRoundBack />
                 </button>
