@@ -1,0 +1,183 @@
+
+
+/* ── Variables F1 ── */
+:root {
+    --f1-red: #E8002D;
+    --f1-red-dim: rgba(232, 0, 45, 0.12);
+    --f1-stripe: rgba(232, 0, 45, 0.6);
+}
+
+.shoplayout {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding: 1.5rem 2rem 3rem;
+}
+
+/* ── Header ── */
+.shop-header {
+    padding: 3.5rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Línea roja superior animada */
+.shop-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--f1-stripe) 20%,
+        var(--f1-red) 50%,
+        var(--f1-stripe) 80%,
+        transparent 100%
+    );
+    animation: sweep 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes sweep {
+    from { background-position: -100% 0; }
+    to   { background-position: 200% 0; }
+}
+
+/* Grid de carbono sutil */
+.shop-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        rgba(232, 0, 45, 0.04) 60px
+    );
+    pointer-events: none;
+}
+
+/* ── Label ── */
+.shop-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--f1-red);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.shop-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background: var(--f1-red);
+    flex-shrink: 0;
+}
+
+/* ── Título ── */
+.shop-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 7vw, 4.8rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    animation: slideIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+/* Añade .accent al span de la palabra clave */
+.shop-title .accent {
+    color: var(--f1-red);
+    position: relative;
+    display: inline-block;
+}
+
+.shop-title .accent::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 0; right: 0;
+    height: 3px;
+    background: var(--f1-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underlineIn 0.4s ease 0.7s forwards;
+}
+
+/* ── Subtítulo ── */
+.shop-subtitle {
+    max-width: 560px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    animation: fadeUp 0.5s ease 0.4s both;
+}
+
+/* ── Animaciones ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px) skewX(-2deg); }
+    to   { opacity: 1; transform: translateX(0) skewX(0); }
+}
+
+@keyframes underlineIn {
+    to { transform: scaleX(1); }
+}
+
+.teams-products-select {
+    width: 100%;
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    padding: 1.5rem 0.2rem 1rem;
+
+}
+
+.featured-section {
+    width: 100%;
+    max-height: 120vh;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.month-trend {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.grid-products {
+    width: 100%;
+}
+
+

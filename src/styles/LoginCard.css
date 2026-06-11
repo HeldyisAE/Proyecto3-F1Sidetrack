@@ -1,0 +1,119 @@
+.login-card {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 2rem;
+
+    background: rgba(10, 8, 8, 0.507);
+
+    border: 1px solid rgba(225, 6, 0, 0.45);
+    border-radius: 16px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 40px rgba(225, 6, 0, 0.18);
+
+    color: white;
+}
+
+.login-card h1 {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+}
+
+.login-title-f1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #E10600;
+    letter-spacing: 0.04em;
+}
+
+.login-title-colon {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-title-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.18em;
+}
+
+.login-card input {
+    padding: 0.9rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.login-card input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.login-card button {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-weight: 600;
+
+    background: #E10600;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+}
+
+.login-card button:hover {
+    background: #c00500;
+}
+
+.login-link {
+    color: #E10600;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.login-link:hover {
+    color: #ff2a26;
+    text-decoration: none;
+}
+
+.login-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.login-btn {
+    flex: 1;
+}
+
+.google-btn {
+    width: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+    color: #444;
+}
+
+.google-btn:hover {
+    background: #f0f0f0;
+}

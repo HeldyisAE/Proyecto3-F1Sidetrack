@@ -1,0 +1,117 @@
+.userbutton-container {
+
+    position: relative;
+
+    width: 100px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-button {
+
+    height: 100%;
+    
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2.3rem 0.5rem;
+
+    padding-inline: clamp(2px, 0.2vw, 6px);
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--color-text-primary);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        color 0.2s ease;
+}
+
+.userbutton-icon {
+
+    font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.user-button:hover .userbutton-icon {
+
+    color: #E10600;
+
+    transform:
+        translateY(-1px)
+        scale(1.08);
+
+    filter:
+        drop-shadow(0 0 10px rgba(225, 6, 0, 0.35));
+}
+
+.user-button:active .userbutton-icon {
+
+    transform:
+        scale(0.94);
+}
+
+
+.userbutton-container {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.user-name {
+
+    position: absolute;
+
+    bottom: 0.35rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 0.25rem 0.6rem;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(8px);
+
+    color: rgba(255,255,255,0.9);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.userbutton-container:hover .user-name {
+
+    border-color: rgba(225, 6, 0, 0.35);
+
+    background: rgba(225, 6, 0, 0.08);
+}

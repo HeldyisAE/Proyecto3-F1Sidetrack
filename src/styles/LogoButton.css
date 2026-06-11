@@ -1,0 +1,43 @@
+.logobutton-container {
+    height: 10vh;
+    min-width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-button {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+}
+
+
+.logo-button img {
+    height: auto;
+    width: 164px;
+
+    object-fit: contain;
+}
+
+.logo-button:hover img {
+    opacity: 0.85;
+}
+
+.logo-button:active img {
+    transform: scale(0.98);
+}
+
+.logo-button img {
+    transition:
+        opacity 0.2s ease,
+        transform 0.1s ease;
+}

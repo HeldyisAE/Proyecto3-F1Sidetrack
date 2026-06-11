@@ -1,0 +1,157 @@
+.searchbar-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 470px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.7rem 4.3rem;
+}
+
+.searchbar-wrapper {
+
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    max-width: 520px;
+
+    height: clamp(46px, 5vh, 58px);
+
+    display: flex;
+    align-items: center;
+
+    gap: clamp(8px, 1vw, 14px);
+
+    padding-inline: clamp(14px, 1.2vw, 22px);
+
+    border:
+        2.2px solid rgba(162, 13, 13, 0.08);
+
+    border-radius: clamp(12px, 1vw, 18px);
+
+    background: var(--color-surface);
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        border-color 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+.searchbar-wrapper:hover {
+
+    border-color: var(--color-primary);
+
+    background:
+        rgba(255,255,255,0.045);
+}
+
+.searchbar-wrapper:focus-within {
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 4px rgba(139, 48, 45, 0.12);
+
+    transform: translateY(-1px);
+}
+
+.searchbar-input {
+
+    flex: 1;
+
+    height: 100%;
+
+    width: 13vw;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--color-text-primary);
+
+    font-family: var(--font-body);
+
+    font-size: clamp(0.95rem, 1vw, 1rem);
+}
+
+.searchbar-input::placeholder {
+
+    color: var(--color-text-tertiary);
+
+    transition: color 0.2s ease;
+}
+
+.searchbar-wrapper:focus-within
+.searchbar-input::placeholder {
+
+    color:
+        rgba(255,255,255,0.25);
+}
+
+.search-suggestions {
+    position: absolute;
+
+    top: 5rem;
+    left: 3.9rem;
+    right: 0;
+
+    width: 305px;
+
+    z-index: 999;
+
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+
+    backdrop-filter: blur(12px);
+
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.search-suggestions::-webkit-scrollbar {
+    width: 4px;
+}
+
+.search-suggestions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.searchbar-icon {
+
+    font-size: clamp(0.95rem, 1vw, 1.1rem);
+
+    color: var(--color-text-secondary);
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.searchbar-wrapper:focus-within
+.searchbar-icon {
+
+    color: var(--color-primary);
+
+    transform: scale(1.08);
+}

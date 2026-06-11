@@ -1,0 +1,59 @@
+.suggestion-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    padding: 0.65rem 0.9rem;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.suggestion-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.suggestion-image {
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+    object-position: top center;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+.suggestion-image.driver {
+    width: 32px;
+    height: 32px;
+}
+
+.suggestion-image.team {
+    width: 42px;
+    height: 24px;
+}
+
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.suggestion-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    color: white;
+}
+
+.suggestion-type {
+    font-size: 0.65rem;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    color: rgba(255, 255, 255, 0.5);
+}

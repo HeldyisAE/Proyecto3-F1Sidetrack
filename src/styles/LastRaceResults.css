@@ -1,0 +1,411 @@
+.last-race-results {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.last-race-results:active {
+    transform: translateY(-1px);
+    background: var(--color-focus);
+}
+
+.results-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.results-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.results-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.results-title::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 999px;
+}
+
+.results-subtitle {
+    font-size: clamp(0.78rem, 1vw, 0.85rem);
+    color: var(--color-text-secondary);
+    opacity: 0.55;
+}
+
+.results-round-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: 6px 14px;
+    white-space: nowrap;
+    align-self: flex-start;
+}
+
+.podium-section {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.podium-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 0.75rem;
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    background: var(--color-hover);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: podium-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.podium-step::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.podium-step:hover::after {
+    opacity: 1;
+}
+
+.first {
+    width: 34%;
+    min-height: 240px;
+    height: auto;
+    animation-delay: 0.1s;
+}
+.second {
+    width: 28%;
+    min-height: 225px;
+    height: auto;
+    animation-delay: 0.2s;
+}
+.third {
+    width: 28%;
+    max-height: 205px;
+    height: auto;
+    animation-delay: 0.3s;
+}
+
+.first:hover {
+    border-color: rgba(0, 210, 190, 0.6);
+    background: rgba(0, 210, 190, 0.08);
+    box-shadow:
+        0 0 30px rgba(0, 210, 190, 0.25),
+        0 12px 32px rgba(0, 210, 190, 0.18);
+}
+
+.first::after {
+    content: "12";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 5rem;
+    font-weight: 800;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.first::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-primary),
+        transparent
+    );
+    border-radius: 2px;
+    opacity: 0;
+    animation: base-in 0.4s ease 0.55s forwards;
+}
+
+.first .podium-avatar {
+    width: 82px;
+    height: 82px;
+}
+
+.second:hover {
+    border-color: var(--color-primary);
+    background: var(--color-hover);
+    box-shadow: 0 0 30px rgba(225, 6, 0, 0.2);
+}
+
+.third:hover {
+    border-color: rgba(54, 113, 198, 0.6);
+    background: rgba(54, 113, 198, 0.08);
+    box-shadow:
+        0 0 30px rgba(54, 113, 198, 0.25),
+        0 12px 32px rgba(54, 113, 198, 0.18);
+}
+
+.podium-avatar {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--team-color);
+    background: var(--color-surface);
+    margin-bottom: 0.75rem;
+}
+
+.podium-position {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.podium-step:hover .podium-position {
+    transform: scale(1.1);
+}
+
+.podium-driver {
+    margin-top: auto;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+}
+
+.podium-number {
+    font-size: 0.75rem;
+    opacity: 0.45;
+    letter-spacing: 0.05em;
+    margin-top: -0.15rem;
+}
+
+.podium-team {
+    display: block;
+    margin-top: 0.3rem;
+    opacity: 0.45;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s ease;
+}
+
+.podium-step:hover .podium-team {
+    opacity: 0.8;
+}
+
+.race-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.highlight-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(12px);
+    animation: slide-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition:
+        border-color 0.2s ease,
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.highlight-card:hover {
+    background: var(--color-hover);
+    transform: translateX(-5px);
+    box-shadow: 6px 0 24px rgba(225, 6, 0, 0.07);
+}
+
+.highlight-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18%;
+    bottom: 18%;
+    width: 2px;
+    background: rgb(0, 210, 190);
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+    transform: scaleY(0.3);
+    transition:
+        opacity 0.2s ease,
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.highlight-card:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.highlight-card:nth-child(1) {
+    animation-delay: 0.18s;
+}
+.highlight-card:nth-child(2) {
+    animation-delay: 0.28s;
+}
+.highlight-card:nth-child(3) {
+    animation-delay: 0.38s;
+}
+
+.highlight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    color: #f50d0d;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.highlight-card:hover .highlight-icon {
+    background: var(--color-focus);
+    transform: scale(1.06);
+}
+
+.highlight-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.highlight-label {
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.highlight-driver-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+}
+
+.highlight-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--team-color);
+    flex-shrink: 0;
+}
+
+.highlight-driver {
+    margin-top: 0.35rem;
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: letter-spacing 0.2s ease;
+}
+
+.highlight-card:hover .highlight-driver {
+    letter-spacing: 0em;
+}
+
+.highlight-time {
+    margin-top: 0.3rem;
+    opacity: 0.5;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s ease;
+}
+
+.highlight-card:hover .highlight-time {
+    opacity: 0.85;
+}
+
+@keyframes podium-enter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slide-in-right {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes base-in {
+    to {
+        opacity: 1;
+    }
+}
