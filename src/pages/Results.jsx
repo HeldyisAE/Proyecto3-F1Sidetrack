@@ -1,22 +1,20 @@
-// src/pages/Results.jsx
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useThemeContext } from "../context/ThemeContext";
 import { getTeamColor } from "../utils/colorUtils";
-import { getSchedule, getResults } from "../services/f1Service";
+import { getSchedule, getResultsByMeeting } from "../services/f1Service";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 import "../styles/Results.css";
 
-const MEDALS = ["🥇", "🥈", "🥉"];
 
 function Results() {
     const { t }     = useTranslation();
     const { theme } = useThemeContext();
 
     const [races, setRaces]                 = useState([]);
-    const [selected, setSelected]           = useState(null);
+    const [selectedKey, setSelectedKey]     = useState(null);
     const [detail, setDetail]               = useState(null);
     const [loadingList, setLoadingList]     = useState(true);
     const [loadingDetail, setLoadingDetail] = useState(false);
@@ -28,8 +26,9 @@ function Results() {
                 const now  = new Date();
                 const past = meetings
                     .filter((m) => new Date(m.date_end) < now)
-                    .reverse();
+                    .reverse(); // más reciente primero
                 setRaces(past);
+                // Auto-selecciona la más reciente
                 if (past.length > 0) loadDetail(past[0].meeting_key);
             })
             .catch((err) => setError(err.message))
@@ -37,12 +36,13 @@ function Results() {
     }, []);
 
     const loadDetail = (meetingKey) => {
-        if (selected === meetingKey) return;
-        setSelected(meetingKey);
+        if (selectedKey === meetingKey) return;
+        setSelectedKey(meetingKey);
         setDetail(null);
+        setError(null);
         setLoadingDetail(true);
 
-        getResults()
+        getResultsByMeeting(meetingKey)
             .then(setDetail)
             .catch((err) => setError(err.message))
             .finally(() => setLoadingDetail(false));
@@ -56,7 +56,6 @@ function Results() {
             <div className="mid">
                 <div className="content-container">
 
-                    {/* Título */}
                     <div className="schedule-page-header">
                         <h1 className="schedule-page-title">
                             {t("navigation.results")} {new Date().getFullYear()}
@@ -82,11 +81,10 @@ function Results() {
                     {!loadingList && !error && (
                         <div className="schedule-layout">
 
-                            {/* ── Lista de carreras ── */}
                             <div className="schedule-list">
                                 {races.map((race, idx) => {
-                                    const isSelected = race.meeting_key === selected;
-                                    const flagUrl    = race.country_code
+                                    const isSelected = race.meeting_key === selectedKey;
+                                    const flagUrl = race.country_code
                                         ? `https://flagcdn.com/w40/${race.country_code.toLowerCase()}.png`
                                         : null;
 
@@ -96,7 +94,9 @@ function Results() {
                                             className={`schedule-item schedule-item--past ${isSelected ? "schedule-item--selected" : ""}`}
                                             onClick={() => loadDetail(race.meeting_key)}
                                         >
-                                            <span className="schedule-item-round">R{races.length - idx}</span>
+                                            <span className="schedule-item-round">
+                                                R{races.length - idx}
+                                            </span>
 
                                             {flagUrl && (
                                                 <img
@@ -122,7 +122,6 @@ function Results() {
                                 })}
                             </div>
 
-                            {/* ── Detalle ── */}
                             <div className="schedule-detail">
                                 {loadingDetail ? (
                                     <div className="schedule-state">
@@ -149,6 +148,7 @@ function Results() {
     );
 }
 
+// Componente de detalle ─────────────────────────────────────────────────────
 function RaceResultDetail({ detail, theme, t }) {
     const { session, results } = detail;
 
@@ -162,7 +162,6 @@ function RaceResultDetail({ detail, theme, t }) {
     return (
         <div className="race-result-detail">
 
-            {/* Header */}
             <div className="rrd-header">
                 <div className="rrd-header-left">
                     <h2 className="rrd-title">{session.meeting_name ?? t("lastRace.title")}</h2>
@@ -173,7 +172,6 @@ function RaceResultDetail({ detail, theme, t }) {
                 </span>
             </div>
 
-            {/* Podio */}
             <div className="rrd-podium">
                 {podium.map((r) => (
                     <div
@@ -181,7 +179,7 @@ function RaceResultDetail({ detail, theme, t }) {
                         className={`rrd-podium-card rrd-podium-card--p${r.position}`}
                         style={{ "--team-color": getTeamColor(theme, r.team_colour) }}
                     >
-                        <span className="rrd-podium-medal">{MEDALS[r.position - 1]}</span>
+                        <span className="rrd-podium-medal"></span>
                         {r.headshot_url && (
                             <img
                                 src={r.headshot_url}
@@ -196,7 +194,6 @@ function RaceResultDetail({ detail, theme, t }) {
                 ))}
             </div>
 
-            {/* Tabla P4 en adelante */}
             <div className="rrd-table-wrapper">
                 <table className="rrd-table">
                     <thead>
