@@ -8,7 +8,10 @@
     border-radius: 16px;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .last-race-results:active {
@@ -93,11 +96,15 @@
     opacity: 0;
     transform: translateY(12px);
     animation: podium-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .podium-step::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: 18px;
@@ -105,16 +112,35 @@
     transition: opacity 0.25s ease;
 }
 
-.podium-step:hover::after { opacity: 1; }
+.podium-step:hover::after {
+    opacity: 1;
+}
 
-.first  { width: 34%; min-height: 240px; height: auto; animation-delay: 0.1s; }
-.second { width: 28%; min-height: 225px; height: auto; animation-delay: 0.2s; }
-.third  { width: 28%; max-height: 205px; height: auto; animation-delay: 0.3s; }
+.first {
+    width: 34%;
+    min-height: 240px;
+    height: auto;
+    animation-delay: 0.1s;
+}
+.second {
+    width: 28%;
+    min-height: 225px;
+    height: auto;
+    animation-delay: 0.2s;
+}
+.third {
+    width: 28%;
+    max-height: 205px;
+    height: auto;
+    animation-delay: 0.3s;
+}
 
 .first:hover {
     border-color: rgba(0, 210, 190, 0.6);
     background: rgba(0, 210, 190, 0.08);
-    box-shadow: 0 0 30px rgba(0, 210, 190, 0.25), 0 12px 32px rgba(0, 210, 190, 0.18);
+    box-shadow:
+        0 0 30px rgba(0, 210, 190, 0.25),
+        0 12px 32px rgba(0, 210, 190, 0.18);
 }
 
 .first::after {
@@ -129,19 +155,27 @@
 }
 
 .first::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 10%;
     right: 10%;
     height: 3px;
-    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-primary),
+        transparent
+    );
     border-radius: 2px;
     opacity: 0;
     animation: base-in 0.4s ease 0.55s forwards;
 }
 
-.first .podium-avatar { width: 82px; height: 82px; }
+.first .podium-avatar {
+    width: 82px;
+    height: 82px;
+}
 
 .second:hover {
     border-color: var(--color-primary);
@@ -152,7 +186,9 @@
 .third:hover {
     border-color: rgba(54, 113, 198, 0.6);
     background: rgba(54, 113, 198, 0.08);
-    box-shadow: 0 0 30px rgba(54, 113, 198, 0.25), 0 12px 32px rgba(54, 113, 198, 0.18);
+    box-shadow:
+        0 0 30px rgba(54, 113, 198, 0.25),
+        0 12px 32px rgba(54, 113, 198, 0.18);
 }
 
 .podium-avatar {
@@ -174,7 +210,9 @@
     transition: transform 0.2s ease;
 }
 
-.podium-step:hover .podium-position { transform: scale(1.1); }
+.podium-step:hover .podium-position {
+    transform: scale(1.1);
+}
 
 .podium-driver {
     margin-top: auto;
@@ -187,7 +225,12 @@
     color: var(--color-text-primary);
 }
 
-.podium-number { font-size: 0.75rem; opacity: 0.45; letter-spacing: 0.05em; margin-top: -0.15rem; }
+.podium-number {
+    font-size: 0.75rem;
+    opacity: 0.45;
+    letter-spacing: 0.05em;
+    margin-top: -0.15rem;
+}
 
 .podium-team {
     display: block;
@@ -199,9 +242,15 @@
     transition: opacity 0.2s ease;
 }
 
-.podium-step:hover .podium-team { opacity: 0.8; }
+.podium-step:hover .podium-team {
+    opacity: 0.8;
+}
 
-.race-highlights { display: flex; flex-direction: column; gap: 0.75rem; }
+.race-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
 
 .highlight-card {
     flex: 1;
@@ -217,7 +266,11 @@
     opacity: 0;
     transform: translateX(12px);
     animation: slide-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    transition: border-color 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        border-color 0.2s ease,
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .highlight-card:hover {
@@ -227,7 +280,7 @@
 }
 
 .highlight-card::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 18%;
@@ -237,14 +290,25 @@
     border-radius: 0 2px 2px 0;
     opacity: 0;
     transform: scaleY(0.3);
-    transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:
+        opacity 0.2s ease,
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.highlight-card:hover::before { opacity: 1; transform: scaleY(1); }
+.highlight-card:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+}
 
-.highlight-card:nth-child(1) { animation-delay: 0.18s; }
-.highlight-card:nth-child(2) { animation-delay: 0.28s; }
-.highlight-card:nth-child(3) { animation-delay: 0.38s; }
+.highlight-card:nth-child(1) {
+    animation-delay: 0.18s;
+}
+.highlight-card:nth-child(2) {
+    animation-delay: 0.28s;
+}
+.highlight-card:nth-child(3) {
+    animation-delay: 0.38s;
+}
 
 .highlight-icon {
     width: 40px;
@@ -257,13 +321,21 @@
     justify-content: center;
     flex-shrink: 0;
     font-size: 18px;
-    color: var(--color-primary);
-    transition: background 0.2s ease, transform 0.2s ease;
+    color: #f50d0d;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-.highlight-card:hover .highlight-icon { background: var(--color-focus); transform: scale(1.06); }
+.highlight-card:hover .highlight-icon {
+    background: var(--color-focus);
+    transform: scale(1.06);
+}
 
-.highlight-content { flex: 1; min-width: 0; }
+.highlight-content {
+    flex: 1;
+    min-width: 0;
+}
 
 .highlight-label {
     color: var(--color-primary);
@@ -273,7 +345,12 @@
     letter-spacing: 0.12em;
 }
 
-.highlight-driver-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.4rem; }
+.highlight-driver-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+}
 
 .highlight-avatar {
     width: 48px;
@@ -298,7 +375,9 @@
     transition: letter-spacing 0.2s ease;
 }
 
-.highlight-card:hover .highlight-driver { letter-spacing: 0em; }
+.highlight-card:hover .highlight-driver {
+    letter-spacing: 0em;
+}
 
 .highlight-time {
     margin-top: 0.3rem;
@@ -309,8 +388,24 @@
     transition: opacity 0.2s ease;
 }
 
-.highlight-card:hover .highlight-time { opacity: 0.85; }
+.highlight-card:hover .highlight-time {
+    opacity: 0.85;
+}
 
-@keyframes podium-enter { to { opacity: 1; transform: translateY(0); } }
-@keyframes slide-in-right { to { opacity: 1; transform: translateX(0); } }
-@keyframes base-in { to { opacity: 1; } }
+@keyframes podium-enter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slide-in-right {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes base-in {
+    to {
+        opacity: 1;
+    }
+}
