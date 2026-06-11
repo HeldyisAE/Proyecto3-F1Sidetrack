@@ -16,9 +16,7 @@
 }
 
 @media (max-width: 900px) {
-    .schedule-layout {
-        grid-template-columns: 1fr;
-    }
+    .schedule-layout { grid-template-columns: 1fr; }
 }
 
 /* ── Estados carga ── */
@@ -30,7 +28,6 @@
     align-items: center;
     gap: 1rem;
     color: var(--color-text-secondary);
-    font-family: var(--font-display, var(--font-primary));
 }
 
 .schedule-state--error { color: var(--color-primary); }
@@ -56,22 +53,6 @@
     padding-right: 0.5rem;
     scrollbar-width: thin;
     scrollbar-color: var(--color-border) transparent;
-}
-
-.schedule-list-title {
-    font-family: var(--font-display, var(--font-primary));
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-    margin: 0 0 0.75rem;
-    padding-left: 0.5rem;
-    position: sticky;
-    top: 0;
-    background: var(--color-background);
-    padding-block: 0.5rem;
-    z-index: 1;
 }
 
 /* ── Item de carrera ── */
@@ -195,7 +176,6 @@
     border: 1px dashed var(--color-border);
     border-radius: 16px;
     color: var(--color-text-secondary);
-    font-family: var(--font-display, var(--font-primary));
 }
 
 /* ── Race detail card ── */
@@ -212,70 +192,100 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.race-detail--live   { border-color: #22c55e; box-shadow: 0 0 24px rgba(34, 197, 94, 0.15); }
-.race-detail--past   { border-color: var(--color-border); }
+.race-detail--live     { border-color: #22c55e; box-shadow: 0 0 24px rgba(34, 197, 94, 0.15); }
+.race-detail--past     { border-color: var(--color-border); }
 .race-detail--upcoming { border-color: var(--color-primary); box-shadow: 0 0 24px rgba(225, 6, 0, 0.1); }
 
-/* Banner con bandera de fondo */
+/* ── Banner rediseñado (sin background-image) ── */
 .race-detail-banner {
     position: relative;
-    min-height: 180px;
+    min-height: 160px;
     display: flex;
-    align-items: flex-end;
-    background-image: var(--flag-url);
-    background-size: cover;
-    background-position: center;
-    background-color: var(--color-surface);
+    align-items: stretch;
+    background: var(--color-hover);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
 }
 
-.race-detail-banner-overlay {
+/* Número de ronda decorativo de fondo */
+.race-detail-round-bg {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.3) 0%,
-        rgba(0,0,0,0.75) 100%
-    );
+    right: -0.5rem;
+    bottom: -1rem;
+    font-size: 8rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.06;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.05em;
 }
 
 .race-detail-banner-content {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     padding: 1.5rem;
     width: 100%;
+}
+
+.race-detail-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.race-detail-banner-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .race-detail-flag {
     width: 64px;
     height: auto;
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     flex-shrink: 0;
+    border: 1px solid var(--color-border-light);
 }
 
 .race-detail-country {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-    margin: 0 0 0.25rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 0.35rem;
 }
 
 .race-detail-name {
-    font-family: var(--font-display, var(--font-primary));
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 700;
-    color: #fff;
+    color: var(--color-text-primary);
     margin: 0;
     line-height: 1.2;
 }
 
+.race-detail-round-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    background: var(--color-focus);
+    border: 1px solid var(--color-border);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
 .race-detail-live-badge {
-    margin-left: auto;
     font-size: 0.8rem;
     font-weight: 700;
     color: #22c55e;
@@ -284,35 +294,32 @@
     padding: 4px 12px;
     border-radius: 20px;
     white-space: nowrap;
-    align-self: flex-start;
     animation: live-pulse 2s ease-in-out infinite;
 }
 
 .race-detail-status-badge {
-    margin-left: auto;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 4px 12px;
     border-radius: 20px;
-    align-self: flex-start;
     white-space: nowrap;
 }
 
 .race-detail-status-badge--past {
     color: var(--color-text-secondary);
-    background: rgba(255,255,255,0.08);
+    background: var(--color-focus);
     border: 1px solid var(--color-border);
 }
 
 .race-detail-status-badge--upcoming {
     color: var(--color-primary);
-    background: rgba(225, 6, 0, 0.1);
+    background: var(--color-hover);
     border: 1px solid var(--color-primary);
 }
 
-/* Info grid */
+/* ── Info grid ── */
 .race-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -355,7 +362,6 @@
 }
 
 .schedule-page-title {
-    font-family: var(--font-display, var(--font-primary));
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 700;
     color: var(--color-text-primary);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useThemeContext } from "../context/ThemeContext";
 import { getSchedule } from "../services/f1Service";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -8,8 +7,7 @@ import "../styles/Home.css";
 import "../styles/Schedule.css";
 
 function Schedule() {
-    const { t }     = useTranslation();
-    const { theme } = useThemeContext();
+    const { t } = useTranslation();
 
     const [meetings, setMeetings] = useState([]);
     const [loading, setLoading]   = useState(true);
@@ -41,19 +39,16 @@ function Schedule() {
 
     return (
         <div className="home">
-            <div className="top">
-                <Header />
-            </div>
+            <div className="top"><Header /></div>
             <div className="mid">
                 <div className="content-container">
 
-                    {/* Título de sección */}
                     <div className="schedule-page-header">
                         <h1 className="schedule-page-title">
                             {t("navigation.schedule")} {new Date().getFullYear()}
                         </h1>
                         <p className="schedule-page-subtitle">
-                            {meetings.filter(m => getRaceStatus(m) === "past").length} / {meetings.length} {t("schedule.finished").toLowerCase()}
+                            {meetings.filter(m => getRaceStatus(m) === "past").length} / {meetings.length} {t("schedule.finished")}
                         </p>
                     </div>
 
@@ -73,7 +68,6 @@ function Schedule() {
                     {!loading && !error && (
                         <div className="schedule-layout">
 
-                            {/* ── Lista ── */}
                             <div className="schedule-list">
                                 {meetings.map((meeting, idx) => {
                                     const status     = getRaceStatus(meeting);
@@ -110,18 +104,17 @@ function Schedule() {
                                                         month: "short", day: "numeric",
                                                     })}
                                                 </span>
-                                                {status === "live" && <span className="schedule-item-live">LIVE</span>}
-                                                {status === "past" && <span className="schedule-item-done">✓</span>}
+                                                {status === "live"     && <span className="schedule-item-live">LIVE</span>}
+                                                {status === "past"     && <span className="schedule-item-done">✓</span>}
                                             </div>
                                         </button>
                                     );
                                 })}
                             </div>
 
-                            {/* ── Detalle ── */}
                             <div className="schedule-detail">
                                 {selectedData
-                                    ? <RaceDetail meeting={selectedData} status={getRaceStatus(selectedData)} t={t} />
+                                    ? <RaceDetail meeting={selectedData} status={getRaceStatus(selectedData)} t={t} idx={meetings.indexOf(selectedData)} />
                                     : <div className="schedule-detail-empty"><p>{t("schedule.upcoming")}</p></div>
                                 }
                             </div>
@@ -130,16 +123,14 @@ function Schedule() {
                     )}
                 </div>
             </div>
-            <div className="bottom">
-                <Footer />
-            </div>
+            <div className="bottom"><Footer /></div>
         </div>
     );
 }
 
-function RaceDetail({ meeting, status, t }) {
+function RaceDetail({ meeting, status, t, idx }) {
     const flagUrl = meeting.country_code
-        ? `https://flagcdn.com/w160/${meeting.country_code.toLowerCase()}.png`
+        ? `https://flagcdn.com/w80/${meeting.country_code.toLowerCase()}.png`
         : null;
 
     const startDate = new Date(meeting.date_start);
@@ -153,27 +144,44 @@ function RaceDetail({ meeting, status, t }) {
 
     return (
         <div className={`race-detail race-detail--${status}`}>
-            <div
-                className="race-detail-banner"
-                style={flagUrl ? { "--flag-url": `url(${flagUrl})` } : {}}
-            >
-                <div className="race-detail-banner-overlay" />
+
+            {/* Banner rediseñado — sin background-image */}
+            <div className="race-detail-banner">
+                {/* Número de ronda decorativo */}
+                <span className="race-detail-round-bg">R{idx + 1}</span>
+
                 <div className="race-detail-banner-content">
-                    {flagUrl && (
-                        <img
-                            src={flagUrl}
-                            alt={meeting.country_name}
-                            className="race-detail-flag"
-                            onError={(e) => { e.target.style.display = "none"; }}
-                        />
-                    )}
-                    <div>
-                        <p className="race-detail-country">{meeting.country_name}</p>
-                        <h2 className="race-detail-name">{meeting.meeting_name}</h2>
+                    <div className="race-detail-banner-left">
+                        {flagUrl && (
+                            <img
+                                src={flagUrl}
+                                alt={meeting.country_name}
+                                className="race-detail-flag"
+                                onError={(e) => { e.target.style.display = "none"; }}
+                            />
+                        )}
+                        <div>
+                            <p className="race-detail-country">{meeting.country_name}</p>
+                            <h2 className="race-detail-name">{meeting.meeting_name}</h2>
+                        </div>
                     </div>
-                    {status === "live"     && <span className="race-detail-live-badge">🔴 LIVE</span>}
-                    {status === "past"     && <span className="race-detail-status-badge race-detail-status-badge--past">{t("schedule.finished")}</span>}
-                    {status === "upcoming" && <span className="race-detail-status-badge race-detail-status-badge--upcoming">{t("schedule.upcoming")}</span>}
+
+                    <div className="race-detail-banner-right">
+                        {status === "live" && (
+                            <span className="race-detail-live-badge">🔴 LIVE</span>
+                        )}
+                        {status === "past" && (
+                            <span className="race-detail-status-badge race-detail-status-badge--past">
+                                {t("schedule.finished")}
+                            </span>
+                        )}
+                        {status === "upcoming" && (
+                            <span className="race-detail-status-badge race-detail-status-badge--upcoming">
+                                {t("schedule.upcoming")}
+                            </span>
+                        )}
+                        <span className="race-detail-round-badge">Round {idx + 1}</span>
+                    </div>
                 </div>
             </div>
 
