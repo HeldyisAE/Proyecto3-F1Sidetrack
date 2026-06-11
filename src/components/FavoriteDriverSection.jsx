@@ -40,9 +40,9 @@ function FavoriteDriverSection({ standings }) {
                             alt={driver.full_name}
                             className="driver-avatar"
                         />
-                        <div className="driver-info">
-                            <span className="driver-name">{driver.full_name}</span>
-                            <span className="driver-team">{driver.team_name}</span>
+                        <div className="favorite-driver-info">
+                            <span className="favorite-driver-name">{driver.full_name}</span>
+                            <span className="favorite-driver-team">{driver.team_name}</span>
                         </div>
                         <div className="driver-stats">
                             <span className="driver-position">
