@@ -73,6 +73,7 @@ function CartLayout() {
                 <aside className="cart-payment-section">
                     <div className="payment-card">
                         <PaymentDetails
+                            isCartEmpty={cart.length === 0}
                             onOrderSuccess={() => {
                                 setCart([]);
                             }}  

@@ -84,9 +84,9 @@
     border: none;
     border-radius: 10px;
 
-    background: rgba(225, 6, 0, 0.12);
+    background: rgba(121, 14, 11, 0.568);
 
-    color: #E10600;
+    color: #f7534d;
 
     cursor: pointer;
 
@@ -100,7 +100,7 @@
 
 .selected-product-remove:hover {
 
-    background: #E10600;
+    background: #f01e16;
 
     color: white;
 

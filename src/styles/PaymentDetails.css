@@ -111,3 +111,20 @@
 
     cursor: pointer;
 }
+
+.payment-error {
+    color: #ff5c5c;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+}
+
+.order-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.payment-form.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
